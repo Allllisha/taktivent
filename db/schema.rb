@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_014451) do
+ActiveRecord::Schema.define(version: 2022_02_12_022441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,22 @@ ActiveRecord::Schema.define(version: 2022_02_12_014451) do
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
+  create_table "performers", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "song_performers", force: :cascade do |t|
+    t.bigint "song_id", null: false
+    t.bigint "performer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["performer_id"], name: "index_song_performers_on_performer_id"
+    t.index ["song_id"], name: "index_song_performers_on_song_id"
+  end
+
   create_table "song_reviews", force: :cascade do |t|
     t.float "rating", null: false
     t.text "comment"
@@ -108,6 +124,8 @@ ActiveRecord::Schema.define(version: 2022_02_12_014451) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "event_reviews", "events"
   add_foreign_key "events", "users"
+  add_foreign_key "song_performers", "performers"
+  add_foreign_key "song_performers", "songs"
   add_foreign_key "song_reviews", "songs"
   add_foreign_key "songs", "events"
 end
