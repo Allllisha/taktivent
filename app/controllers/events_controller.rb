@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @songs = @event.songs
-    @event_reviews = @event.event_reviews
+    authorize @event
   end
 
   def new
@@ -35,7 +35,11 @@ class EventsController < ApplicationController
   def preview
    @event = Event.find(params[:id])
    @songs = @event.songs
-   @event_reviews = @event.event_reviews
+  end
+
+  def analytics
+    @event = Event.find(params[:id])
+    @songs = @event.songs
   end
 
   def destroy
@@ -43,6 +47,8 @@ class EventsController < ApplicationController
     @event.destroy
     redirect_to event_path(@events)
   end
+
+  def 
 
   def event_params
     params.require(:event).permit(:user, :name, :start_at, :venue, :images)
