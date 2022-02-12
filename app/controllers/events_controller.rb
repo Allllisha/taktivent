@@ -2,7 +2,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @songs = @event.songs
-    @event_reviews = @event.event_reviews
   end
 
   def new
@@ -35,13 +34,11 @@ class EventsController < ApplicationController
   def preview
    @event = Event.find(params[:id])
    @songs = @event.songs
-   @event_reviews = @event.event_reviews
   end
 
   def analytics
     @event = Event.find(params[:id])
     @songs = @event.songs
-    @event_reviews = @event.event_reviews
   end
 
   def destroy
