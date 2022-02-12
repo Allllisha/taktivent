@@ -38,11 +38,19 @@ class EventsController < ApplicationController
    @event_reviews = @event.event_reviews
   end
 
+  def analytics
+    @event = Event.find(params[:id])
+    @songs = @event.songs
+    @event_reviews = @event.event_reviews
+  end
+
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to event_path(@events)
   end
+
+  def 
 
   def event_params
     params.require(:event).permit(:user, :name, :start_at, :venue, :images)
