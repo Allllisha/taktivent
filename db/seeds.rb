@@ -31,16 +31,25 @@ ref.save!
 nico = User.new(first_name: "Nico", last_name: "Lentgen",email: "nicolaslentgen@xxx.com", password: "1234567")
 nico.save!
 
+puts 'Generating venue ...'
+venue = Venue.create!(
+   name: "Tokyo Dome", 
+   address: Faker::Address.city
+)
+
 
 artists.each do |artist|
 puts 'Generating events ...'
-  5.times do
-    Event.create(
+5.times do
+   event = Event.create!(
       name: ["#{artist.first_name} #{artist.last_name}:National Tour", "LIVE!!: #{artist.first_name} #{artist.last_name}"].sample,
       start_at: Faker::Time.forward,
       description: Faker::Lorem.paragraphs,
-      user: User.all.sample
-  )
-  end
+      user: User.all.sample,
+      venue: venue
+      )
+      event.images.attach(io: URI.open("https://unsplash.com/s/photos/concert"), filename: "concerts.jpeg")
+   end
 end
-  puts 'Event done'
+
+puts 'Event done'
