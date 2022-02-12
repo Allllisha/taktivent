@@ -13,4 +13,11 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "controllers"
-import "bootstrap"
+import "bootstrap";
+
+import { initUpdateNavbarOnScroll } from '../components/navbar';
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your JS functions here
+  initUpdateNavbarOnScroll();
+});
