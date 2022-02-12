@@ -1,7 +1,8 @@
 class Performer < ApplicationRecord
-  belong_to :user
+  belongs_to :user
   has_many_attached :photos
   has_many :songs, -> { distinct }, through: :song_performers
 
-  validate :name, presence: true
+  validates :name, presence: true
+  validates :name, uniqueness: { scope: %i[description user_id] }
 end
