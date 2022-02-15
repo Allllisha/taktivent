@@ -9,7 +9,7 @@ class EventPolicy < ApplicationPolicy
     end
 
     def new
-      record.user == user
+      return true
     end
 
     def create
