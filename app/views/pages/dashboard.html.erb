@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h4>My upcoming events</h4>
+        <%= pluralize @events.size, "event" if @events%>
+      </h2>
+    </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h4>
+      <%= link_to "Create new event", new_event_path %>
+      </h4>
+    </div>
+  </div>
+</div>
