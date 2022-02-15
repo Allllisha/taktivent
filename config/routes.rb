@@ -12,7 +12,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :songs, only: %i[] do
-    resources :song_reviews, only: %i[new create]
-  end
+  resources :reviews, only: %i[create]
 end
