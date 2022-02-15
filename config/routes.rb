@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reviews, only: %i[create]
+  get '/reviews', to: 'reviews#create'
 end
