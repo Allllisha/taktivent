@@ -2,20 +2,17 @@ class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!
   skip_after_action :verify_authorized
 
-  # the app goes into this action when event-goers submit a form for a song
+  # the app goes into this action when event-goers submit the form at the end of event
   def create
-    @song_review = SongReview.new(song_review_params)
-    @song_review.song = Song.find(params[:song_id])
-    if @song_review.save
-      # if the review is successfully saved, go back to events#show,
-      # with the form for this song and all the forms that have to submitted before hidden
-    else
-      # if the review is successfully saved, go back to events#show, with the form for this song hidden
-      redirect_to new_song_song_review(params[:song_id])
-    end
+    # saved all the inputs to corresponding song_id/event_id
+    # redirect to events#show, with all the forms hidden
   end
 
   def song_review_params
-    params.require(:song_preview).permit(:rating, :comment)
+    params.require(:song_preview).permit(:song_id, :rating, :comment)
+  end
+
+  def event_review_params
+    params.require(:event_preview).permit(:event_id, :rating, :comment)
   end
 end
