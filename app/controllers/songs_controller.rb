@@ -1,7 +1,9 @@
 class SongsController < ApplicationController
   def new
     @song = Song.new
-    @song_performer = Song_performer.new
+    @event = Event.find(params[:event_id])
+    @song_performer = SongPerformer.new
+    authorize @song
   end
 
   def create
