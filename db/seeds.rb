@@ -27,9 +27,11 @@ artists << tom
 
 ref = User.new(first_name: "Ref", last_name: "Mags",email: "refmags@xxx.com", password: "1234567")
 ref.save!
+artists << ref
 
 nico = User.new(first_name: "Nico", last_name: "Lentgen",email: "nicolaslentgen@xxx.com", password: "1234567")
 nico.save!
+artists << nico
 
 puts 'Generating venue ...'
 venue = Venue.create!(
@@ -43,7 +45,8 @@ puts 'Generating events ...'
 5.times do
    event = Event.create!(
       name: ["#{artist.first_name} #{artist.last_name}:National Tour", "LIVE!!: #{artist.first_name} #{artist.last_name}"].sample,
-      start_at: Faker::Time.forward,
+      start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
+      end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
       description: Faker::Lorem.paragraphs,
       user: User.all.sample,
       venue: venue
