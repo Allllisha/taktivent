@@ -11,10 +11,10 @@ User.destroy_all
 
 puts 'Generating users...'
 artists = []
-5.times do 
-   user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,email: Faker::Internet.email, password: '123123123')
-   artists << user
- end
+5.times do
+  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,email: Faker::Internet.email, password: '123123123')
+  artists << user
+end
 
 arisa = User.new(first_name: "Arisa", last_name: "Nemoto",email: "ardolce23@gmail.com", password: "a23123123")
 
@@ -35,24 +35,23 @@ artists << nico
 
 puts 'Generating venue ...'
 venue = Venue.create!(
-   name: "Tokyo Dome", 
-   address: Faker::Address.city
+  name: "Tokyo Dome",
+  address: Faker::Address.city
 )
 
-
 artists.each do |artist|
-puts 'Generating events ...'
-5.times do
-   event = Event.create!(
+  puts 'Generating events ...'
+  5.times do
+    event = Event.create!(
       name: ["#{artist.first_name} #{artist.last_name}:National Tour", "LIVE!!: #{artist.first_name} #{artist.last_name}"].sample,
       start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
       end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
       description: Faker::Lorem.paragraphs,
       user: User.all.sample,
       venue: venue
-      )
-      event.images.attach(io: URI.open("https://unsplash.com/s/photos/concert"), filename: "concerts.jpeg")
-   end
+    )
+    event.images.attach(io: URI.open("https://unsplash.com/s/photos/concert"), filename: "concerts.jpeg")
+  end
 end
 
 puts 'Event done'
