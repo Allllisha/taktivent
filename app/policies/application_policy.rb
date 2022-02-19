@@ -36,6 +36,10 @@ class ApplicationPolicy
     true
   end
 
+  def dashboard?
+    true
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
