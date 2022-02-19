@@ -7,7 +7,7 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "chartkick/chart.js"
+// import "chartkick/chart.js"
 
 Rails.start()
 Turbolinks.start()
@@ -17,8 +17,10 @@ import "controllers"
 import "bootstrap";
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
+import { initImagePreview } from '../components/image_preview';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   initUpdateNavbarOnScroll();
+  initImagePreview();
 });

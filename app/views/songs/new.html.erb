@@ -7,10 +7,16 @@
       <%= f.input :composer_name %>
       <%= f.input :start_at %>
       <%= f.input :length_in_minute %>
-      <%= f.input :description %>
-      <%= f.input :images, as: :file, class: "container", input_html: { multiple: true } %>
-      <div id="display_image"></div>
+      <%= f.input :description, :label => "Song description" %>
     </div>
+
+    <div class="container" id="background">
+      <%= f.input :images, as: :file, input_html: { multiple: true, id: "pictureInput" } %>
+      <div id="pictureTarget">
+      </div>
+    </div>
+
+
     <div class="form-actions">
       <%= f.button :submit, class: "btn-outline-secondary" %>
     </div>
@@ -18,4 +24,6 @@
   </div>
 </div>  
 </div>
+
+
 
