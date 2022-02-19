@@ -15,27 +15,25 @@ class EventsController < ApplicationController
     @venue = Venue.find(params[:venue_id])
     @event.venue = @venue
     if @event.save
-    redirect_to event_path(@event)
+      redirect_to event_path(@event)
     else
-    render "new"
+      render "new"
     end
   end
-
 
   def edit
     @event = Event.find(params[:id])
   end
-
 
   def update
     @event = Event.find(params[:id])
     @event.update(event_params)
     redirect_to event_path
   end
-  
+
   def preview
-   @event = Event.find(params[:id])
-   @songs = @event.songs
+    @event = Event.find(params[:id])
+    @songs = @event.songs
   end
 
   def analytics
@@ -49,10 +47,9 @@ class EventsController < ApplicationController
     redirect_to event_path(@events)
   end
 
-  def 
+  private
 
   def event_params
     params.require(:event).permit(:user, :name, :start_at, :venue, :images)
   end
 end
-
