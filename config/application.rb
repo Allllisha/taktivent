@@ -5,13 +5,9 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-if ['development', 'test'].include? ENV['RAILS_ENV']
-  Dotenv::Railtie.load
-end
 
 module Taktivent
   class Application < Rails::Application
-    Dotenv::Railtie.load
     config.generators do |generate|
       generate.assets false
       generate.helper false
