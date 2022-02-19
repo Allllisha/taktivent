@@ -1,13 +1,13 @@
 require "test_helper"
 
-class SongReviewsControllerTest < ActionDispatch::IntegrationTest
+class ReviewsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get song_reviews_new_url
+    get reviews_new_url
     assert_response :success
   end
 
   test "should get create" do
-    get song_reviews_create_url
+    get reviews_create_url
     assert_response :success
   end
 end
