@@ -28,7 +28,7 @@ class EventPolicy < ApplicationPolicy
       return true
     end
 
-    def analytics
+    def dashboard
       return true
     end
 end

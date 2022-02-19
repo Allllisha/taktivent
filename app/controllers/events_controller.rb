@@ -49,7 +49,7 @@ class EventsController < ApplicationController
    authorize @event
   end
 
-  def analytics
+  def dashboard
     @event = Event.find(params[:id])
     @songs = @event.songs
     authorize @event

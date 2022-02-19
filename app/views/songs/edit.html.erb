@@ -1,0 +1,21 @@
+<div class ="background-home">
+<div class="center-container">
+<div class="form-container">
+  <%= simple_form_for [@event, @song] do |f| %>
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :composer_name %>
+      <%= f.input :start_at %>
+      <%= f.input :length_in_minute %>
+      <%= f.input :description %>
+      <%= f.input :images, as: :file, class: "container", input_html: { multiple: true } %>
+      <div id="display_image"></div>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn-outline-secondary" %>
+    </div>
+  <% end %>
+  </div>
+</div>  
+</div>
+

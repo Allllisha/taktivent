@@ -1,0 +1,46 @@
+.event-dashbord{
+}
+
+.go-to-event{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-decoration: none;
+  color: black;
+  margin-top: 40px;
+}
+
+.event-analytics-dashboard{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: rgb(233, 239, 243);
+
+  h2{
+    margin-bottom: 20px;
+  }
+}
+
+.event-info-dashboard{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: darkseagreen;
+
+  h2{
+    margin-bottom: 20px;
+  }
+}
+
+.event-song-dashboard{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: rgb(226, 231, 226);
+  h2{
+    margin-bottom: 20px;
+  }
+}
+
+.song{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
