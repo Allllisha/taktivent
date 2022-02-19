@@ -114,4 +114,9 @@ arisa_song = arisa.events.first.songs.new(
 arisa_song.save!
 arisa_song.images.attach(io: URI.open("https://images-na.ssl-images-amazon.com/images/I/61HYd5O7onL.jpg"), filename: "symphony_no_5.jpg")
 
-# arisa_song.song_reviews.create!(rating: 5, comment: 'Best performance I have ever seen!')
+puts 'Generating song reviews for user Arisa'
+comment = 'Great song.'
+arisa_song.song_reviews.create!(rating: 5, comment: comment, sentiment: get_sentiment(comment))
+
+comment = "Can be done better."
+arisa_song.song_reviews.create!(rating: 2, comment: comment, sentiment: get_sentiment(comment))
