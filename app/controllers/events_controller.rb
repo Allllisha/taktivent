@@ -7,40 +7,54 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @venue = Venue.new
     authorize @event
+    authorize @venue
   end
 
   def create
     @event = Event.new(event_params)
-    @venue = Venue.find(params[:venue_id])
+    @venue = Venue.new(venue_params)
+    @event.user = current_user
+    authorize @event
+    authorize @venue
     @event.venue = @venue
-    if @event.save
-    redirect_to event_path(@event)
+    if @event.save && @venue.save
+      redirect_to event_path(@event)
     else
-    render "new"
+      render :new
     end
   end
 
 
   def edit
     @event = Event.find(params[:id])
+    @venue = Venue.find(params[:id])
+    authorize @event
+    authorize @venue
   end
 
 
   def update
     @event = Event.find(params[:id])
+    @venue = Venue.find(params[:id])
     @event.update(event_params)
+    @venue.update(venue_params)
+    authorize @event
+    authorize @venue
     redirect_to event_path
   end
   
   def preview
    @event = Event.find(params[:id])
    @songs = @event.songs
+   authorize @event
   end
 
   def analytics
     @event = Event.find(params[:id])
     @songs = @event.songs
+    authorize @event
   end
 
   def destroy
@@ -49,10 +63,14 @@ class EventsController < ApplicationController
     redirect_to event_path(@events)
   end
 
-  def 
+  private
 
   def event_params
-    params.require(:event).permit(:user, :name, :start_at, :venue, :images)
+    params.require(:event).permit(:user, :name, :description, :start_at, :end_at,  :images, :venue_id, :venue)
+  end
+
+  def venue_params
+    params.require(:event).require(:venue).permit(:name, :address)
   end
 end
 

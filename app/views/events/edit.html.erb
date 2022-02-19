@@ -1,4 +1,4 @@
-<div class="full-page">
+ <div class="full-page">
 <%# <form>
   <input type="file" id="pictureInput"> 
 </form> %>
@@ -8,6 +8,7 @@
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+ 
  
  <div class="before-uproad" id="background">
  <%= image_tag asset_url("no-image.png") %>
@@ -22,9 +23,9 @@
     <%= f.input :description, :label => "Event description"  %>
     <%= f.input :start_at, input_html: { class: 'select2' } %>
     <%= f.input :end_at, input_html: { class: 'select2' } %>
-    <%= f.association :venue do |f| %> 
-      <%= f.input :name, :label => "Venue" %>
-      <%= f.input :address %> 
+    <%= f.association :venue do |f| %>
+    <%= f.input :name, :label => "Venue" %>
+    <%= f.input :address %>
     <% end %>
   </div>
   <div class="form-actions">
@@ -42,10 +43,10 @@ const background = document.querySelector('#background')
 
 picture.addEventListener('change', (event) => {
  background.style.display = "none";
-  const files = event.target.files;
-  const image = files[0]
+ const files = event.target.files;
+  const image = files[0];
   // here's the file size
-  console.log(image.size);
+  console.log(images.size);
   const reader = new FileReader();
   reader.onload = function(file) {
     const img = new Image();

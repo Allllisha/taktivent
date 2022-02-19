@@ -13,22 +13,22 @@ class EventPolicy < ApplicationPolicy
     end
 
     def create
-      record.user == user
+      return true
     end
 
     def edit
-      record.user == user
+      return true
     end
 
     def update
-      record.user == user
+      return true
     end
 
     def preview
-      record.user == user
+      return true
     end
 
     def analytics
-      record.user == user
+      return true
     end
 end

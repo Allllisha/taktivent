@@ -1,0 +1,36 @@
+body{
+  background-color: white;
+}
+
+.event-img-top{
+  object-fit: cover;
+}
+
+
+.event-info-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.event-info{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+ h1{
+  margin-bottom: 30px;
+ }
+
+ h5{
+  margin-bottom: 50px;
+  text-align: center;
+ }
+}
+
+
+

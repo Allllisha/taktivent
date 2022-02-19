@@ -1,1 +1,13 @@
-<%= @event.name %>
+ 
+ 
+ <div class="event-info-container">
+   <%= cl_image_tag @event.images.first.key, :width => '100%', :height => '500px', class: "event-img-top"%>
+
+    <div class="event-info">
+     <h1><%= @event.name %></h1>
+       <h5><%= @event.description %></h5>
+         <h2>Start: <%= @event.start_at %></h2>
+           <h2>Venue: <%= @event.venue.name %></h2>
+             <p>Address: <%= @event.venue.address %></p>
+               </div>
+                 </div>
