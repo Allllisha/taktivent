@@ -2,14 +2,20 @@
 <div class="center-container">
 <div class="form-container">
   <%= simple_form_for [@event, @song] do |f| %>
-    <%= f.input :name, class: "input" %>
-    <%= f.input :composer_name, class: "input" %>
-    <%= f.input :start_at, class: "input" %>
-    <%= f.input :length_in_minute, class: "input" %>
-    <%= f.input :description, class: "input" %>
-    <%= f.input :images, as: :file, input_html: { multiple: true }, class: "input" %>
-    <%= f.button :submit, class: "input", class: "btn-outline-secondary" %>
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :composer_name %>
+      <%= f.input :start_at %>
+      <%= f.input :length_in_minute %>
+      <%= f.input :description %>
+      <%= f.input :images, as: :file, class: "container", input_html: { multiple: true } %>
+      <div id="display_image"></div>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn-outline-secondary" %>
+    </div>
   <% end %>
   </div>
 </div>  
 </div>
+
