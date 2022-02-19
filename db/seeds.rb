@@ -75,3 +75,5 @@ arisa_song = arisa.events.first.songs.new(
 )
 arisa_song.save!
 arisa_song.images.attach(io: URI.open("https://images-na.ssl-images-amazon.com/images/I/61HYd5O7onL.jpg"), filename: "symphony_no_5.jpg")
+
+arisa_song.song_reviews.create!(rating: 5, comment: 'Best performance I have ever seen!')
