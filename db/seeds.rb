@@ -58,6 +58,14 @@ end
 
 puts 'Event done'
 
+puts 'Generating event reviews for user Arisa'
+arisa.events.first.event_reviews.create!(rating: 5, comment: 'Best performance I have ever seen!')
+arisa.events.first.event_reviews.create!(rating: 3, comment: "It's ok I guess.")
+arisa.events.first.event_reviews.create!(rating: 4, comment: 'Overall pretty nice :)')
+arisa.events.first.event_reviews.create!(rating: 1, comment: 'Boring as hell.')
+arisa.events.first.event_reviews.create!(rating: 3, comment: "The show is alright but the veune sucks.")
+
+puts 'Generating song for user Arisa'
 arisa_song = arisa.events.first.songs.new(
   name: 'The Symphony No. 5 in C minor',
   composer_name: 'Ludwig van Beethoven',
@@ -65,4 +73,5 @@ arisa_song = arisa.events.first.songs.new(
   length_in_minute: 20,
   description: Faker::Lorem.paragraphs
 )
+arisa_song.save!
 arisa_song.images.attach(io: URI.open("https://images-na.ssl-images-amazon.com/images/I/61HYd5O7onL.jpg"), filename: "symphony_no_5.jpg")
