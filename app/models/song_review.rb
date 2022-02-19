@@ -4,5 +4,5 @@ class SongReview < ApplicationRecord
   validates :sentiment, :rating, presence: true
   validates :rating, numericality: { in: 0..5 }
 
-  enum sentiment: [ :positive, :neutral, :negative ]
+  enum sentiment: [ :Positive, :Neutral, :Negative ]
 end
