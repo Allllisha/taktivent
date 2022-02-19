@@ -12,24 +12,24 @@ User.destroy_all
 puts 'Generating users...'
 artists = []
 5.times do
-  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,email: Faker::Internet.email, password: '123123123')
+  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: '123123123')
   artists << user
 end
 
-arisa = User.new(first_name: "Arisa", last_name: "Nemoto",email: "ardolce23@gmail.com", password: "a23123123")
+arisa = User.new(first_name: "Arisa", last_name: "Nemoto", email: "ardolce23@gmail.com", password: "a23123123")
 
 arisa.save!
 artists << arisa
 
-tom = User.new(first_name: "Tom", last_name: "Tsui",email: "tomtsui@xxx.com", password: "1234567")
+tom = User.new(first_name: "Tom", last_name: "Tsui", email: "tomtsui@xxx.com", password: "1234567")
 tom.save!
 artists << tom
 
-ref = User.new(first_name: "Ref", last_name: "Mags",email: "refmags@xxx.com", password: "1234567")
+ref = User.new(first_name: "Ref", last_name: "Mags", email: "refmags@xxx.com", password: "1234567")
 ref.save!
 artists << ref
 
-nico = User.new(first_name: "Nico", last_name: "Lentgen",email: "nicolaslentgen@xxx.com", password: "1234567")
+nico = User.new(first_name: "Nico", last_name: "Lentgen", email: "nicolaslentgen@xxx.com", password: "1234567")
 nico.save!
 artists << nico
 
