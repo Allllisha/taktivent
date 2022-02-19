@@ -8,6 +8,7 @@ class SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
+    authorize @song
     @event = Event.find(params[:event_id])
     @song.event = @event
     if @song.save
@@ -33,7 +34,9 @@ class SongsController < ApplicationController
     redirect_to songs_path(@songs)
   end
 
+  private
+
   def song_params
-    params.require(:song).permit(:name, :composer_name, :start_at, :length_in_munute, :images)
+    params.require(:song).permit(:name, :composer_name, :start_at, :length_in_minute, :images)
   end
 end
