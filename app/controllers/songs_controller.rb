@@ -8,11 +8,12 @@ class SongsController < ApplicationController
 
   def create
     @song = Song.new(song_params)
-    authorize @song
     @event = Event.find(params[:event_id])
+    authorize @song
+    authorize @event
     @song.event = @event
-    if @song.save
-      redirect_to @song
+    if @song.save && @event.save
+      redirect_to event_path(@event)
     else 
       render "new"
     end
