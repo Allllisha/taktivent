@@ -26,14 +26,12 @@ class EventsController < ApplicationController
     end
   end
 
-
   def edit
     @event = Event.find(params[:id])
     @venue = Venue.find(params[:id])
     authorize @event
     authorize @venue
   end
-
 
   def update
     @event = Event.find(params[:id])
@@ -44,7 +42,7 @@ class EventsController < ApplicationController
     authorize @venue
     redirect_to event_path
   end
-  
+
   def preview
    @event = Event.find(params[:id])
    @songs = @event.songs
@@ -73,4 +71,3 @@ class EventsController < ApplicationController
     params.require(:event).require(:venue).permit(:name, :address)
   end
 end
-

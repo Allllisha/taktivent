@@ -5,6 +5,6 @@ class Song < ApplicationRecord
 
   has_many_attached :images
 
-  validates :name, :composer_name, :start_at, :length_in_munute, presence: true
-  validates :length_in_munute, numericality: { in: 1.. }
+  validates :name, :composer_name, :start_at, :length_in_minute, presence: true
+  validates :length_in_minute, numericality: { in: 1.. }
 end
