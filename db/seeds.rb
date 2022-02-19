@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'date'
+
 puts 'Clearing database...'
 Event.destroy_all
 User.destroy_all
@@ -55,3 +57,12 @@ artists.each do |artist|
 end
 
 puts 'Event done'
+
+arisa_song = arisa.events.first.songs.new(
+  name: 'The Symphony No. 5 in C minor',
+  composer_name: 'Ludwig van Beethoven',
+  start_at: DateTime.parse('Sat, 19 Feb 2022 07:10:00.000000000 UTC +00:00'),
+  length_in_minute: 20,
+  description: Faker::Lorem.paragraphs
+)
+arisa_song.images.attach(io: URI.open("https://images-na.ssl-images-amazon.com/images/I/61HYd5O7onL.jpg"), filename: "symphony_no_5.jpg")
