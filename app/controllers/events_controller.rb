@@ -37,8 +37,8 @@ class EventsController < ApplicationController
   end
 
   def analytics
-    @event = Event.find(params[:id])
-    @songs = @event.songs
+    @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
+    authorize @event
   end
 
   def destroy
