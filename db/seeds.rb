@@ -8,6 +8,10 @@
 puts 'Clearing database...'
 Event.destroy_all
 User.destroy_all
+Song.destroy_all
+Performer.destroy_all
+Venue.destroy_all
+
 
 puts 'Generating users...'
 artists = []
@@ -34,25 +38,55 @@ nico.save!
 artists << nico
 
 puts 'Generating venue ...'
+8.times do
 venue = Venue.create!(
-   name: "Tokyo Dome", 
-   address: Faker::Address.city
+   name: Faker::Address.city_suffix, 
+   address: Faker::Address.full_address
 )
+venue.save!
+end
+
+puts 'Generating performer ...'
+8.times do
+   performer = Performer.new(
+     name: Faker::Name.name_with_middle,
+     description: Faker::Quote.matz
+   )
+   performer.user = User.all.sample
+   performer.save!
+ end
 
 
-artists.each do |artist|
 puts 'Generating events ...'
-5.times do
+8.times do
    event = Event.create!(
-      name: ["#{artist.first_name} #{artist.last_name}:National Tour", "LIVE!!: #{artist.first_name} #{artist.last_name}"].sample,
+      name: "#{Faker::Name.name_with_middle} Live Concert",
       start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
       end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
-      description: Faker::Lorem.paragraphs,
+      description: Faker::Quote.matz,
       user: User.all.sample,
-      venue: venue
-      )
-      event.images.attach(io: URI.open("https://unsplash.com/s/photos/concert"), filename: "concerts.jpeg")
-   end
+      venue: Venue.all.sample
+   )
+   event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpeg')),
+   filename: "event-img.jpeg")
+   event.save!
 end
+
+
+puts 'Generating songs ...'
+8.times do
+   song = Song.create!(
+      name: Faker::Music::RockBand.song,
+      composer_name: Faker::Music::RockBand.name,
+      start_at:  Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
+      length_in_minute: Faker::Number.within(range: 10..20),
+      description: Faker::Quote.matz,
+      event: Event.all.sample
+      )
+      song.images.attach(io: File.open(Rails.root.join('app/assets/images/song-img.png')),
+      filename: "song-img.png")
+      song.save!
+   end
+
 
 puts 'Event done'

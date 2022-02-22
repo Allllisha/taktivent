@@ -18,9 +18,11 @@ import "bootstrap";
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 import { initImagePreview } from '../components/image_preview';
+import { initMapbox } from './map';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   initUpdateNavbarOnScroll();
   initImagePreview();
+  initMapbox();
 });

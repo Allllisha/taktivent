@@ -1,31 +1,34 @@
- <div class="full-page">
-<%# <form>
-  <input type="file" id="pictureInput"> 
-</form> %>
-
-
+ <div class ="background-home">
+<div class="center-container">
 <div class ="form-container">
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
  
- 
- <div class="before-uproad" id="background">
- <%= image_tag asset_url("no-image.png") %>
+ <div class="before-uproad" id="background-edit">
+<% unless @event.images.empty? %>
+ <%= cl_image_tag @event.images.first.key, :width => "100%", :height => "350px" %>
+ <% end %>
  </div>
 
- <div class="event-image" id="pictureTarget">
+ <div class="event-edit-add-image" id="eventPictureTarget">
  </div>
 
- <%= f.file_field :images, id: "pictureInput"%>
+ <%= f.file_field :images, id: "eventPictureInput"%>
  <div class="input-container">
     <%= f.input :name, :label => "Event" %>
     <%= f.input :description, :label => "Event description"  %>
-    <%= f.input :start_at, input_html: { class: 'select2' } %>
-    <%= f.input :end_at, input_html: { class: 'select2' } %>
-    <%= f.association :venue do |f| %>
-    <%= f.input :name, :label => "Venue" %>
-    <%= f.input :address %>
+    <div class="start_at_event">
+    <%= f.input :start_at, as: :date, html5: true, :label => "Event start"  %>
+    <%= f.input :start_at, as: :time, html5: true, :label => "Start time"%>
+    </div>
+     <div class="end_at_event">
+    <%= f.input :end_at, as: :date, html5: true, :label => "Event end" %>
+    <%= f.input :end_at, as: :time, html5: true, :label => "End time"%>
+    </div>
+    <%= f.association :venue do |f| %> 
+      <%= f.input :name, :label => "Venue" %>
+      <%= f.input :address %> 
     <% end %>
   </div>
   <div class="form-actions">
@@ -35,24 +38,26 @@
 <% end %>
 </div>
 </div>
+</div>  
+</div>
 
 <script>
-const picture = document.querySelector('#pictureInput');
-const pictureTarget = document.querySelector('#pictureTarget');
-const background = document.querySelector('#background')
+const picture = document.querySelector('#eventPictureInput');
+const eventPictureTarget = document.querySelector('#eventPictureTarget');
+// const background = document.querySelector('#background')
 
 picture.addEventListener('change', (event) => {
- background.style.display = "none";
- const files = event.target.files;
-  const image = files[0];
+//  background.style.display = "none";
+  const files = event.target.files;
+  const image = files[0]
   // here's the file size
-  console.log(images.size);
+  console.log(image.size);
   const reader = new FileReader();
   reader.onload = function(file) {
     const img = new Image();
     console.log(file);
     img.src = file.target.result;
-    pictureTarget.appendChild(img);
+   eventPictureTarget.appendChild(img);
   }
   reader.readAsDataURL(image);
   console.log(files);

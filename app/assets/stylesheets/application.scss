@@ -10,9 +10,16 @@
 
 // Your CSS partials
 @import "components/index";
+//pages
+@import "pages/new";
 @import "pages/index";
+//events
 @import "events/new";
 @import "events/show";
-@import "pages/new";
-
+@import "events/edit";
 @import "events/dashboard";
+//songs
+@import "songs/new";
+
+
+

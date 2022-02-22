@@ -2,19 +2,20 @@
 <div class="center-container">
 <div class="form-container">
   <%= simple_form_for [@event, @song] do |f| %>
-    <div class="form-inputs">
+    <div class="input-container">
       <%= f.input :name %>
       <%= f.input :composer_name %>
-      <%= f.input :start_at %>
+      <div class="start_at_event">
+      <%= f.input :start_at, as: :date, html5: true %>
+      <%= f.input :start_at, as: :time, html5: true %>
+       </div>
       <%= f.input :length_in_minute %>
       <%= f.input :description, :label => "Song description" %>
-    </div>
-
-    <div id="background">
       <%= f.input :images, as: :file, input_html: { multiple: true, id: "pictureInput" } %>
       <div id="pictureTarget">
       </div>
     </div>
+     </div>
 
 
     <div class="form-actions">
@@ -22,8 +23,9 @@
     </div>
   <% end %>
   </div>
-</div>  
+  </div>
 </div>
+
 
 
 
