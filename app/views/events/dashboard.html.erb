@@ -1,6 +1,22 @@
+
+<div class ="background-dashboard">
 <div class="event-dashbord">
-<%= cl_image_tag @event.images.first.key, :width => '100%', :height => '500px', class: "event-img-top"%>
+<%# <%= cl_image_tag @event.images.first.key, :width => '100%', :height => '500px', class: "event-img-top"%>
+<div class="event-title-dashboard">
+<div class="date-show">
+<h5><%= @event.start_at.strftime("%b")%></h5>
+<h2><%= @event.start_at.strftime("%d")%></h2>
+</div>
+<div class="v_line_fix"></div>
 <h1><%= link_to @event.name, event_path(@event), class: "go-to-event" %></h1>
+<div class="edit-event-new">
+<%= link_to edit_event_path(@event) do%>
+<button><i class="fas fa-cog"></i>
+Edit Event
+</button>
+<% end %>
+</div>
+</div>
 
 
 <div class="event-analytics-dashboard">
@@ -8,29 +24,49 @@
 </div>
 
 <div class="event-info-dashboard">
-<h2>Event Information</h2><%= link_to "edit", edit_event_path(@event), class: "edit-event-new" %> 
-<h6>Event title:   <%= @event.name %></h6>
-<h6>Event description:   <%= @event.description %></h6>
-<h6>Start: <%= @event.start_at %> ~ <%= @event.end_at %></h6>
-<h6>Venue: <%= @event.venue.name %><h6>
-<p>Address: <%= @event.venue.address %></p>
+<div class="event-info-descriptions">
+<%= cl_image_tag @event.images.first.key, :width => '300px', :height => '300px', class: "event-image-first"%>
+</div>
+<div class="event-info-description">
+<h2><%= @event.name %></h2>
+<h6><%= @event.description %></h6>
+<div class="event-date-time">
+<h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
+</div>
+<h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
+<p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
+<div>
+</div>
+</div>
 </div>
 
+
 <div class="event-song-dashboard">
-<h2>Programme</h2><%= link_to "create new song", new_event_song_path(@event), class: "edit-songs-new" %> 
+<div class="d-flex my-box-light flex-wrap mb-2">
 <% @songs.each do |song| %>
-<div class="song">
+<div class ="box" >
+<div class="box-cards" style="width: 18rem;">
 <% unless song.images.empty? %>
-<%= cl_image_tag song.images.first.key, :width => '100px', :height => '100px', class: "song-image-first"%>
+ <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
+ <% end %>
+  <div class="event-card-body mb-4"> 
+   <div class="event-card-info">
+    <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, edit_event_song_path(@event), class: "edit-songs-new"%></h5>
+    <p class="card-text">Composer:   <%= song.composer_name%></p>
+    <p class="card-text">length: <%= song.length_in_minute%>min</p>
+    <p class="card-text">Description: <%= song.description %></p>
+    </div>
+  </div>
+</div>
+</div>
 <% end %>
-<h6>Song title:   <%= song.name %></h6>
-<h6>Composer:   <%= song.composer_name%></h6>
-<h6>Start: <%= song.start_at %></h6>
-<h6>length: <%= song.length_in_minute%></h6>
-<h6>Description: <%= song.description %><h6>
+</div>
+<%= link_to new_event_song_path(@event), class: "create-songs-new" do %>
+<button>Create New Song</button>
 <% end %>
 </div>
 </div>
-</div>
+
+
 
 

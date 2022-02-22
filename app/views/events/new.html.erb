@@ -1,30 +1,34 @@
-<div class="full-page">
-<%# <form>
-  <input type="file" id="pictureInput"> 
-</form> %>
-
-
+<div class ="background-home">
+<div class="center-container">
 <div class ="form-container">
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
  
- <div class="before-uproad" id="background">
- <%= image_tag asset_url("no-image.png") %>
+ <div class="before-uproad" id="event-background">
+ <%= image_tag asset_url("image-upload.jpeg")%>
  </div>
 
- <div class="event-image" id="pictureTarget">
+ <div class="event-image" id="eventImageTarget">
  </div>
 
- <%= f.file_field :images, id: "pictureInput"%>
+ <%= f.file_field :images, id: "eventImageInput"%>
  <div class="input-container">
     <%= f.input :name, :label => "Event" %>
-    <%= f.input :description, :label => "Event description"  %>
-    <%= f.input :start_at, input_html: { class: 'select2' } %>
-    <%= f.input :end_at, input_html: { class: 'select2' } %>
+    <%= f.input :description,  id: "des"  %>
+    <div class="start_at_event">
+    <%= f.input :start_at, as: :date, html5: true, :label => "Event start"  %>
+    <%= f.input :start_at, as: :time, html5: true, :label => "Start time"%>
+    </div>
+     <div class="end_at_event">
+    <%= f.input :end_at, as: :date, html5: true, :label => "Event start" %>
+    <%= f.input :end_at, as: :time, html5: true, :label => "End time"%>
+    </div>
+    <div class="venue-input">
     <%= f.association :venue do |f| %> 
       <%= f.input :name, :label => "Venue" %>
-      <%= f.input :address %> 
+      <%= f.input :address %>
+      </div>
     <% end %>
   </div>
   <div class="form-actions">
@@ -34,13 +38,15 @@
 <% end %>
 </div>
 </div>
+</div>  
+</div>
 
 <script>
-const picture = document.querySelector('#pictureInput');
-const pictureTarget = document.querySelector('#pictureTarget');
-const background = document.querySelector('#background')
+const pictures = document.querySelector('#eventImageInput');
+const eventImagesTarget = document.querySelector('#eventImageTarget');
+const background = document.querySelector('#event-background')
 
-picture.addEventListener('change', (event) => {
+pictures.addEventListener('change', (event) => {
  background.style.display = "none";
   const files = event.target.files;
   const image = files[0]
@@ -51,7 +57,7 @@ picture.addEventListener('change', (event) => {
     const img = new Image();
     console.log(file);
     img.src = file.target.result;
-    pictureTarget.appendChild(img);
+    eventImagesTarget.appendChild(img);
   }
   reader.readAsDataURL(image);
   console.log(files);
