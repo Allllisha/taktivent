@@ -11,9 +11,6 @@
        </div>
       <%= f.input :length_in_minute %>
       <%= f.input :description, :label => "Song description" %>
-
-
-    <div class="song-img-container" id="background">
       <%= f.input :images, as: :file, input_html: { multiple: true, id: "pictureInput" } %>
       <div id="pictureTarget">
       </div>
