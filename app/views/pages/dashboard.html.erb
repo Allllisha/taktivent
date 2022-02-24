@@ -19,17 +19,25 @@
 </div>
 
 <div class="container mt-5">
-    <div class="row">
-       <div class="col-md-4">
-       <% @events.each do |event| %>
-       <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
-       <% end %>
-       </div>
-      <div class="col-md-4"><%= link_to "Create an event", new_event_path %></div>
-      <div class="col-md-4">Manage my Playlists</div>
+  <h4>Manage my events</h4>
+    <div class="d-flex flex-column">
+        <% @events.each do |event| %>
+          <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
+          <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
+            <div class="container">
+              <% event.songs.first(3).each do |song| %>
+                <div>
+                  <%= song.name %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
     </div>
-
 </div>
 
-
-
+<br>
+  <div class="col-md-4"><%= link_to "Create an event", new_event_path %></div>
+  <div class="col-md-4">Manage my Playlists</div>
+  </div>
+</div>
