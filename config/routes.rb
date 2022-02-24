@@ -13,5 +13,4 @@ Rails.application.routes.draw do
   end
 
   get '/event/:id/dashboard', to: 'events#dashboard', as: 'manage_event'
-  get '/reviews', to: 'reviews#create'
 end
