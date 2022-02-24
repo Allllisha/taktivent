@@ -1,0 +1,41 @@
+.song-show-container{
+ background-color: #111111;
+ .song-show{
+  background-color: $gray;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    img{
+      width: 600px;
+      height: 350px;
+      object-fit: cover;
+    }
+
+    h2{
+      margin-top: 20px;
+    }
+
+    .fa-music{
+      margin-right: 10px;
+    }
+
+    @media screen and (max-width: 767px) {
+      img{
+        width: 100%;
+      }
+     }
+ }
+}
+
+.center-song-show-container{
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: #111111;
+}
+
+
