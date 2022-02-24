@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :events, only: %i[new create show edit update] do
-    resources :event_reviews, only: %i[new create]
+    resources :event_reviews, only: %i[create]
     resources :songs, only: %i[new show create edit update destroy]
     member do
       get 'preview'
