@@ -53,21 +53,19 @@ end
 User.all.each do |artist|
   puts "Generating events and performers for #{artist.first_name}..."
   2.times do |i|
-    event = Event.create!(
+    event = artist.events.create!(
       name: "#{artist.first_name} #{artist.last_name} Live Concert #{i + 1}",
       start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
       end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
       description: Faker::Quote.matz,
-      user: artist,
       venue: Venue.all.sample
     )
     event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpeg')),
-                        filename: "event-img.jpeg")
+                        filename: "event-img.jpg")
 
-    performer = Performer.create!(
+    performer = artist.performers.create!(
       name: Faker::Name.name_with_middle,
-      description: Faker::Quote.matz,
-      user: artist
+      description: Faker::Quote.matz
     )
     performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
                             filename: "performer.png")
