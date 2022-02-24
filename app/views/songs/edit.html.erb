@@ -2,7 +2,17 @@
 <div class="center-container">
 <div class="form-container">
   <%= simple_form_for [@event, @song] do |f| %>
+   <%= f.error_notification %>
+   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <div class="form-inputs">
+    <div class="before-uproad" id="background-edit">
+    <% unless @event.images.empty? %>
+   <%= cl_image_tag @event.images.first.key, :width => "100%", :height => "350px" %>
+    <% end %>
+     </div>
+      <div class="event-edit-add-image" id="eventPictureTarget">
+      </div>
+
       <%= f.input :name %>
       <%= f.input :composer_name %>
       <%= f.input :start_at %>
@@ -19,3 +29,26 @@
 </div>  
 </div>
 
+
+<script>
+const picture = document.querySelector('#eventPictureInput');
+const eventPictureTarget = document.querySelector('#eventPictureTarget');
+// const background = document.querySelector('#background')
+
+picture.addEventListener('change', (event) => {
+//  background.style.display = "none";
+  const files = event.target.files;
+  const image = files[0]
+  // here's the file size
+  console.log(image.size);
+  const reader = new FileReader();
+  reader.onload = function(file) {
+    const img = new Image();
+    console.log(file);
+    img.src = file.target.result;
+   eventPictureTarget.appendChild(img);
+  }
+  reader.readAsDataURL(image);
+  console.log(files);
+});
+</script>

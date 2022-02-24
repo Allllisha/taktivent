@@ -11,6 +11,7 @@ body{
 background-color: #111111;
  margin-top: 47vh;
  padding: 0.2px;
+ padding-bottom: 10px;
 }
 
 .event-show-image{
@@ -84,7 +85,6 @@ margin-right: 20px;
 
 .event-about{
   margin-top:20px;
-  padding-bottom: 50px;
   color: white;
   h5{
     color: white;
@@ -138,5 +138,59 @@ margin-right: 20px;
       border-radius: 50%;
     }
   }
+}
+
+/////song list
+.event-song-list-container{
+  background-color: $black;
+  .event-song-list{
+    background-color: $gray;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-left: 30px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+/////event review form
+
+.song-review-form-container{
+  background-color: $black;
+  .song-review-form{
+    background-color: $gray;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-left: 30px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+
+/////event review form
+.event-review-form-container{
+  background-color: $black;
+  .event-review-form{
+    background-color: $gray;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-left: 30px;
+    margin-right: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+
+.song-each-list{
+  margin-top: 20px;
+}
+
+#RealtimeCountdownArea{
+  margin-top: 5px;
+  color: white;
 }
 
