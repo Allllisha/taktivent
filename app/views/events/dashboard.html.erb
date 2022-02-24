@@ -51,7 +51,8 @@ Edit Event
  <% end %>
   <div class="event-card-body mb-4"> 
    <div class="event-card-info">
-    <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, edit_event_song_path(@event, song), class: "edit-songs-new"%></h5>
+    <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
+    <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
     <p class="card-text">Composer:   <%= song.composer_name%></p>
     <p class="card-text">length: <%= song.length_in_minute%>min</p>
     <p class="card-text">Description: <%= song.description %></p>

@@ -1,0 +1,18 @@
+<div class ="background-home">
+ <div class="center-song-show-container">
+   <div class="song-show-container">
+   <div class="song-show">
+     <h1><%= @song.name %></h1>
+       <%= cl_image_tag @song.images.first.key %>
+        <h2><i class="fas fa-music"></i>About pieces</h2>
+        <p><%= @song.description %></p>  
+     </div>
+   </div>
+  </div>
+  <div class="center-song-show-container">
+   <div class="song-show-container">
+   <div class="song-show">
+     </div>
+   </div>
+  </div>
+</div>
