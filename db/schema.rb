@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_070313) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sentiment", null: false
     t.index ["event_id"], name: "index_event_reviews_on_event_id"
   end
 
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_070313) do
     t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "sentiment", null: false
     t.index ["song_id"], name: "index_song_reviews_on_song_id"
   end
 
