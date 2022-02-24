@@ -2,17 +2,14 @@
 <div class="song-review-form-container">
  <div class="song-review-form">
    <h4><%= song.name %></h4>
-<%# 
-   <%= simple_form_for [@event, @song_review] do |f| %>
-     <%# <%= f.error_notification %>
-     <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-     <%# <%= f.association :song, input_html: { class: 'select2' } %>
-     <%# <%= f.input :rating, :label => "Rating" %>
-    <%# <%= f.input :comment, :label => "Comment"%>
-    <%# <%= f.button :submit, class: "btn btn-outline-dark" %>
-    <%# <% end %> 
-
+   <%= simple_form_for [@event, song, @song_review] do |f| %>
+     <%= f.error_notification %>
+     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+     <%= f.input :rating, :label => "Rating"%>
+    <%= f.input :comment, :label => "Comment"%> 
+    <%= f.button :submit, class: "btn btn-outline-dark"%> 
+     <% end %> 
+  </div>
  </div>
-</div>
-<% end %>  
+<% end %>   
 
