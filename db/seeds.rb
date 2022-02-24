@@ -60,7 +60,7 @@ User.all.each do |artist|
       description: Faker::Quote.matz,
       venue: Venue.all.sample
     )
-    event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpeg')),
+    event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpg')),
                         filename: "event-img.jpg")
 
     performer = artist.performers.create!(
@@ -75,7 +75,7 @@ end
 puts 'Generating songs...'
 Event.all.each do |event|
   2.times do
-    Song.create!(
+    song = Song.create!(
       name: Faker::Music::RockBand.song,
       composer_name: Faker::Music::RockBand.name,
       start_at: Faker::Time.between_dates(from: event.start_at, to: event.end_at, period: :all),
@@ -86,6 +86,14 @@ Event.all.each do |event|
     song.images.attach(io: File.open(Rails.root.join('app/assets/images/song-img.png')),
                        filename: "song-img.png")
   end
+end
+
+puts 'Attaching performers to songs...'
+Song.all.each do |song|
+  SongPerformer.create!(
+    song: song,
+    performer: song.event.user.performers.sample
+  )
 end
 
 comments = [
@@ -106,11 +114,17 @@ comments = [
 User.all.each do |artist|
   puts "Generating reviews for #{artist.first_name}..."
   artist.events.each do |event|
-    comment = comments.sample
-    event.event_reviews.create!(rating: [1..5].sample, comment: comment, sentiment: get_sentiment(comment))
-    event.songs.each do |song|
+    3.times do
       comment = comments.sample
-      song.song_reviews.create!(rating: [1..5].sample, comment: comment, sentiment: get_sentiment(comment))
+      event.event_reviews.create!(rating: rand(1..5), comment: comment, sentiment: get_sentiment(comment))
+    end
+    event.songs.each do |song|
+      3.times do
+        comment = comments.sample
+        song.song_reviews.create!(rating: rand(1..5), comment: comment, sentiment: get_sentiment(comment))
+      end
     end
   end
 end
+
+puts 'Done.'
