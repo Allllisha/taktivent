@@ -22,7 +22,7 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
-
+gem 'geocoder'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -39,10 +39,11 @@ gem 'cloudinary', '~> 1.16.0'
 gem 'pundit'
 gem "chartkick"
 
-group :development, :test do  gem 'pry-byebug'
+group :development, :test do
+  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
-
+  gem 'geocoder'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

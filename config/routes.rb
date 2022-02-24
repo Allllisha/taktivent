@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :events, only: %i[new create show edit update] do
     resources :event_reviews, only: %i[new create]
-    resources :songs, only: %i[new create edit update]
+    resources :songs, only: %i[new show create edit update destroy]
     member do
       get 'preview'
       get 'analytics'
     end
   end
 
+  get '/event/:id/dashboard', to: 'events#dashboard', as: 'manage_event'
   get '/reviews', to: 'reviews#create'
 end

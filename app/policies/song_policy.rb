@@ -6,22 +6,26 @@ class SongPolicy < ApplicationPolicy
   end
 
     def new
-      record.user == user
+      return true
+    end
+
+    def show
+      return true
     end
 
     def create
-      record.user == user
+      return true
     end
 
     def edit
-      record.user == user
+      return true
     end
 
     def update
-      record.user == user
+      return true
     end
 
     def destroy
-      record.user == user
+      return true
     end
 end

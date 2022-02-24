@@ -1,1 +1,20 @@
-<%= @event.name %>
+<div class="event-show-image">
+  <%= cl_image_tag @event.images.first.key %>
+    <div class="event-show-name">
+     <h1><%= @event.name %></h1>
+   </div>
+</div>
+<div class="event-info-container">
+  <div class="event-infos">
+  </div>
+</div> 
+<%# event info %>
+ <%= render 'event_info', event: @event %>
+<%# programme %>
+ <%= render 'programme', event: @event %>
+<%# #song-review-form %>
+ <%= render 'song_review_form', event: @event %>
+<%# #event-review-form %>
+ <%= render 'event_review_form', event: @event %>
+
+

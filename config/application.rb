@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module Taktivent
   class Application < Rails::Application
-    Dotenv::Railtie.load
     config.generators do |generate|
       generate.assets false
       generate.helper false

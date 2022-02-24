@@ -5,31 +5,28 @@ class EventPolicy < ApplicationPolicy
     end
   end
 
-  def show
-    return true
-  end
-
-  def new
-    return true
-  end
-
-  def create
+  def create?
     record.user == user
   end
 
-  def edit
+  def edit?
     record.user == user
   end
 
-  def update
+  def update?
     record.user == user
   end
 
-  def preview
+  def preview?
     record.user == user
   end
 
   def analytics?
-    record.user == user
+    # temp
+    true
+  end
+
+  def dashboard?
+    true
   end
 end

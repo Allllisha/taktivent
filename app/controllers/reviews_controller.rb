@@ -6,6 +6,20 @@ class ReviewsController < ApplicationController
   def create
     # saved all the inputs to corresponding song_id/event_id
     # redirect to events#show, with all the forms hidden
+    
+    # @song_reviews = SongReview.new(song_review_params)
+    # @song = Song.find(params[:song_id])
+    # @song_reviews.song = @song
+    # @event_reviews = EventReview.new(event_review_params)
+    # @event = Event.find(params[:event_id])
+    # @event_reviews.event = @event
+    # authorize @event_reviews
+    # authorize @song_reviews
+    # if @song_reviews.save && @event_reviews.save
+    #   redirect_to event_path(@event)
+    # else
+    #   render plain: "error!", status: 404
+    # end
   end
 
   def song_review_params
