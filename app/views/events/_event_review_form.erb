@@ -2,14 +2,14 @@
  <div class="event-review-form">
    <h4><%= @event.name %></h4>
    
-   <%# <%= simple_form_for [@event, @event_review] do |f| %>
-     <%# <%= f.error_notification %>
-     <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-     <%# <%= f.association :event, input_html: { class: 'select2' } %>
-     <%# <%= f.input :rating, :label => "Rating" %>
-    <%# <%= f.input :comment, :label => "Comment"%>
-    <%# <%= f.button :submit, class: "btn btn-outline-dark" %>
-   <%# <% end %> 
+   <%= simple_form_for [@event, @event_review] do |f| %>
+     <%= f.error_notification %>
+     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= f.association :event, input_html: { class: 'select2' } %>
+      <%=  f.input :rating, :label => "Rating" %>
+    <%= f.input :comment, :label => "Comment"%>
+    <%= f.button :submit, class: "btn btn-outline-dark"%>
+   <% end  %>
 
  </div>
 </div>

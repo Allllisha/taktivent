@@ -23,10 +23,10 @@ class ReviewsController < ApplicationController
   end
 
   def song_review_params
-    params.require(:song_preview).permit(:song_id, :rating, :comment)
+    params.require(:song_review).permit(:song_id, :rating, :comment)
   end
 
   def event_review_params
-    params.require(:event_preview).permit(:event_id, :rating, :comment)
+    params.require(:event_review).permit(:event_id, :rating, :comment)
   end
 end

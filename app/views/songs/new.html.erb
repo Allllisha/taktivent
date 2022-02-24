@@ -13,7 +13,7 @@
         <%= f.input :description, :label => "Song description" %>
 
         <div class="song-img-container" id= "background">
-          <%= f.file_field :images, id: "eventImageInput" %>
+          <%= f.input :images, as: :file, input_html: { multiple: true, id: "pictureInput" } %>
           <div class="event-image" id="eventImageTarget">
           </div>
         </div>
