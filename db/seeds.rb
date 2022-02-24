@@ -50,19 +50,8 @@ puts 'Generating venues...'
   Venue.create!(name: Faker::Address.city_suffix, address: Faker::Address.full_address)
 end
 
-puts 'Generating performers...'
-8.times do
-  Performer.create!(
-    name: Faker::Name.name_with_middle,
-    description: Faker::Quote.matz,
-    user: User.all.sample
-  )
-  performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
-                          filename: "performer.png")
-end
-
 User.all.each do |artist|
-  puts "Generating events for #{artist.first_name}..."
+  puts "Generating events and performers for #{artist.first_name}..."
   2.times do |i|
     event = Event.create!(
       name: "#{artist.first_name} #{artist.last_name} Live Concert #{i + 1}",
@@ -74,6 +63,14 @@ User.all.each do |artist|
     )
     event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpeg')),
                         filename: "event-img.jpeg")
+
+    performer = Performer.create!(
+      name: Faker::Name.name_with_middle,
+      description: Faker::Quote.matz,
+      user: artist
+    )
+    performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
+                            filename: "performer.png")
   end
 end
 
