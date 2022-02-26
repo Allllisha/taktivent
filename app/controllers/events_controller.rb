@@ -14,7 +14,6 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @venue = Venue.new
-    authorize @event
     authorize @venue
   end
 
