@@ -1,4 +1,5 @@
 
+
 <div class ="background-dashboard">
 <div class="event-dashbord">
 <%# <%= cl_image_tag @event.images.first.key, :width => '100%', :height => '500px', class: "event-img-top"%>
@@ -24,24 +25,28 @@ Edit Event
 </div>
 
 <div class="event-info-dashboard">
-<div class="event-info-descriptions">
-<%= cl_image_tag @event.images.first.key, :width => '300px', :height => '300px', class: "event-image-first"%>
-</div>
-<div class="event-info-description">
-<h2><%= @event.name %></h2>
-<h6><%= @event.description %></h6>
-<div class="event-date-time">
-<h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
-</div>
-<h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
-<p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
-<div>
+  <div class="event-info-descriptions">
+  <%= cl_image_tag @event.images.first.key, :width => '300px', :height => '300px', class: "event-image-first"%>
+  </div>
+    <div class="event-info-description">
+     <h2><%= @event.name %></h2>
+      <h6><%= @event.description %></h6>
+        <div class="event-date-time">
+        <h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
+        </div>
+      <h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
+      <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
+    </div>
+    <div class ="qr-code">
+      <%= @qr.html_safe %>
+    </div>
 </div>
 </div>
 </div>
 
 
 <div class="event-song-dashboard">
+<h1>Programme</h1>
 <div class="d-flex my-box-light flex-wrap mb-2">
 <% @songs.each do |song| %>
 <div class ="box" >
@@ -54,8 +59,8 @@ Edit Event
     <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
     <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
     <p class="card-text">Composer:   <%= song.composer_name%></p>
+    <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
     <p class="card-text">length: <%= song.length_in_minute%>min</p>
-    <p class="card-text">Description: <%= song.description %></p>
     </div>
   </div>
 </div>

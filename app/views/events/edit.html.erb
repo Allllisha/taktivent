@@ -19,12 +19,13 @@
     <%= f.input :name, :label => "Event" %>
     <%= f.input :description, :label => "Event description"  %>
     <div class="start_at_event">
-    <%= f.input :start_at, as: :date, html5: true, :label => "Event start"  %>
-    <%= f.input :start_at, as: :time, html5: true, :label => "Start time"%>
+    <%= f.input :start_at  %>
+    <%# <%= f.input :start_at, as: :time, html5: true, :label => "Start time"%> 
     </div>
      <div class="end_at_event">
-    <%= f.input :end_at, as: :date, html5: true, :label => "Event end" %>
-    <%= f.input :end_at, as: :time, html5: true, :label => "End time"%>
+      <%= f.input :end_at %>
+    <%# <%= f.input :end_at, as: :date, html5: true, :label => "Event end" %> 
+    <%# <%= f.input :end_at, as: :time, html5: true, :label => "End time"%> 
     </div>
     <%= f.association :venue do |f| %> 
       <%= f.input :name, :label => "Venue" %>

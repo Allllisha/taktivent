@@ -15,14 +15,26 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap";
+import Glide from '@glidejs/glide'
+require('packs/raty') 
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 import { initImagePreview } from '../components/image_preview';
-import { initMapbox } from './map';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   initUpdateNavbarOnScroll();
   initImagePreview();
-  initMapbox();
+  var sliders = document.querySelectorAll('.glide');
+  for (var i = 0; i < sliders.length; i++) {
+    var glide = new Glide(sliders[i], {
+      type: 'slider',
+      gap: 30,
+      perView: 3,
+      peek: -window.innerWidth*0.55,
+      startAt: 0,
+      focusAt: 'center'
+    });
+    glide.mount()
+  }
 });

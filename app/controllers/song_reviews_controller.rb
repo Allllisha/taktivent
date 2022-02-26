@@ -4,15 +4,17 @@ class SongReviewsController < ApplicationController
   skip_after_action :verify_authorized
 
   def create
-    @song_review = SongReview.new(song_review_params)
-    @song = song.find(params[:song_id])
-    @song_review.song = @song
+    @song_reviews = SongReview.new(song_review_params)
+    @song = Song.find(params[:song_id])
+    @song_reviews.song = @song
+    @event = Event.find(params[:event_id])
     if @song_reviews.save
-      redirect_to event_path(params[:event_id])
+      redirect_to event_path(@event)
     else
       render plain: "error!", status: 404
     end
   end
+  
 
   private
 

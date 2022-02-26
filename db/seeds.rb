@@ -50,11 +50,13 @@ puts 'Generating venues...'
   Venue.create!(name: Faker::Address.city_suffix, address: Faker::Address.full_address)
 end
 
+
 User.all.each do |artist|
   puts "Generating events and performers for #{artist.first_name}..."
   2.times do |i|
     event = artist.events.create!(
       name: "#{artist.first_name} #{artist.last_name} Live Concert #{i + 1}",
+
       start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
       end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
       description: Faker::Quote.matz,
@@ -70,6 +72,7 @@ User.all.each do |artist|
     performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
                             filename: "performer.png")
   end
+
 end
 
 puts 'Generating songs...'
