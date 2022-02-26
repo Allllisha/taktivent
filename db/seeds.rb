@@ -104,7 +104,6 @@ comments = [
   "It's ok I guess.",
   'Overall pretty nice :)',
   'Boring as hell.',
-  'Please work on the techniques.',
   'Bravo!',
   'Amazing, I have no words.',
   'Completely exceeded my expectation.',
