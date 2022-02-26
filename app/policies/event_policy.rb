@@ -28,4 +28,9 @@ class EventPolicy < ApplicationPolicy
   def dashboard?
     true
   end
+
+  def new?
+    true
+  end
+
 end
