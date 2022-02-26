@@ -12,16 +12,10 @@
         <%= f.input :description, :label => "Song description" %>
 
         <div class="song-img-container" id= "background">
-          <%= f.input :images, as: :file, input_html: { multiple: true, id: "pictureInput" } %>
+          <%= f.input :images, as: :file, input_html: { multiple: true, id: "eventImageInput" } %>
           <div class="event-image" id="eventImageTarget">
           </div>
         </div>
-
-        <div id="pictureTarget">
-        </div>
-
-        <% end %>
-
 
         <div class="form-actions">
           <%= f.button :submit, class: "btn-outline-secondary" %>
