@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_22_070313) do
+ActiveRecord::Schema.define(version: 2022_02_26_022909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_070313) do
   end
 
   create_table "event_reviews", force: :cascade do |t|
-    t.float "rating", null: false
+    t.integer "rating", null: false
     t.text "comment"
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2022_02_22_070313) do
   end
 
   create_table "song_reviews", force: :cascade do |t|
-    t.float "rating", null: false
+    t.integer "rating", null: false
     t.text "comment"
     t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false

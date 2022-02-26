@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  skip_after_action :verify_authorized, only: [:show]
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_after_action :verify_authorized, only: %i[show]
+  skip_before_action :authenticate_user!, only: :show
 
   def show
 
@@ -73,9 +73,7 @@ class EventsController < ApplicationController
   end
 
   def analytics
-    # temp
-    # @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
-    @event = Event.new # placeholder
+    @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
     authorize @event
   end
 

@@ -37,7 +37,9 @@ def get_sentiment(comment)
 end
 
 puts 'Clearing database...'
-system('rails db:schema:load')
+SongPerformer.destroy_all
+User.destroy_all
+Venue.destroy_all
 
 puts 'Generating users...'
 User.create!(first_name: "Arisa", last_name: "Nemoto", email: "ardolce23@gmail.com", password: "1234567")
@@ -99,32 +101,53 @@ Song.all.each do |song|
   )
 end
 
-comments = [
-  'Best performance I have ever seen!',
-  "It's ok I guess.",
-  'Overall pretty nice :)',
-  'Boring as hell.',
-  'Please work on the techniques.',
-  'Bravo!',
-  'Amazing, I have no words.',
-  'Completely exceeded my expectation.',
-  'Way too good for the price.',
-  'Not bad at all.',
-  'Splendid.',
-  'Unbelievably good.'
-]
+comments = {
+  pos: [
+    'Best performance I have ever seen!',
+    'Overall pretty nice :)',
+    'Amazing!',
+    'Amazing, I have no words.',
+    'Good as hell.',
+    'Amazing for the price.',
+    'Splendid.',
+    'Unbelievably good.'
+  ],
+  neutral: [
+    'What',
+    'Neutral'
+  ],
+  neg: [
+    'Boring as hell.',
+    "It's ok I guess.",
+    "Worst performance I've even seen."
+  ]
+}
 
 User.all.each do |artist|
   puts "Generating reviews for #{artist.first_name}..."
   artist.events.each do |event|
-    3.times do
-      comment = comments.sample
-      event.event_reviews.create!(rating: rand(1..5), comment: comment, sentiment: get_sentiment(comment))
+    5.times do
+      random_rating = rand(1..5)
+      comment = if [4, 5].include? random_rating
+                  comments[:pos].sample
+                elsif random_rating == 3
+                  comments[:neutral].sample
+                else
+                  comments[:neg].sample
+                end
+      event.event_reviews.create!(rating: random_rating, comment: comment, sentiment: get_sentiment(comment))
     end
     event.songs.each do |song|
-      3.times do
-        comment = comments.sample
-        song.song_reviews.create!(rating: rand(1..5), comment: comment, sentiment: get_sentiment(comment))
+      5.times do
+        random_rating = rand(1..5)
+        comment = if [4, 5].include? random_rating
+                    comments[:pos].sample
+                  elsif random_rating == 3
+                    comments[:neutral].sample
+                  else
+                    comments[:neg].sample
+                  end
+        song.song_reviews.create!(rating: random_rating, comment: comment, sentiment: get_sentiment(comment))
       end
     end
   end
