@@ -6,8 +6,8 @@
    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <div class="form-inputs">
     <div class="before-uproad" id="background-edit">
-    <% unless @event.images.empty? %>
-   <%= cl_image_tag @event.images.first.key, :width => "100%", :height => "350px" %>
+    <% unless @song.images.empty? %>
+   <%= cl_image_tag @song.images.first.key, :width => "100%", :height => "350px" %>
     <% end %>
      </div>
       <div class="event-edit-add-image" id="eventPictureTarget">
@@ -15,7 +15,9 @@
 
       <%= f.input :name %>
       <%= f.input :composer_name %>
+      <div class="start_at_event">
       <%= f.input :start_at %>
+      </div>
       <%= f.input :length_in_minute %>
       <%= f.input :description %>
       <%= f.input :images, as: :file, class: "container", input_html: { multiple: true } %>

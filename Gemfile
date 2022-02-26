@@ -22,7 +22,6 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'faker'
-gem 'geocoder'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -38,7 +37,7 @@ gem "select2-rails"
 gem 'cloudinary', '~> 1.16.0'
 gem 'pundit'
 gem "chartkick"
-
+gem 'rqrcode'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

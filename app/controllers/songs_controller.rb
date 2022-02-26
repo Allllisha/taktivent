@@ -1,4 +1,7 @@
 class SongsController < ApplicationController
+  skip_after_action :verify_authorized, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
+  
   def new
     @song = Song.new
     @event = Event.find(params[:event_id])

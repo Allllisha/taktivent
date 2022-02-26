@@ -1,13 +1,12 @@
-
-<input type="hidden" class="year" id="userYear" value = "<%= @event.start_at.year %>"  > 
-  <input type="hidden" class="month" id="userMonth"value = "<%= @event.start_at.month %>" >
+<input type="hidden"  id="userYear" value = "<%= @event.start_at.year %>"  > 
+  <input type="hidden" id="userMonth"value = "<%= @event.start_at.month %>" >
     <input type="hidden" id="userDate" value = "<%= @event.start_at.day %>" >
       <input type="hidden" id="userHour" value = "<%= @event.start_at.hour %>" >
         <input type="hidden" id="userMin"  value = "<%= @event.start_at.min %>" >
         <input type="hidden" id="userSec"  value = "<%= @event.start_at.sec %>" >
 
 <div class="events-info-all-container">
-   <div class="events-infos-container">
+   <div class="events-infos-container" id="event-info">
      <div class="events-info-description">
        <div class="d-flex">
           <h5 ><div class="event-icon"><i class="fas fa-calendar-alt"></i></div>
@@ -36,8 +35,6 @@
           <h5 class="event-d-about"><%= @event.description %></h5>
         </div>
     </div>
-
-
 
 <script>
 function set2fig(num) {
@@ -99,19 +96,19 @@ function showCountdown() {
 
    var msg;
    if( dnumTarget > dnumNow ) {
-      // まだ期限が来ていない場合
-      msg =   msg2;
+     msg = "Event starts in " + msg2 
    }
    else {
 
       msg = "Event started " + msg2 + " ago";
    }
- 
- 
    document.getElementById("RealtimeCountdownArea").innerHTML = msg;
- 
+
 
 }
 
 setInterval('showCountdown()',1000);
 </script>
+
+
+
