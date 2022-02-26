@@ -1,5 +1,10 @@
 <div class="background-pages-dashboard">
-  Hello <%= @user_signed_in %>!
+  <br>
+  <div class="container">
+    <% if user_signed_in? %>
+      <h3> Hello <%= current_user.first_name %> 👋 </h3>
+    <% end %>
+  </div>
 
   <div class="container">
     <br>
@@ -21,8 +26,13 @@
       </div>
 
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1603741209938-50fc882da856?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
-        "This was a fantastic concert!"
-        <br> - John Williams
+        <% if @event_reviews.blank? %>
+          No review yet
+        <% else %>
+          <% @events_reviews.first(1).each do |review| %>
+          <p><%= review.content %></p>
+          <% end %>
+        <% end %>
       </div>
 
     </div>
