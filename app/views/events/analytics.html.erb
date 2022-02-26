@@ -1,6 +1,6 @@
 <div class="container analytics">
   <h2>Reviews of <%= @event.name %></h2>
-  <h3>Overall event review</h3>
+  <h3 class="analytics-review-header">Overall event review</h3>
   <div class="analytics-chart-flexbox">
     <div>
       <h3 class="analytics-chart-title">Ratings</h3>
@@ -31,7 +31,7 @@
   </table>
 
   <% @event.songs.each do |song| %>
-    <h3>Reviews of <%= song.name %></h3>
+    <h3 class="analytics-review-header">Reviews of <%= song.name %></h3>
     <div class="analytics-chart-flexbox">
       <div>
         <h3 class="analytics-chart-title">Ratings</h3>
