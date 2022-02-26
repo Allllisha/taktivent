@@ -1,4 +1,8 @@
-<div class="container">
+<div class="container analytics">
+  <h2><%= @event.name %></h2>
+  <div>
+    <%= pie_chart @event.event_reviews.group(:rating).count %>
+  </div>
   <% @event.songs.each do |song| %>
     <% song.song_reviews.each do |song_review| %>
       <p><%= song_review.rating %></p>
