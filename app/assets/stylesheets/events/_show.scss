@@ -1,5 +1,5 @@
 body{
-  background-color: white;
+  background-color: $black;
 }
 
 .event-img-top{
@@ -53,7 +53,7 @@ background-color: #111111;
 }
 
 .event-icon{
-  background: linear-gradient(-225deg, hsla(43, 84%, 85%, 1) 0%, hsla(325, 71%, 70%, 1) 50%, hsla(236, 67%, 55%, 1) 100%);
+  background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
 width: 50px;
 height: 50px;
 padding-left: 15px;
@@ -102,6 +102,15 @@ margin-right: 20px;
   margin-left: 30px;
   margin-right: 25px;
   margin-bottom: 25px;
+
+  .fa-music{
+    background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    width: 50px;
+    height: 50px;
+    padding-left: 10px;
+    padding-top: 15px;
+    border-radius: 10px;
+  }
 }
 
 .clock-container{
@@ -109,36 +118,6 @@ margin-right: 20px;
   background-color: #111111;
 }
 
-
-.clock {
-  display: flex;
-  text-align:center;
-  
-  &__item {
-    height: 80px;
-    margin: 0 .5rem;
-    padding: 1rem;
-    border-radius:9px;
-    background-color: #1a204d;
-    color: #f5f7fa;
-    font-family: Helvetica, sans-serif;
-    font-size: 40px;
-  }
-  
-  &__colon {
-    display:flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    
-    &-item {
-      width:1rem;
-      height:1rem;
-      background-color: #f5f7fa;
-      box-shadow:  20px 20px 60px #a6b0c0, -20px -20px 60px #e0eeff;
-      border-radius: 50%;
-    }
-  }
-}
 
 /////song list
 .event-song-list-container{
@@ -151,6 +130,14 @@ margin-right: 20px;
     margin-left: 30px;
     margin-right: 25px;
     margin-bottom: 25px;
+    .fa-music{
+      background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
+      width: 50px;
+      height: 50px;
+      padding-left: 10px;
+      padding-top: 15px;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -187,6 +174,17 @@ margin-right: 20px;
 
 .song-each-list{
   margin-top: 20px;
+  .song-li{
+     display: flex;
+     align-items: center;
+     p{
+       margin-left: 10px;
+       margin-top: 15px;
+     }
+     h3{
+        text-decoration: none;
+     }
+  }
 }
 
 #RealtimeCountdownArea{

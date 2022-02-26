@@ -52,9 +52,9 @@ puts 'Generating performer ...'
      name: Faker::Name.name_with_middle,
      description: Faker::Quote.matz
    )
-   # performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
-   # filename: "performer.png")
    performer.user = User.all.sample
+    # performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
+   # filename: "performer.png")
    performer.save!
  end
 
@@ -70,8 +70,8 @@ puts 'Generating events ...'
       user: User.all.sample,
       venue: Venue.all.sample
    )
-   event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpeg')),
-   filename: "event-img.jpeg")
+   event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpg')),
+   filename: "event-img.jpg")
    event.save!
 end
 
@@ -90,7 +90,6 @@ puts 'Generating songs ...'
       filename: "song-img.png")
       song.save!
    end
-
 
 
 puts 'Event done'

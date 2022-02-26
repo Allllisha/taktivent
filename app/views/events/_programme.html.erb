@@ -1,9 +1,12 @@
- <div class="event-song-list-container">
+ <div class="event-song-list-container" id="programme">
    <div class="event-song-list">
    <h3><i class="fas fa-music"></i>Programme</h3>
     <div class="song-each-list">
       <% @songs.each do | song | %>
-        <h4><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h4>
+        <div class="song-li">
+        <h3><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h3>
+        <p><%= song.start_at.strftime("%H:%M") %></p>
+        </div>
     <% end %>
    </div> 
   </div>

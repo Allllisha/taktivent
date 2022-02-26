@@ -1,16 +1,94 @@
-<div class="event-review-form-container">
+<div class="event-review-form-container" id="event">
  <div class="event-review-form">
-   <h4><%= @event.name %></h4>
-   
-   <%# <%= simple_form_for [@event, @event_review] do |f| %>
-     <%# <%= f.error_notification %>
-     <%# <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-     <%# <%= f.association :event, input_html: { class: 'select2' } %>
-     <%# <%= f.input :rating, :label => "Rating" %>
-    <%# <%= f.input :comment, :label => "Comment"%>
-    <%# <%= f.button :submit, class: "btn btn-outline-dark" %>
-   <%# <% end %> 
+<input type="hidden" id="eventYear" value = "<%= @event.end_at.year %>"  > 
+<input type="hidden" id="eventMonth"value = "<%= @event.end_at.month %>" >
+<input type="hidden" id="eventDate" value = "<%= @event.end_at.day %>" >
+<input type="hidden" id="eventHour" value = "<%= @event.end_at.hour %>" >
+<input type="hidden" id="eventMin"  value = "<%= @event.end_at.min %>" >
+<input type="hidden" id="eventSec"  value = "<%= @event.end_at.sec %>" >
 
+
+   <h4><%= @event.name %></h4> 
+  <%= simple_form_for [@event, @event_review] do |f| %>
+     <%= f.error_notification %>
+     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+     <div class="form-group row" id="star">
+     <%= f.input :rating %>
+   </div>
+    <%= f.input :comment, :label => "Comment"%>
+    <%= f.button :submit, class: "btn btn-outline-dark" %>
+
+  <script>
+  // $('#star').raty({
+  //   size     : 36,
+  //   starOff:  '<%= asset_path('star-off.png') %>',
+  //   starOn : '<%= asset_path('star-on.png') %>',
+
+  //   scoreName: 'event_review[rating]',
+  //   half: false,
+  // });
+
+  ////////////////////////////////////////
+   function Eventset2fig(num) {
+
+   var ret;
+   if( num < 10 ) { ret = "0" + num; }
+   else { ret = num; }
+   return ret;
+}
+function EventisNumOrZero(num) {
+
+   if( isNaN(num) ) { return 0; }
+   return num;
+}
+function showEventCountdown() {
+
+   var nowEventDate = new Date();
+   var dnumEventNow = nowEventDate.getTime();
+ 
+   var inputEventYear  = document.getElementById("eventYear").value;
+   var inputEventMonth = document.getElementById("eventMonth").value - 1;
+   var inputEventDate  = document.getElementById("eventDate").value;
+   var inputEventHour  = document.getElementById("eventHour").value;
+   var inputEventMin   = document.getElementById("eventMin").value;
+   var inputEventSec   = document.getElementById("eventSec").value;
+   var targetEventDate = new Date( EventisNumOrZero(inputEventYear), SongisNumOrZero(inputEventMonth), SongisNumOrZero(inputEventDate), SongisNumOrZero(inputEventHour), SongisNumOrZero(inputEventMin), SongisNumOrZero(inputEventSec));
+   var dnumEventTarget = targetEventDate.getTime();
+ 
+ 
+   var dlEventYear  = targetEventDate.getFullYear();
+   var dlEventMonth = targetEventDate.getMonth() + 1;
+   var dlEventDate  = targetEventDate.getDate();
+   var dlEventHour  = targetEventDate.getHours();
+   var dlEventMin   = targetEventDate.getMinutes();
+   var dlEventSec   = targetEventDate.getSeconds();
+
+ 
+  
+   var diff2EventDates = dnumEventTarget - dnumEventNow;
+   if( dnumEventTarget < dnumEventNow ) {
+
+      diff2EventDates *= -1;
+   }
+ 
+
+   if( dnumEventTarget > dnumEventNow ) {
+       //Before Deadline
+   document.getElementById("event").style.display ="none";
+   }
+   else {
+      //After the Deadline
+    document.getElementById("event").style.display ="block";
+   } 
+
+
+   if( dnumEventTarget < dnumEventNow ) {
+       //After the Deadline
+    document.getElementById("event-info").style.display ="block";
+   }
+}
+setInterval('showEventCountdown()',1000);
+  </script>  
+ <% end %> 
  </div>
 </div>
-

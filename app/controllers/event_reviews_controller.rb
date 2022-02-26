@@ -4,9 +4,9 @@ class EventReviewsController < ApplicationController
   skip_after_action :verify_authorized
 
   def create
-    @event_review = EventReview.new(event_review_params)
+    @event_reviews = EventReview.new(event_review_params)
     @event = Event.find(params[:event_id])
-    @event_review.event = @event
+    @event_reviews.event = @event
     if @event_reviews.save
       redirect_to event_path(@event)
     else

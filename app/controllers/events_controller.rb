@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
+  skip_after_action :verify_authorized, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
+
   def show
+
     @event = Event.find(params[:id])
     @event_review = EventReview.new
     @song_review = SongReview.new
@@ -30,14 +34,14 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    @venue = Venue.find(params[:id])
+    @venue = @event.venue
     authorize @event
     authorize @venue
   end
 
   def update
     @event = Event.find(params[:id])
-    @venue = Venue.find(params[:id])
+    @venue = @event.venue
     @event.update(event_params)
     @venue.update(venue_params)
     authorize @event
@@ -53,8 +57,20 @@ class EventsController < ApplicationController
 
   def dashboard
     @event = Event.find(params[:id])
-    @songs = @event.songs
+    @songs = @event.songs.order(start_at: :asc).limit(300)
     authorize @event
+
+    url = event_path(@event)
+
+    qrcode = RQRCode::QRCode.new(url)
+    @qr = qrcode.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6,
+      standalone: true
+    )
+
   end
 
   def destroy
