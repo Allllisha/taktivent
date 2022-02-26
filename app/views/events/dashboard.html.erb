@@ -21,7 +21,7 @@ Edit Event
 
 
 <div class="event-analytics-dashboard">
-<h2>Analytics</h2>
+<h2><%= link_to('Analytics', analytics_event_path) %></h2>
 </div>
 
 <div class="event-info-dashboard">
@@ -54,7 +54,7 @@ Edit Event
 <% unless song.images.empty? %>
  <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
  <% end %>
-  <div class="event-card-body mb-4"> 
+  <div class="event-card-body mb-4">
    <div class="event-card-info">
     <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
     <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
@@ -72,7 +72,3 @@ Edit Event
 <% end %>
 </div>
 </div>
-
-
-
-
