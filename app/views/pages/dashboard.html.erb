@@ -29,7 +29,7 @@
         <% if @event_reviews.blank? %>
           No review yet
         <% else %>
-          <% @events_reviews.first(1).each do |review| %>
+          <% @events_reviews.last(1).each do |review| %>
           <p><%= review.content %></p>
           <% end %>
         <% end %>
