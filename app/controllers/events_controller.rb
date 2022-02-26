@@ -50,9 +50,9 @@ class EventsController < ApplicationController
   end
 
   def preview
-   @event = Event.find(params[:id])
-   @songs = @event.songs
-   authorize @event
+    @event = Event.find(params[:id])
+    @songs = @event.songs
+    authorize @event
   end
 
   def dashboard
@@ -73,6 +73,13 @@ class EventsController < ApplicationController
 
   end
 
+  def analytics
+    # temp
+    # @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
+    @event = Event.new # placeholder
+    authorize @event
+  end
+
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
@@ -82,7 +89,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user, :name, :description, :start_at, :end_at,  :images, :venue_id, :venue)
+    params.require(:event).permit(:user, :name, :description, :start_at, :end_at, :images, :venue_id, :venue)
   end
 
   def venue_params

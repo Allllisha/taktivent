@@ -1,0 +1,10 @@
+<div class="container">
+  <% @event.songs.each do |song| %>
+    <% song.song_reviews.each do |song_review| %>
+      <p><%= song_review.rating %></p>
+      <p><%= song_review.comment %></p>
+      <p><%= song_review.sentiment %></p>
+      <br>
+    <% end %>
+  <% end %>
+</div>

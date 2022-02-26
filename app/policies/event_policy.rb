@@ -4,31 +4,29 @@ class EventPolicy < ApplicationPolicy
       scope.all
     end
   end
-    def show
-      return true
-    end
 
-    def new
-      return true
-    end
+  def create?
+    record.user == user
+  end
 
-    def create
-      return true
-    end
+  def edit?
+    record.user == user
+  end
 
-    def edit
-      return true
-    end
+  def update?
+    record.user == user
+  end
 
-    def update
-      return true
-    end
+  def preview?
+    record.user == user
+  end
 
-    def preview
-      return true
-    end
+  def analytics?
+    # temp
+    true
+  end
 
-    def dashboard
-      return true
-    end
+  def dashboard?
+    true
+  end
 end
