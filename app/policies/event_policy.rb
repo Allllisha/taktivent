@@ -22,8 +22,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def analytics?
-    # temp
-    true
+    record.user == user
   end
 
   def dashboard?
