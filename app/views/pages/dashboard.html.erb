@@ -1,39 +1,49 @@
 <div class="background-pages-dashboard">
-<div class="container">
-  <br>
-  <div class="card-category-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))">
+  Hello <%= @user_signed_in %>!
 
-  </div>
-  <br>
-  <div class="cards">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1488630228244-bcdf33562a43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)">
-      1 Upcoming Event
-    </div>
+  <div class="container">
+    <br>
+
     <div class="card-category-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))">
 
     </div>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1603741209938-50fc882da856?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
-      "This was a fantastic concert!"
-      <br> - John Williams
+
+    <br>
+
+    <div class="cards">
+
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1488630228244-bcdf33562a43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)">
+        <%= pluralize @events.count, "upcoming event" %>
+      </div>
+
+      <div class="card-category-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))">
+
+      </div>
+
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1603741209938-50fc882da856?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
+        "This was a fantastic concert!"
+        <br> - John Williams
+      </div>
+
     </div>
   </div>
-</div>
 
-<div class="container mt-5">
-  <h4>Manage my events</h4>
-    <div class="d-flex flex-column">
-        <% @events.each do |event| %>
-          <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
-          <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
-            <div class="container">
-              <% event.songs.first(3).each do |song| %>
-                <div>
-                  <%= song.name %>
-                </div>
-              <% end %>
+  <div class="container mt-5">
+    <h5>Manage my events</h5>
+      <div class="d-flex flex-column">
+          <% @events.each do |event| %>
+            <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
+            <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
+              <div class="container">
+                <% event.songs.first(3).each do |song| %>
+                  <div>
+                    <%= song.name %>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
-    </div>
+          <% end %>
+      </div>
+  </div>
+  <br>
 </div>
-<br>
