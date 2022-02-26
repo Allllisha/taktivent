@@ -15,18 +15,15 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap";
-
-
 require('packs/raty') 
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
 import { initImagePreview } from '../components/image_preview';
-import { initGlide } from '../components/init_glide';
-
+import { initGlide } from "../components/init_glide"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   initUpdateNavbarOnScroll();
   initImagePreview();
-  initGlide();  
+  initGlide();
 });
