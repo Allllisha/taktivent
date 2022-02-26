@@ -59,8 +59,7 @@ class EventsController < ApplicationController
     @songs = @event.songs.order(start_at: :asc).limit(300)
     authorize @event
 
-    url = event_path(@event)
-
+    url = event_url(@event)
     qrcode = RQRCode::QRCode.new(url)
     @qr = qrcode.as_svg(
       offset: 0,
