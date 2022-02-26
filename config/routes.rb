@@ -14,5 +14,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/event/:id/dashboard', to: 'events#dashboard', as: 'manage_event'
+  get '/events/:id/dashboard', to: 'events#dashboard', as: 'manage_event'
 end
