@@ -92,15 +92,6 @@ function showSongCountdown() {
     document.getElementById("song").style.display ="block";
    } 
 
-   
-   if( dnumSongTarget > dnumSongNow ) {
-       //Before Deadline
-    document.getElementById("event-info").style.display ="block";
-   }
-   else {
-      //After the Deadline
-    document.getElementById("event-info").style.display ="none";
-   } 
 
 }
 setInterval('showSongCountdown()',1000);
