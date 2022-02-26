@@ -37,7 +37,9 @@ def get_sentiment(comment)
 end
 
 puts 'Clearing database...'
-system('rails db:schema:load')
+SongPerformer.destroy_all
+User.destroy_all
+Venue.destroy_all
 
 puts 'Generating users...'
 User.create!(first_name: "Arisa", last_name: "Nemoto", email: "ardolce23@gmail.com", password: "1234567")

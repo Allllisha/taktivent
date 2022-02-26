@@ -7,5 +7,10 @@
 
 .analytics-chart-flexbox{
   display: flex;
+  justify-content: space-around;
+  background-color: #1E1E1E;
 }
-// background-color: #1E1E1E;
+
+.analytics-chart-title {
+  text-align: center;
+}
