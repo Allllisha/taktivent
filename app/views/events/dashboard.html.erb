@@ -7,7 +7,7 @@
         <h2><%= @event.start_at.strftime("%d")%></h2>
       </div>
       <div class="v_line_fix"></div>
-      <h1><%= link_to @event.name, event_path(@event), class: "go-to-event" %></h1>
+      <h1 class="go-to-event"><%= link_to @event.name, event_path(@event) %></h1>
       <div class="edit-event-new">
         <%= link_to edit_event_path(@event) do %>
           <button><i class="fas fa-cog"></i>Edit Event</button>
