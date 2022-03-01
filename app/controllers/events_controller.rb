@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  skip_after_action :verify_authorized, only: [:show]
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_after_action :verify_authorized, only: %i[show]
+  skip_before_action :authenticate_user!, only: :show
 
   def show
 
@@ -14,7 +14,6 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @venue = Venue.new
-    authorize @event
     authorize @venue
   end
 
@@ -60,8 +59,7 @@ class EventsController < ApplicationController
     @songs = @event.songs.order(start_at: :asc).limit(300)
     authorize @event
 
-    url = event_path(@event)
-
+    url = event_url(@event)
     qrcode = RQRCode::QRCode.new(url)
     @qr = qrcode.as_svg(
       offset: 0,
@@ -74,9 +72,7 @@ class EventsController < ApplicationController
   end
 
   def analytics
-    # temp
-    # @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
-    @event = Event.new # placeholder
+    @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
     authorize @event
   end
 

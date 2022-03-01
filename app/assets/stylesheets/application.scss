@@ -8,7 +8,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-
 // Your CSS partials
 @import "components/index";
 //pages
@@ -16,6 +15,7 @@
 @import "pages/index";
 @import "pages/dashboard";
 //events
+@import "events/index";
 @import "events/new";
 @import "events/show";
 @import "events/edit";

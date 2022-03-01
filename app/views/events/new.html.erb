@@ -4,9 +4,9 @@
 <%= simple_form_for(@event) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
- 
+
  <div class="before-uproad" id="event-background">
- <%= image_tag asset_url("image-upload.jpeg")%>
+ <%= image_tag asset_url("image-upload.jpg")%>
  </div>
 
  <div class="event-image" id="eventImageTarget">
@@ -23,7 +23,7 @@
     <%= f.input :end_at %>
     </div>
     <div class="venue-input">
-    <%= f.association :venue do |f| %> 
+    <%= f.association :venue do |f| %>
       <%= f.input :name, :label => "Venue" %>
       <%= f.input :address %>
       </div>
@@ -36,7 +36,7 @@
 <% end %>
 </div>
 </div>
-</div>  
+</div>
 </div>
 
 <script>

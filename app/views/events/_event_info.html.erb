@@ -104,7 +104,13 @@ function showCountdown() {
    }
    document.getElementById("RealtimeCountdownArea").innerHTML = msg;
 
+   if( dnumTarget > dnumNow ) {
+   document.getElementById("programme").style.display ="none";
+   }
+   else {
 
+   document.getElementById("programme").style.display ="block";    
+   }
 }
 
 setInterval('showCountdown()',1000);
