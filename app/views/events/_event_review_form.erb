@@ -7,75 +7,87 @@
 <input type="hidden" id="eventMin"  value = "<%= @event.end_at.min %>" >
 <input type="hidden" id="eventSec"  value = "<%= @event.end_at.sec %>" >
 
+<div class="how-was-event">
+<div><h3>How was the</h3></div>
+<div class="blink" ><h3><%= @event.name %></h3></div><h3>?</h3>
+</div>
+<div class="give-feedbacks">
+<p>Give us some feedbacks!</p>
+</div>
 
-   <h4><%= @event.name %></h4> 
   <%= simple_form_for [@event, @event_review] do |f| %>
-     <%= f.error_notification %>
-     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-     <div class="form-group row" id="star">
-     <%= f.input :rating %>
-   </div>
-    <%= f.input :comment, :label => "Comment"%>
-    <%= f.button :submit, class: "btn btn-outline-dark" %>
+   <%= f.error_notification %>
+   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+   <div class="form-group row" id="star">
+      <div class="star-rating">
+      <% 5.times do |i| %>
+         <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+      <% end %>
+      </div>
+    </div>
+    <div class="give-me-comment">
+   <%= f.input :comment, :label => "Comment"%>
+  </div>
+   <div class="comment-button">
+   <%= f.button :submit, class: "btn btn-outline-dark", id:"event-rv-btn" %>
+</div>
 
 
 <script>
-function eventset2fig(num) {
+   function eventset2fig(num) {
 
-   var ret;
-   if( num < 10 ) { ret = "0" + num; }
-   else { ret = num; }
-   return ret;
-}
-function eventisNumOrZero(num) {
-
-   if( isNaN(num) ) { return 0; }
-   return num;
-}
-function showeventCountdown() {
-
-   var noweventDate = new Date();
-   var dnumeventNow = noweventDate.getTime();
- 
-   var inputeventYear  = document.getElementById("eventYear").value;
-   var inputeventMonth = document.getElementById("eventMonth").value - 1;
-   var inputeventDate  = document.getElementById("eventDate").value;
-   var inputeventHour  = document.getElementById("eventHour").value;
-   var inputeventMin   = document.getElementById("eventMin").value;
-   var inputeventSec   = document.getElementById("eventSec").value;
-   var targeteventDate = new Date( eventisNumOrZero(inputeventYear), eventisNumOrZero(inputeventMonth), eventisNumOrZero(inputeventDate), eventisNumOrZero(inputeventHour),eventisNumOrZero(inputeventMin), eventisNumOrZero(inputeventSec));
-   var dnumeventTarget = targeteventDate.getTime();
- 
- 
-   var dleventYear  = targeteventDate.getFullYear();
-   var dleventMonth = targeteventDate.getMonth() + 1;
-   var dleventgDate  = targeteventDate.getDate();
-   var dleventHour  = targeteventDate.getHours();
-   var dleventgMin   = targeteventDate.getMinutes();
-   var dleventSec   = targeteventDate.getSeconds();
-
- 
-  
-   var diff2eventDates = dnumeventTarget - dnumeventNow;
-   if( dnumeventTarget < dnumeventNow ) {
-
-      diff2eventDates *= -1;
+      var ret;
+      if( num < 10 ) { ret = "0" + num; }
+      else { ret = num; }
+      return ret;
    }
- 
+   function eventisNumOrZero(num) {
 
-   if( dnumeventTarget > dnumeventNow ) {
-       //Before Deadline
-    document.getElementById("event-reviews").style.display ="none";
+      if( isNaN(num) ) { return 0; }
+      return num;
    }
-   else {
-      //After the Deadline
-    document.getElementById("event-reviews").style.display ="block";
-   } 
+   function showeventCountdown() {
 
+      var noweventDate = new Date();
+      var dnumeventNow = noweventDate.getTime();
+   
+      var inputeventYear  = document.getElementById("eventYear").value;
+      var inputeventMonth = document.getElementById("eventMonth").value - 1;
+      var inputeventDate  = document.getElementById("eventDate").value;
+      var inputeventHour  = document.getElementById("eventHour").value;
+      var inputeventMin   = document.getElementById("eventMin").value;
+      var inputeventSec   = document.getElementById("eventSec").value;
+      var targeteventDate = new Date( eventisNumOrZero(inputeventYear), eventisNumOrZero(inputeventMonth), eventisNumOrZero(inputeventDate), eventisNumOrZero(inputeventHour),eventisNumOrZero(inputeventMin), eventisNumOrZero(inputeventSec));
+      var dnumeventTarget = targeteventDate.getTime();
+   
+   
+      var dleventYear  = targeteventDate.getFullYear();
+      var dleventMonth = targeteventDate.getMonth() + 1;
+      var dleventgDate  = targeteventDate.getDate();
+      var dleventHour  = targeteventDate.getHours();
+      var dleventgMin   = targeteventDate.getMinutes();
+      var dleventSec   = targeteventDate.getSeconds();
 
-}
-setInterval('showeventCountdown()',1000);
-</script>
+   
+   
+      var diff2eventDates = dnumeventTarget - dnumeventNow;
+      if( dnumeventTarget < dnumeventNow ) {
+
+         diff2eventDates *= -1;
+      }
+   
+
+      if( dnumeventTarget > dnumeventNow ) {
+         //Before Deadline
+      document.getElementById("event-reviews").style.display ="none";
+      }
+      else {
+         //After the Deadline
+      document.getElementById("event-reviews").style.display ="block";
+      } 
+   }
+   setInterval('showeventCountdown()',1000);
+ </script>
 <% end %> 
- </div>
+</div>
 </div>

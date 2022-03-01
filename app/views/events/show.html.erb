@@ -1,22 +1,29 @@
-<div class="event-show-image">
-  <%= cl_image_tag @event.images.first.key %>
-    <div class="event-show-name">
-     <h1><%= @event.name %></h1>
-   </div>
-</div>
-<div class="event-info-container">
-  <div class="event-infos">
-  </div>
+<div class ="background-home">
+ <div data-controller="song-info">
+   <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
+      <div class="event-start" data-song-info-target="eventImg">
+      <%= cl_image_tag @event.images.first.key, class:"event-image-top" %>
+      </div>
+     </div>
+ <% @songs.each do | song, index | %>
+    <div data-song-info-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
+      <div class="song-start d-none" data-song-info-target="songImg">
+      <%= cl_image_tag song.images.first.key, class:"song-image-top" %>
+      </div>
+    </div>
+<% end %>
+
+<div class="event-show-name" data-song-info-target="eventName">
+  <h1 data-song-info-target="eventName" ><%= @event.name %><h1>
+</div> 
 </div> 
 
 
 <%# event info %>
  <div><%= render 'event_info', event: @event %></div>
 <%# programme %>
- <div><%= render 'programme', event: @event %></div>
+ <%= render 'programme', event: @event %>
 <%# #song-review-form %>
  <%= render 'song_review_form', event: @event %>
 <%# #event-review-form %>
- <div id="box2"><%= render 'event_review_form', event: @event %></div>
-
-
+<%= render 'event_review_form', event: @event %>

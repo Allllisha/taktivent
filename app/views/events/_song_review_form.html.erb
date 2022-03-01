@@ -1,100 +1,54 @@
 <% @songs.each do | song, index | %>
-   <input type="hidden"  id="songYear" value = "<%= song.start_at.year %>"  > 
-   <input type="hidden" id="songMonth"value = "<%= song.start_at.month %>" >
-   <input type="hidden" id="songDate" value = "<%= song.start_at.day %>" >
-   <input type="hidden" id="songHour" value = "<%= song.start_at.hour %>" >
-   <input type="hidden" id="songMin"  value = "<%= song.start_at.min %>" >
-   <input type="hidden" id="songSec"  value = "<%= song.start_at.sec %>" >
-   <input type="hidden" id="songIndex"  value = "<%= index %>" > 
- 
+<div data-controller="song-review">
+<div class="d-none" data-song-review-target="songBox">
 
-<div class="song-review-form-container" id="song">  
- <div class="song-review-form">                           
- <h4><%= song.name %></h4>
+ <div class="song-review-form-container" data-song-review-target="song" data-start="<%= song.start_at %>">  
+ <div class="song-review-form">                     
+    <h4><%= song.name %></h4>
 
-    <section class="glide">
-     <div class="glide__track" data-glide-el="track"> 
-        <ul class="glide__slides">
-          <% song.images.each do | image | %>
-            <li class="glide__slide"><%= image_tag(image) %></li>
-          <% end %>
-        </ul>
-       </div>
-     <div class="glide__bullets" data-glide-el="controls[nav]">
-    <button class="glide__bullet" data-glide-dir="=0">01</button>
-    <button class="glide__bullet" data-glide-dir="=1">02</button>
-    <button class="glide__bullet" data-glide-dir="=2">03</button>
-    <button class="glide__bullet" data-glide-dir="=3">04</button>  
-  </div>
-</section> 
+<div class="d-none" data-song-review-target="SongReviewBox">
+<div data-song-review-target="review"  data-start="<%= song.length_in_minute %>">
+ <%= simple_form_for [@event, song, @song_review] do |f| %>
+     <div class="form-group row" id="star">
+      <div class="star-song-rating">
+        <% 5.times do |i| %>
+          <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+        <% end %>
+      </div>
+    </div>
+</div>
+    
 
-  <%= simple_form_for [@event, song, @song_review] do |f| %>
-     <%= f.error_notification %>
-     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-     <%= f.input :rating, :label => "Rating"%>
-    <%= f.input :comment, :label => "Comment"%> 
-    <%= f.button :submit, class: "btn btn-outline-dark"%> 
-     <% end %> 
-  </div>
+      <div class="give-me-comment">
+       <%= f.input :comment, :label => "Comment"%> 
+      </div> 
+      <div class="comment-button">
+       <%= f.button :submit, class: "btn btn-outline-dark", id:"event-rv-btn"%>
+      </div>
+  <% end %>  
  </div>
+
+ </div>
+ </div>
+</div>
+</div>
+<% end %>
+
+
 
 
 <script>
-function Songset2fig(num) {
+const show = document.getElementById("show");
 
-   var ret;
-   if( num < 10 ) { ret = "0" + num; }
-   else { ret = num; }
-   return ret;
-}
-function SongisNumOrZero(num) {
+const modal = document.getElementById("modal");
 
-   if( isNaN(num) ) { return 0; }
-   return num;
-}
-function showSongCountdown() {
+const close = document.getElementById("close");
 
-   var nowSongDate = new Date();
-   var dnumSongNow = nowSongDate.getTime();
- 
-   var inputSongYear  = document.getElementById("songYear").value;
-   var inputSongMonth = document.getElementById("songMonth").value - 1;
-   var inputSongDate  = document.getElementById("songDate").value;
-   var inputSongHour  = document.getElementById("songHour").value;
-   var inputSongMin   = document.getElementById("songMin").value;
-   var inputSongSec   = document.getElementById("songSec").value;
-   var targetSongDate = new Date( SongisNumOrZero(inputSongYear), SongisNumOrZero(inputSongMonth), SongisNumOrZero(inputSongDate), SongisNumOrZero(inputSongHour), SongisNumOrZero(inputSongMin), SongisNumOrZero(inputSongSec));
-   var dnumSongTarget = targetSongDate.getTime();
- 
- 
-   var dlSongYear  = targetSongDate.getFullYear();
-   var dlSongMonth = targetSongDate.getMonth() + 1;
-   var dlSongDate  = targetSongDate.getDate();
-   var dlSongHour  = targetSongDate.getHours();
-   var dlSongMin   = targetSongDate.getMinutes();
-   var dlSongSec   = targetSongDate.getSeconds();
+show.addEventListener("click", () => {
+  modal.style.display = "block";
+});
 
- 
-  
-   var diff2SongDates = dnumSongTarget - dnumSongNow;
-   if( dnumSongTarget < dnumSongNow ) {
-
-      diff2SongDates *= -1;
-   }
- 
-
-   if( dnumSongTarget > dnumSongNow ) {
-       //Before Deadline
-    document.getElementById("song").style.display ="none";
-   }
-   else {
-      //After the Deadline
-    document.getElementById("song").style.display ="block";
-   } 
-
-
-}
-setInterval('showSongCountdown()',1000);
+close.addEventListener("click", () => {
+  modal.style.display = "none";
+});
 </script>
-<% end %>  
-

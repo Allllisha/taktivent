@@ -42,7 +42,7 @@ User.destroy_all
 Venue.destroy_all
 
 puts 'Generating users...'
-User.create!(first_name: "Arisa", last_name: "Nemoto", email: "ardolce23@gmail.com", password: "1234567")
+User.create!(first_name: "Arisa", last_name: "Nemoto", email: "ardolce23@gmail.com", password: "a23123")
 User.create!(first_name: "Tom", last_name: "Tsui", email: "tomtsui@xxx.com", password: "1234567")
 User.create!(first_name: "Ref", last_name: "Mags", email: "refmags@xxx.com", password: "1234567")
 User.create!(first_name: "Nico", last_name: "Lentgen", email: "nicolaslentgen@xxx.com", password: "1234567")

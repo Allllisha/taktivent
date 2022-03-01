@@ -6,7 +6,7 @@
         <%= f.input :name %>
         <%= f.input :composer_name %>
         <div class="start_at_event">
-          <%= f.input :start_at %>
+          <%= f.input :start_at, html5: true %>
         </div>
         <%= f.input :length_in_minute %>
         <%= f.input :description, :label => "Song description" %>
@@ -50,4 +50,3 @@ pictures.addEventListener('change', (event) => {
   console.log(files);
 });
 </script>
-

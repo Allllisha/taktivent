@@ -19,6 +19,6 @@ class SongReviewsController < ApplicationController
   private
 
   def song_review_params
-    params.require(:song_review).permit(:song_id, :rating, :comment)
+    params.require(:song_review).permit(:song_id, :rating, :sentiment)
   end
 end
