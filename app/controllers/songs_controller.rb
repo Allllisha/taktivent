@@ -5,6 +5,7 @@ class SongsController < ApplicationController
   def new
     @song = Song.new
     @event = Event.find(params[:event_id])
+    @performer = Performer.all
     authorize @song
   end
 
@@ -54,7 +55,7 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:name, :composer_name, :start_at, :length_in_minute, :event_id, :description, images:[])
+    params.require(:song).permit(:name, :composer_name, :start_at, :length_in_minute, :event_id, :description, performer_ids: [], images: [])
   end
 
   def song_performer_params
