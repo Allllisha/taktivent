@@ -76,30 +76,31 @@
   </div>
 
 <div class="event-song-dashboard">
-<h1>Programme</h1>
-<div class="d-flex my-box-light flex-wrap mb-2">
-<% @songs.each do |song| %>
-<div class ="box" >
-<div class="box-cards" style="width: 18rem;">
-<% unless song.images.empty? %>
- <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
- <% end %>
-  <div class="event-card-body mb-4">
-   <div class="event-card-info">
-    <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
-    <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
-    <p class="card-text">Composer:   <%= song.composer_name%></p>
-    <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
-    <p class="card-text">length: <%= song.length_in_minute%>min</p>
-    <p class="card-text">Performers: <%= song.performers.map { |performer| performer.name}.join(", ") %></p>
-    </div>
+  <h1>Programme</h1>
+  <div class="d-flex my-box-light flex-wrap mb-2">
+    <% @songs.each do |song| %>
+      <div class ="box">
+        <div class="box-cards" style="width: 18rem;">
+          <% unless song.images.empty? %>
+            <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
+          <% end %>
+          <div class="event-card-body mb-4">
+            <div class="event-card-info">
+              <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
+              <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
+              <p class="card-text">Composer:   <%= song.composer_name%></p>
+              <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
+              <p class="card-text">length: <%= song.length_in_minute%>min</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
   <%= link_to new_event_song_path(@event), class: "create-songs-new" do %>
     <button>Create New Song</button>
   <% end %>
 </div>
-<% end %>
-
 
 
 
@@ -126,5 +127,4 @@ function showModal() {
     
 }
 </script>
-
 
