@@ -17,6 +17,6 @@ class EventReviewsController < ApplicationController
   private
 
   def event_review_params
-    params.require(:event_review).permit(:event_id, :rating, :comment)
+    params.require(:event_review).permit(:event_id, :rating, :sentiment)
   end
 end
