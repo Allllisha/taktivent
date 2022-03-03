@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event_review = EventReview.new
     @song_review = SongReview.new
-    @songs = @event.songs
+    @songs = @event.songs.order(start_at: :asc).limit(300)
     authorize @event
   end
 

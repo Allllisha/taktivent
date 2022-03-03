@@ -13,7 +13,7 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
     @event = Event.find(params[:event_id])
-    @song_performer = SongPerformer.new
+    @performers = @song_performers
     authorize @song
   end
 

@@ -2,50 +2,67 @@ body{
   background-color: $black;
 }
 
-.event-img-top{
-  object-fit: cover;
-}
-
-
-.event-info-container{
-background-color: #111111;
- margin-top: 47vh;
- padding: 0.2px;
- padding-bottom: 10px;
-}
-
-.event-show-image{
-  img{
-    width: 100%;
-    height: 350px;
-    border-radius: 20px 20px 0 0;
-    object-fit: cover;
-    position: absolute;
+.song-image-container{
+  background-color: $black;
+  .song-image-box{
+    background-color: $gray;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 400px;
   }
 }
 
-.event-show-name{
-  background-color: #1E1E1E;
+.song-image-top{
+  width:100%;
+  object-fit: cover;
+  max-height: 300px;
+  background-color: $black;
+}
+
+.event-image-top{
+  width:100%;
+  object-fit: cover;
+  height: 300px;
+  background-color: $black;
+}
+
+.event-name{
+  margin-bottom: 20px;
+  background-color: $gray;
   width: 95%;
   border-radius: 0 20px 20px 0;
   padding: 10px; 
-  position: absolute;
-  margin-top: 320px;
   color: white;
   h1{
     margin-left: 10px;
   }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+    h1{
+      font-size: 25px;
+    }
+  }
 }
 
-.event-infos{
-  margin-top: 80px;
-  margin-bottom: 10px;
+.event-show-name{
+  margin-bottom: 20px;
+  background-color: $gray;
+  width: 95%;
+  border-radius: 0 20px 20px 0;
+  padding: 10px; 
+  color: white;
+  h1{
+    margin-left: 10px;
+  }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+    h1{
+      font-size: 25px;
+    }
+   }
 }
 
-.event-name-title{
-  margin-top: 100px;
-}
-
+//////// event info
 .events-info-all-container{
   .fas{
     margin-right: 20px;
@@ -65,7 +82,7 @@ margin-right: 20px;
 }
 
 .events-infos-container{
-  background-color: #111111
+  background-color: #111111;
 }
 
 .events-info-description{
@@ -113,10 +130,6 @@ margin-right: 20px;
   }
 }
 
-.clock-container{
-  padding-bottom: 50px;
-  background-color: #111111;
-}
 
 
 /////song list
@@ -131,6 +144,7 @@ margin-right: 20px;
     margin-right: 25px;
     margin-bottom: 25px;
     .fa-music{
+      margin-right: 10px;
       background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
       width: 50px;
       height: 50px;
@@ -168,9 +182,73 @@ margin-right: 20px;
     margin-left: 30px;
     margin-right: 25px;
     margin-bottom: 25px;
+
+    .star-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      input {
+        visibility: hidden;
+        margin-right: 1em;
+        font-size: 40px;
+        text-shadow: 0.5px 0.5px 3px #E67E23;
+      }
+    
+      input:before {
+        cursor: pointer;
+        visibility: visible;
+        font-family: 'Font Awesome 5 Free';
+        content: '\f005';
+        font-weight: 900;
+        color: #FD4;
+        transition: color 0.35s;
+      }
+    
+      input:hover {
+        transform: scale(1.2) translate(-10%, -10%);
+      }
+    
+      input:checked ~ input:before {
+        color: #fff;
+      }
+      input:checked{
+        animation:0.1s linear alternate rotation1;
+        @keyframes rotation1{
+          0%{ transform:rotate(0);}
+          100%{ transform:rotate(360deg); }
+        }
+      }
+    }
+    .give-me-comment{
+      margin-top: 50px;
+    }
   }
 }
 
+.how-was-event{
+ display: flex;
+ justify-content: center;
+
+ @media screen and (max-width: 767px) {
+  h3{
+    font-size: 18px;
+  }
+ }
+ .blink{
+  animation: blinkAnime 1s infinite alternate;
+  margin-left: 5px;
+  margin-right: 5px;
+ }
+ @keyframes blinkAnime{
+  0% { color: #000000 }
+100% { color: #3450ef }
+}
+}
+
+.give-feedbacks{
+  text-align: center;
+}
 
 .song-each-list{
   margin-top: 20px;
@@ -192,3 +270,59 @@ margin-right: 20px;
   color: white;
 }
 
+.star-song-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  input {
+    visibility: hidden;
+    margin-right: 1em;
+    font-size: 40px;
+    text-shadow: 0.5px 0.5px 3px #E67E23;
+  }
+
+  input:before {
+    cursor: pointer;
+    visibility: visible;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f005';
+    font-weight: 900;
+    color: #FD4;
+    transition: color 0.35s;
+    
+  }
+
+  input:hover {
+    transform: scale(1.2) translate(-10%, -10%);
+  }
+
+  input:checked ~ input:before {
+    color: #fff;  
+  }
+  input:checked{
+    animation:0.1s linear alternate rotation1;
+    @keyframes rotation1{
+      0%{ transform:rotate(0);}
+      100%{ transform:rotate(360deg); }
+    }
+  }
+}
+
+
+.give-me-comment{
+  margin-top: 50px;
+}
+
+.comment-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+#event-rv-btn{
+  border-radius: 20px;
+  color: white;
+}
