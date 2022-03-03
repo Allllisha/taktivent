@@ -171,10 +171,9 @@ User.all.each do |artist|
       # generate responses for musician-defined questions
       responses = []
       event.questions_and_choices.each do |question_and_choice|
-        break
         responses << {
-          question: question_and_choice[:question],
-          response: question_and_choice[:type] == :stars ? rand(1..5) : question_and_choice[:choices].sample
+          question: question_and_choice['question'],
+          response: question_and_choice['question_type'] == 'stars' ? rand(1..5) : question_and_choice['choices'].sample
         }
       end
 
@@ -194,8 +193,8 @@ User.all.each do |artist|
         responses = []
         song.questions_and_choices.each do |question_and_choice|
           responses << {
-            question: question_and_choice[:question],
-            response: question_and_choice[:type] == :stars ? rand(1..5) : question_and_choice[:choices].sample
+            question: question_and_choice['question'],
+            response: question_and_choice['question_type'] == 'stars' ? rand(1..5) : question_and_choice['choices'].sample
           }
         end
 
