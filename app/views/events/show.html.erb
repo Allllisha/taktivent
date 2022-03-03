@@ -1,23 +1,53 @@
 <div class ="background-home">
- <div data-controller="song-info">
-   <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
+  <div data-controller="song-info">
+    <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
+      <% @songs.each do | song | %>
+       <div data-song-info-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
+      <% end %>
       <div class="event-start" data-song-info-target="eventImg">
-      <%= cl_image_tag @event.images.first.key, class:"event-image-top" %>
-      </div>
-     </div>
- <% @songs.each do | song, index | %>
-    <div data-song-info-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
-      <div class="song-start d-none" data-song-info-target="songImg">
-      <%= cl_image_tag song.images.first.key, class:"song-image-top" %>
+           <div class="glide">
+      <div class="glide__track" data-glide-el="track">
+        <ul class="glide__slides">
+          <% @event.images.each do |image| %>
+            <li class="glide__slide"><%= image_tag(image) %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
-<% end %>
 
-<div class="event-show-name" data-song-info-target="eventName">
-  <h1 data-song-info-target="eventName" ><%= @event.name %><h1>
-</div> 
-</div> 
+      </div>
+  </div>
+</div>
 
+<% @songs.each_with_index do | song, index | %>
+  <div data-controller="song-image" data-start="<%= song.start_at %>">
+    <div data-song-image-target="length" data-time="<%= song.length_in_minute%>">
+     <div class="song-image" data-song-image-target="songImg" >
+    <%=  cl_image_tag song.images.first.key, class:"song-image-top d-none" %>
+     </div>
+     </div>
+  </div>   
+ <% end %>
+
+<div data-controller="title" >
+  <div data-title-target="eventTimeStart" data-eventTime="<%= @event.start_at %>">  
+    <div class="event-name" data-title-target="eventTitle">
+       <h1 id="0"><%= @event.name %><h1>
+    </div>   
+      <% @songs.each do | song | %>
+        <div data-title-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
+      <% end %>
+         <div class="event-show-name d-none" data-title-target="eventStart">
+           <h1 id="0" data-title-target="songName"><%= @event.name %><h1>
+         </div>
+        </div> 
+      <% @songs.each_with_index do |song, index| %>
+        <div  data-title-target="song" data-time="<%= song.length_in_minute %>" id=<%= index %> style="display:none"> <%= song.name %></div>
+      <% end %>
+        </div>
+     </div>
+  </div> 
+</div> 
 
 <%# event info %>
  <div><%= render 'event_info', event: @event %></div>
