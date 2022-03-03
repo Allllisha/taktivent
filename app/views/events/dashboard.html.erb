@@ -15,10 +15,6 @@
       </div>
     </div>
 
-    <div class="event-analytics-dashboard">
-      <h2><%= link_to('Analytics', analytics_event_path) %></h2>
-    </div>
-
     <div class="event-info-dashboard">
       <div class="event-info-descriptions">
         <% unless @event.images.empty? %>
@@ -33,13 +29,51 @@
         </div>
         <h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
         <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
-      </div>
+
+
+
+<div class="trigger-button">
+  <button id="openModal">
+    QR code
+  </button>
+</div>
+
+  <div class="modal-background closed">
+    <div class="modal closed">
+      <div class="modal-content">
+      <h4 class="modal-content-header">
       <div class ="qr-code">
-        <%= @qr.html_safe %>
+      <%= @qr.html_safe %>
+     </div>
+      </h4>
+      <p class="modal-content-text">
+      </p>
+      </div>
+      <div class="modal-buttons">
+        <button id="close">Back</button>
+      </div>
+    </div>
+  </div>
+
       </div>
     </div>
   </div>
 </div>
+
+ <div class="event-analytics-dashboard">
+   <h1><%= link_to('Analytics', analytics_event_path)%></h1>
+      <div class="analytics-overall-flexbox">
+    <div>
+      <h3 class="analytics-overall-title">Ratings</h3>
+      <%= pie_chart @event.event_reviews.group(:rating).count, colors: ["#222", "#666", "#934", "#825"] %>
+    </div>
+    <div>
+      <h3 class="analytics-overall-title">Comments</h3>
+      <%= pie_chart @event.event_reviews.group(:sentiment).count, colors: ["#666", "#222"] %>
+    </div>
+  </div>
+    </div>
+  </div>
 
 <div class="event-song-dashboard">
 <h1>Programme</h1>
@@ -65,3 +99,28 @@
   <% end %>
 </div>
 <% end %>
+
+
+
+
+<script>
+showModal();
+
+function showModal() {
+    var modalBackground = document.querySelector('.modal-background'),
+    modal = document.querySelector('.modal'),
+    close = document.querySelector('#close'),
+    open = document.querySelector('#openModal');
+    // open modal
+    open.addEventListener('click', function(){
+        modalBackground.classList.toggle('closed');
+        modal.classList.toggle('closed');
+    });
+    // cancel;
+    close.addEventListener('click', function(){
+        modalBackground.classList.toggle('closed');
+        modal.classList.toggle('closed');
+    });
+
+}
+</script>

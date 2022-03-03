@@ -5,40 +5,30 @@
      <h1><%= @song.name %></h1>
 
     <section class="glide">
-     <div class="glide__track" data-glide-el="track"> 
+     <div class="glide__track" data-glide-el="track">
         <ul class="glide__slides">
           <% @song.images.each do | image | %>
             <li class="glide__slide"><%= image_tag(image) %></li>
           <% end %>
         </ul>
        </div>
-     <div class="glide__bullets" data-glide-el="controls[nav]">
-    <button class="glide__bullet" data-glide-dir="=0">01</button>
-    <button class="glide__bullet" data-glide-dir="=1">02</button>
-    <button class="glide__bullet" data-glide-dir="=2">03</button>
-    <button class="glide__bullet" data-glide-dir="=3">04</button>  
-  </div>
-</section>  
-     
-
-
-
-
+    </section>
      </div>
    </div>
   </div>
    <div class="song-show-container">
     <div class="song-show-piece">
        <h2><i class="fas fa-music"></i>About pieces</h2>
-        <p><%= @song.description %></p>  
+        <p><%= @song.description %></p>
      </div>
    </div>
     <div class="song-show-container">
     <div class="song-show-artist">
        <h2><i class="fas fa-music"></i>Artists Profile</h2>
-        <p>Tom</p>
-        <p>Nico</p>
-        <p>Ref</p>     
+       <p><% @performers.each do |performer| %></p>
+          <p><%= performer.name %><p>
+          <p><%= performer.description %><p>
+          <% end %>
      </div>
    </div>
 </div>
