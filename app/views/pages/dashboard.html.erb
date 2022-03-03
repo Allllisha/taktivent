@@ -42,7 +42,9 @@
     <h5>Manage my events</h5>
       <div class="d-flex flex-column">
           <% @events.each do |event| %>
-            <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
+            <% if event.images.attached? %>
+              <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
+            <% end %>
             <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
               <div class="container">
                 <% event.songs.first(3).each do |song| %>
