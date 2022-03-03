@@ -52,7 +52,43 @@ puts 'Generating venues...'
   Venue.create!(name: Faker::Address.city_suffix, address: Faker::Address.full_address)
 end
 
+# questions_and_choices seeds
+questions_and_choices = [
+  {
+    question_type: :radio_buttons,
+    question: 'What season does the performance remind you of?',
+    choices: ['Spring', 'Summer', 'Autumn', 'Winter']
+  },
+  {
+    question_type: :radio_buttons,
+    question: 'Would you recommend to your friends?',
+    choices: ['Absolutely', 'Maybe', 'No']
+  },
+  {
+    question_type: :dropdown_list,
+    question: 'Which of the following needs to work on the most?',
+    choices: ['Techniques', 'Emotion', 'Pacing']
+  },
+  {
+    question_type: :dropdown_list,
+    question: 'Which of the following do you like the most?',
+    choices: ['The performance', 'The performer(s)', 'The pacing']
+  },
+  {
+    question_type: :stars,
+    question: 'How likely are you going to recommend to your friends?'
+  },
+  {
+    question_type: :stars,
+    question: 'Please rate.'
+  },
+  {
+    question_type: :stars,
+    question: 'How likely are you coming to the next performance?'
+  }
+]
 
+# Generate events and performers for all users
 User.all.each do |artist|
   puts "Generating events and performers for #{artist.first_name}..."
   2.times do |i|
@@ -62,7 +98,9 @@ User.all.each do |artist|
       start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
       end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
       description: Faker::Quote.matz,
-      venue: Venue.all.sample
+      venue: Venue.all.sample,
+      questions_and_choices: questions_and_choices.sample(4),
+      enable_textbox: [true, false].sample
     )
     event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpg')),
                         filename: "event-img.jpg")
@@ -74,7 +112,6 @@ User.all.each do |artist|
     performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
                             filename: "performer.png")
   end
-
 end
 
 puts 'Generating songs...'
@@ -86,6 +123,8 @@ Event.all.each do |event|
       start_at: Faker::Time.between_dates(from: event.start_at, to: event.end_at, period: :all),
       length_in_minute: Faker::Number.within(range: 10..20),
       description: Faker::Quote.matz,
+      questions_and_choices: questions_and_choices.sample(4),
+      enable_textbox: [true, false].sample,
       event: event
     )
     song.images.attach(io: File.open(Rails.root.join('app/assets/images/song-img.png')),
@@ -101,53 +140,70 @@ Song.all.each do |song|
   )
 end
 
-comments = {
-  pos: [
-    'Best performance I have ever seen!',
-    'Overall pretty nice :)',
-    'Amazing!',
-    'Amazing, I have no words.',
-    'Good as hell.',
-    'Amazing for the price.',
-    'Splendid.',
-    'Unbelievably good.'
-  ],
-  neutral: [
-    'What',
-    'Neutral'
-  ],
-  neg: [
-    'Boring as hell.',
-    "It's ok I guess.",
-    "Worst performance I've even seen."
-  ]
-}
+# Comments seed catagorized by sentiment
+comments = [
+  # positive
+  'Best performance I have ever seen!',
+  'Overall pretty nice :)',
+  'Amazing!',
+  'Amazing, I have no words.',
+  'Good as hell.',
+  'Amazing for the price.',
+  'Splendid.',
+  'Unbelievably good.',
+  # neutral
+  'What',
+  'Neutral',
+  # negative
+  'Boring as hell.',
+  "It's ok I guess.",
+  "Worst performance I've even seen."
+]
 
+# generate event reviews and song reviews for all users
+# call API to get sentiment
 User.all.each do |artist|
   puts "Generating reviews for #{artist.first_name}..."
   artist.events.each do |event|
+    # generate 5 event_reviews
     5.times do
-      random_rating = rand(1..5)
-      comment = if [4, 5].include? random_rating
-                  comments[:pos].sample
-                elsif random_rating == 3
-                  comments[:neutral].sample
-                else
-                  comments[:neg].sample
-                end
-      event.event_reviews.create!(rating: random_rating, comment: comment, sentiment: get_sentiment(comment))
+      # generate responses for musician-defined questions
+      responses = []
+      event.questions_and_choices.each do |question_and_choice|
+        responses << {
+          question: question_and_choice[:question],
+          response: question_and_choice[:type] == :stars ? rand(1..5) : question_and_choice[:choices].sample
+        }
+      end
+
+      # add comment and sentiment if enable_textbox is true
+      comment = comments.sample if event.enable_textbox
+      event.event_reviews.create!(
+        responses: responses,
+        comment: event.enable_textbox ? comment : nil,
+        sentiment: event.enable_textbox ? get_sentiment(comment) : nil
+      )
     end
+
+    # generate 5 song_reviews
     event.songs.each do |song|
       5.times do
-        random_rating = rand(1..5)
-        comment = if [4, 5].include? random_rating
-                    comments[:pos].sample
-                  elsif random_rating == 3
-                    comments[:neutral].sample
-                  else
-                    comments[:neg].sample
-                  end
-        song.song_reviews.create!(rating: random_rating, comment: comment, sentiment: get_sentiment(comment))
+        # generate responses for musician-defined questions
+        responses = []
+        song.questions_and_choices.each do |question_and_choice|
+          responses << {
+            question: question_and_choice[:question],
+            response: question_and_choice[:type] == :stars ? rand(1..5) : question_and_choice[:choices].sample
+          }
+        end
+
+        # add comment and sentiment if enable_textbox is true
+        comment = comments.sample if song.enable_textbox
+        song.song_reviews.create!(
+          responses: responses,
+          comment: song.enable_textbox ? comment : nil,
+          sentiment: song.enable_textbox ? get_sentiment(comment) : nil
+        )
       end
     end
   end
