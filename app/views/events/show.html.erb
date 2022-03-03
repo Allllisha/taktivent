@@ -5,17 +5,8 @@
        <div data-song-info-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
       <% end %>
       <div class="event-start" data-song-info-target="eventImg">
-           <div class="glide">
-      <div class="glide__track" data-glide-el="track">
-        <ul class="glide__slides">
-          <% @event.images.each do |image| %>
-            <li class="glide__slide"><%= image_tag(image) %></li>
-          <% end %>
-        </ul>
-      </div>
+         <%= cl_image_tag @event.images.first.key %>
     </div>
-
-      </div>
   </div>
 </div>
 
