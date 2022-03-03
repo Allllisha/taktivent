@@ -11,6 +11,7 @@ require 'net/http'
 require 'openssl'
 require 'json'
 require 'rake'
+require 'pry-byebug'
 
 # call sentiment analysis api on comments in reviews
 def get_sentiment(comment)
@@ -170,6 +171,7 @@ User.all.each do |artist|
       # generate responses for musician-defined questions
       responses = []
       event.questions_and_choices.each do |question_and_choice|
+        break
         responses << {
           question: question_and_choice[:question],
           response: question_and_choice[:type] == :stars ? rand(1..5) : question_and_choice[:choices].sample
