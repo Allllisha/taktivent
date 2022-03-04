@@ -4,10 +4,11 @@
   <div class="analytics-chart-flexbox">
     <div>
       <h3 class="analytics-chart-title">Ratings</h3>
-      <%= pie_chart @event.event_reviews.group(:rating).count %>
+      <%= column_chart @event.event_reviews.group(:rating).count, xmin: 0, xmax: 5, colors: ["#b00"], legend: "bottom" %>
     </div>
     <div>
-      <h3 class="analytics-chart-title">Comments</h3>
+      <h3 class="analytics-chart-title">Sentiments</h3>
+      <%= line_chart @event.event_reviews.group(:sentiment).count %>
       <%= pie_chart @event.event_reviews.group(:sentiment).count %>
     </div>
   </div>
@@ -19,7 +20,7 @@
         <th scope="col">sentiment</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="hide">
       <% @event.event_reviews.each do |event_review| %>
         <tr>
           <td><%= event_review.rating %></td>

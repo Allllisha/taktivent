@@ -72,6 +72,9 @@
       <%= pie_chart @event.event_reviews.group(:sentiment).count, colors: ["#666", "#222"] %>
     </div>
   </div>
+    <%= link_to analytics_event_path(@event), class: "create-songs-new" do %>
+    <button>All reviews</button>
+    <% end %>
     </div>
   </div>
 
@@ -101,7 +104,6 @@
     <button>Create New Song</button>
   <% end %>
 </div>
-
 
 
 
