@@ -59,7 +59,7 @@ User.all.each do |artist|
     event = artist.events.create!(
       name: "#{artist.first_name} #{artist.last_name} Live Concert #{i + 1}",
 
-      start_at: Faker::Time.between_dates(from: Date.today - 1, to: Date.today, period: :all),
+      start_at: Faker::Time.between_dates(from: Date.today, to: Date.today, period: :all),
       end_at: Faker::Time.between_dates(from: Date.today + 1, to: Date.today + 2, period: :all),
       description: Faker::Quote.matz,
       venue: Venue.all.sample
@@ -84,7 +84,7 @@ Event.all.each do |event|
       name: Faker::Music::RockBand.song,
       composer_name: Faker::Music::RockBand.name,
       start_at: Faker::Time.between_dates(from: event.start_at, to: event.end_at, period: :all),
-      length_in_minute: Faker::Number.within(range: 10..20),
+      length_in_minute: Faker::Number.within(range: 1..2),
       description: Faker::Quote.matz,
       event: event
     )

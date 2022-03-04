@@ -71,7 +71,9 @@
    </div>
    </div>
   <div class="part-2 col-5">
-  hi
+  <div class="event-dashboard-chart">
+  <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#934","#666"] %>
+  </div>
    </div>
 </div>
 
@@ -92,6 +94,7 @@
               <p class="card-text">Composer:   <%= song.composer_name%></p>
               <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
               <p class="card-text">length: <%= song.length_in_minute%>min</p>
+              <p class="card-text">Performer: </p>
             </div>
           </div>
         </div>
