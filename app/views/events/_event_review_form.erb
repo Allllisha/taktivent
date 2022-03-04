@@ -85,6 +85,17 @@
          //After the Deadline
       document.getElementById("event-reviews").style.display ="block";
       } 
+
+
+
+      if( dnumeventTarget > dnumeventNow ) {
+         //Before Deadline
+      document.getElementById("event-reviews").style.display ="none";
+      }
+      else {
+         //After the Deadline
+      document.getElementById("event-reviews").style.display ="block";
+      } 
    }
    setInterval('showeventCountdown()',1000);
  </script>
