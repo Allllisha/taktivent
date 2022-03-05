@@ -31,56 +31,7 @@
 
       <%# questions customization %>
       <div>
-      <%#
-        <%= f.fields_for 'questions_and_choices[]' do |f| %
-          <%= f.input :question_type %
-          <%= f.input :question %
-          <%= f.input :choice %
-        <% end %
-      %>
-        <%# dropdown question types %>
-        <p>1</p>
-        <div class="mb-3 string optional event_question_type">
-          <label class="form-label string optional" for="event_question_type_0">Question type</label>
-          <select class="form-select select optional" name="event[questions_and_choices][][question_type]" id="event_question_type_0">
-            <option value="radio_buttons">Radio buttons</option>
-            <option value="dropdown_list">Dropdown list</option>
-            <option value="stars">Stars</option>
-          </select>
-        </div>
-        <%# question string %>
-        <div class="mb-3 string optional event_question">
-          <label class="form-label string optional" for="event_question_0">Question</label>
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][question]" id="event_question_0">
-        </div>
-        <%# choice string %>
-        <div class="mb-3 string optional event_choice">
-          <label class="form-label string optional" for="event_choice_0">Choice</label>
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][choice][]" id="event_choice_0">
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][choice][]" >
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][choice][]" >
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][choice][]" >
-        </div>
-
-        <p>2</p>
-        <div class="mb-3 string optional event_question_type">
-          <label class="form-label string optional" for="event_question_type_1">Question type</label>
-          <select class="form-select select optional" name="event[questions_and_choices][][question_type]" id="event_question_type_1">
-            <option value="radio_buttons">Radio buttons</option>
-            <option value="dropdown_list">Dropdown list</option>
-            <option value="stars">Stars</option>
-          </select>
-        </div>
-        <%# question string %>
-        <div class="mb-3 string optional event_question">
-          <label class="form-label string optional" for="event_question_1">Question</label>
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][question]" id="event_question_1">
-        </div>
-        <%# choice string %>
-        <div class="mb-3 string optional event_choice">
-          <label class="form-label string optional" for="event_choice_1">Choice</label>
-          <input class="form-control string optional" type="text" name="event[questions_and_choices][][choice]" id="event_choice_1">
-        </div>
+        <%= render 'shared/question_customization_form' %>
       </div>
 
       <%= f.input :enable_textbox, input_html: {class: "checkbox-white-outline"} %>

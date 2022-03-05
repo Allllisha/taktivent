@@ -1,0 +1,22 @@
+<%# dropdown question types %>
+<div class="mb-3 string optional event_question_type">
+  <label class="form-label string optional" for="event_question_type_0">Question type</label>
+  <select class="form-select select optional" name="event[questions_and_choices][][question_type]" id="event_question_type_0">
+    <option value="radio_buttons">Radio buttons</option>
+    <option value="dropdown_list">Dropdown list</option>
+    <option value="stars">Stars</option>
+  </select>
+</div>
+<%# question string %>
+<div class="mb-3 string optional event_question">
+  <label class="form-label string optional" for="event_question_0">Question</label>
+  <input class="form-control string optional" type="text" name="event[questions_and_choices][][question]" id="event_question_0">
+</div>
+<%# choice string %>
+<div class="mb-3 string optional event_choices">
+  <label class="form-label string optional" for="event_choices_0">Choices</label>
+  <input class="form-control string optional" type="text" name="event[questions_and_choices][][choices][]" id="event_choices_0">
+  <input class="form-control string optional" type="text" name="event[questions_and_choices][][choices][]" >
+  <input class="form-control string optional" type="text" name="event[questions_and_choices][][choices][]" >
+  <input class="form-control string optional" type="text" name="event[questions_and_choices][][choices][]" >
+</div>
