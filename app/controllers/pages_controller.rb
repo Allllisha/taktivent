@@ -6,6 +6,24 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @events = Event.where(user: current_user)
+    # @events = Event.where(user: current_user)
+    @events = Event.all
+    @analytics_rating = generate_analytics(:rating)
+    @analytics_sentiment = generate_analytics(:sentiment)
+  end
+
+  def generate_analytics(type)
+    analytics_raw = @events.map{|event|event.event_reviews.group(type).count}
+    analytics = {}
+    analytics_raw.each do |hash|
+      hash.each do |k, v|
+        if analytics[k]
+          analytics[k] += v
+        else
+          analytics[k] = v
+        end
+      end
+    end
+    analytics
   end
 end

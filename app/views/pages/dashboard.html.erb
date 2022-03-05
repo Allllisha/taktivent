@@ -1,17 +1,24 @@
 <div class="background-pages-dashboard">
-  <br>
   <div class="container">
     <% if user_signed_in? %>
-      <h3> Hello <%= current_user.first_name %> 👋 </h3>
+      <br><h3> Hello <%= current_user.first_name %> 👋 </h3>
     <% end %>
   </div>
 
   <div class="container">
-    <br>
-
-    <div class="card-category-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))">
-
+    <div class="event-analytics-dashboard">
+      <div class="analytics-overall-flexbox">
+        <div>
+          <h3 class="analytics-overall-title">Overall Ratings</h3>
+          <%= pie_chart @analytics_rating, colors: ["#222", "#666", "#934", "#825"] %>
+        </div>
+      <div>
+        <h3 class="analytics-overall-title">Overall Sentiment</h3>
+        <%= pie_chart @analytics_sentiment, colors: ["#666", "#222"] %>
+      </div>
     </div>
+      </div>
+  </div>
 
     <br>
 
