@@ -11,6 +11,11 @@ body{
     height: 400px;
   }
 }
+.event-start{
+  img{
+    object-fit: cover;
+  }
+}
 
 .song-image-top{
   width:100%;
@@ -155,6 +160,8 @@ margin-right: 20px;
   }
 }
 
+
+
 /////event review form
 
 .song-review-form-container{
@@ -232,7 +239,7 @@ margin-right: 20px;
 
  @media screen and (max-width: 767px) {
   h3{
-    font-size: 18px;
+    font-size: 15px;
   }
  }
  .blink{
@@ -257,12 +264,21 @@ margin-right: 20px;
      align-items: center;
      p{
        margin-left: 10px;
-       margin-top: 15px;
+       margin-top: 9px;
      }
      h3{
         text-decoration: none;
      }
+
+     h6{
+       margin-left: 1px;
+     }
+
   }
+}
+
+.fa-play-circle{
+  margin-left: 5px;
 }
 
 #RealtimeCountdownArea{

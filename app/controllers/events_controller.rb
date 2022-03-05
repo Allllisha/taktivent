@@ -57,6 +57,7 @@ class EventsController < ApplicationController
   def dashboard
     @event = Event.find(params[:id])
     @songs = @event.songs.order(start_at: :asc).limit(300)
+    @performers = @song_performers
     authorize @event
 
     url = event_url(@event)
