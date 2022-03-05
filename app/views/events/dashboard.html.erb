@@ -27,11 +27,11 @@
           <h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
         </div>
           <h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
-            <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>         
+            <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
          <div class="trigger-button">
            <button id="openModal">
-             QR code 
-           </button>  
+             QR code
+           </button>
           </div>
 
   <div class="modal-background closed">
@@ -41,11 +41,11 @@
           <div class ="qr-code">
              <%= @qr.html_safe %>
            </div>
-        </h4>        
+        </h4>
           <p class="modal-content-text"></p>
          </div>
       <div class="modal-buttons">
-        <button id="close">Back</button>    
+        <button id="close">Back</button>
       </div>
     </div>
   </div>
@@ -129,7 +129,6 @@ function showModal() {
         modalBackground.classList.toggle('closed');
         modal.classList.toggle('closed');
     });
-    
+
 }
 </script>
-

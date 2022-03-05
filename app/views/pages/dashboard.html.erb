@@ -1,7 +1,7 @@
 <div class="background-pages-dashboard">
   <div class="container">
     <% if user_signed_in? %>
-      <br><h3> Hello <%= current_user.first_name %> 👋 </h3>
+      <br><h3> Hello <%= current_user.first_name %>! 👋 </h3>
     <% end %>
   </div>
 
@@ -22,22 +22,31 @@
   <div class="event-info-dashboard">
       <div class="part-2 col-12">
         <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1488630228244-bcdf33562a43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)">
-          <%= pluralize @events.count, "upcoming event" %>
+          🗓️ <%= pluralize @events.count, "upcoming event" %>
         </div>
       </div>
   </div>
 
   <div class="event-info-dashboard">
-    <div class="container mt-5">
+    <div class="container mt-2">
+      <h4> Manage my events </h4>
         <div class="d-flex flex-column">
             <% @events.each do |event| %>
               <% if event.images.attached? %>
-                <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
+                <div class="card-product-dashboard text-center" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
               <% end %>
-              <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
-                <div class="container">
+              <div class="col px-2 py-2">
+                <a href="<%= manage_event_path(event)%>" style="color: white"><%= event.name %></a>
+              </div>
+                <div class="col px-2 py-2 text-center">
+                  <%= event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %>
+                </div>
+                <div class="col px-2 py-2 text-center">
+                  <%= event.venue.name %>
+                </div>
+                <div class="col px-2 py-2">
                   <% event.songs.first(3).each do |song| %>
-                    <div>
+                    <div class="card-product-dashboard-info text-center" >
                       <%= song.name %>
                     </div>
                   <% end %>
