@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   skip_after_action :verify_authorized, only: [:show]
   skip_before_action :authenticate_user!, only: [:show]
-  
+
   def new
     @song = Song.new
     @event = Event.find(params[:event_id])
@@ -14,7 +14,7 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
     @event = Event.find(params[:event_id])
-    @performers = @song_performers
+    @performers = @song.performers
     authorize @song
   end
 
@@ -29,7 +29,7 @@ class SongsController < ApplicationController
     # @song.performer = @performer
     if @song.save && @event.save 
       redirect_to manage_event_path(@event)
-    else 
+    else
       render "new"
     end
   end

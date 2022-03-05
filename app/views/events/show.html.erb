@@ -6,8 +6,8 @@
        <div data-song-info-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
       <% end %>
       <div class="event-start" data-song-info-target="eventImg" >
-         <%= cl_image_tag @event.images.first, width:"100%", height:"350px" %>
-      </div>   
+         <%= cl_image_tag @event.images.first.key, width:"100%", height:"350px" %>
+      </div>
     </div>
   </div>
 </div>
@@ -19,19 +19,19 @@
     <%=  cl_image_tag song.images.first.key, class:"song-image-top" %>
      </div>
     </div>
-  </div>   
+  </div>
  <% end %>
 
 
 <div data-controller="title" >
  <% @songs.each do | song | %>
   <div data-title-target="songTimeStart" data-song="<%= song.start_at %>">
-   <% end %> 
+   <% end %>
    <div class="event-info-end" data-title-target="songTimeEnd" data-end="<%= @event.end_at %>">
     <div class="event-name" data-title-target="eventTitle">
       <h1><%= @event.name %><h1>
     </div>
-    </div>  
+    </div>
   </div>
 </div>
 
@@ -48,7 +48,7 @@
 <% end %>
 
 
-</div> 
+</div>
 
 <%# event info %>
  <div><%= render 'event_info', event: @event %></div>
