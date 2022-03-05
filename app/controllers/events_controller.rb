@@ -82,6 +82,9 @@ class EventsController < ApplicationController
         @ratings[number] = 0
       end
     end 
+
+    sentiments = @event.event_reviews.group(:sentiment).count
+    @total_sentiments = sentiments.values.sum
     authorize @event
     @ratings
   end

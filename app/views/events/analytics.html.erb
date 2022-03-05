@@ -4,39 +4,56 @@
   <div class="analytics-chart-flexbox">
     <div>
       <h3 class="analytics-chart-title">Ratings</h3>
-      <%= bar_chart @ratings, xmin: 0, xmax: 5, colors: [ "#2cc" ], series: true %>    
+      <%= bar_chart @ratings, colors: [ "#2cc" ], library: { scales: { x: { ticks: { stepSize: 1 } }}} %>    
     </div>
   </div>
 
-    <div class="analytics-chart-flexbox">
-    <div>
-      <h3 class="analytics-chart-title">Sentiments</h3>
-      <%= area_chart @event.event_reviews.group(:sentiment).count %>
-    </div>
+  <div class="analytics-chart-flexbox">
       <div>
+        <h3 class="analytics-chart-title">Sentiments</h3>
+        <%= area_chart @event.event_reviews.group(:sentiment).count, colors: [ "#2cc" ] %>
+      </div>
+      <div>
+      <p><%= @total_sentiments %></p>
         <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966","333"], donut: true %>
       </div>
   </div>
 
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Review summary
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        
+        <table class="table table-dark table-hover">
+          <thead>
+            <tr >
+              <th scope="col">Rating</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Sentiment</th>
+            </tr>
+          </thead>
+          <tbody data-bs-toggle="collapse" data-bs-target="#collapseExample">
+            <% @event.event_reviews.each do |event_review| %>
+              <tr>
+                <td><%= event_review.rating %></td>
+                <td><%= event_review.comment %></td>
+                <td><%= event_review.sentiment %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-  <table class="table table-dark table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Rating</th>
-        <th scope="col">Comment</th>
-        <th scope="col">Sentiment</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @event.event_reviews.each do |event_review| %>
-        <tr data-toggle="collapse out" class="collapse">
-          <td><%= event_review.rating %></td>
-          <td><%= event_review.comment %></td>
-          <td><%= event_review.sentiment %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </div>
+    </div>
+  </div>
+ </div>
+
+
 
   <% @event.songs.each do |song| %>
     <h3 class="analytics-review-header">Reviews of <%= song.name %></h3>
