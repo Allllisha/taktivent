@@ -6,8 +6,7 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    # @events = Event.where(user: current_user)
-    @events = Event.all
+    @events = Event.where(user: current_user)
     @analytics_rating = generate_analytics(:rating)
     @analytics_sentiment = generate_analytics(:sentiment)
   end
