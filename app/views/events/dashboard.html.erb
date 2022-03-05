@@ -54,19 +54,25 @@
   </div>
 </div>
 
-
-
-<div class="analytics-container">
-  <div class="part-1 col-7" >
-  <h1><%= link_to('Analytics', analytics_event_path)%></h1>
-  <div class="analytics-overall-titles">
-  <div>
-  <h3 class="analytics-overall-title">Ratings</h3>
-  <%= pie_chart @event.event_reviews.group(:rating).count, colors: ["#222", "#666", "#934", "#825"] %>
+ <div class="event-analytics-dashboard">
+   <h1><%= link_to('Analytics', analytics_event_path)%></h1>
+      <div class="analytics-overall-flexbox">
+    <div>
+      <h3 class="analytics-overall-title">Overall Ratings</h3>
+       <%= bar_chart @event.event_reviews.group(:rating).count, colors: [ "#2cc" ], library: { scales: { x: { ticks: { stepSize: 1 } }}} %>
+    </div>
+    <div>
+      <h3 class="analytics-overall-title">Overall Sentiments</h3>
+      <div class="box">
+      <p class="positioned"><%= @total_sentiments %></p>
+        <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966","333"], donut: true %>
+      </div>
+    </div>
   </div>
-  <div>
-   <h3 class="analytics-overall-title">Comments</h3>
-   <%= pie_chart @event.event_reviews.group(:sentiment).count, colors: ["#666", "#222"] %>
+    <%= link_to analytics_event_path(@event), class: "create-songs-new" do %>
+    <button>All reviews</button>
+    <% end %>
+    </div>
   </div>
    </div>
    </div>
@@ -106,7 +112,6 @@
     <button>Create New Song</button>
   <% end %>
 </div>
-
 
 
 

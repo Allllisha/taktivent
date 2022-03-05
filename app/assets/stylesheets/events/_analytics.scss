@@ -8,7 +8,7 @@
 .analytics-chart-flexbox{
   display: flex;
   justify-content: space-around;
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   padding: 2rem;
   border-radius: 2rem 2rem 0 0;
 }
@@ -19,4 +19,17 @@
 
 .analytics-review-header {
   margin-top: 2rem;
+}
+
+.box {
+  position: relative;
+}
+
+.positioned {
+  position:absolute;
+  top: 40%; 
+  left: 45%;
+  width: 100%;
+  text-align: top;
+  font-size: 50px;
 }
