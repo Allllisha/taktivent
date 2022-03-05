@@ -17,10 +17,10 @@
     <%= f.input :name, :label => "Event" %>
     <%= f.input :description,  id: "des"  %>
     <div class="start_at_event">
-    <%= f.input :start_at %>
+    <%= f.input :start_at, html5: true %>
     </div>
      <div class="end_at_event">
-    <%= f.input :end_at %>
+    <%= f.input :end_at, html5: true %>
     </div>
     <div class="venue-input">
     <%= f.association :venue do |f| %>

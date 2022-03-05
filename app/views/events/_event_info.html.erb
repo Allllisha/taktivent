@@ -5,12 +5,15 @@
         <input type="hidden" id="userMin"  value = "<%= @event.start_at.min %>" >
         <input type="hidden" id="userSec"  value = "<%= @event.start_at.sec %>" >
 
-<div class="events-info-all-container">
-   <div class="events-infos-container" id="event-info">
-     <div class="events-info-description">
+
+<div data-controller="event-info">
+ <div class="events-info-all-container">
+  <div class="event-info-end" data-event-info-target="info" data-end="<%= @event.end_at %>">
+   <div class="events-infos-container"  data-event-info-target="event" data-start="<%= @event.start_at %>">
+     <div class="events-info-description" data-event-info-target="eventBox" >
        <div class="d-flex">
           <h5 ><div class="event-icon"><i class="fas fa-calendar-alt"></i></div>
-            <h5 class="event-i"><%= @event.start_at.strftime(" %d %b %Y %H:%M") %>~<%= @event.end_at.strftime("%H:%M") %></h5>
+            <h5 class="event-i"><%= @event.start_at.strftime("%d %b %Y %H:%M") %>~<%= @event.end_at.strftime("%H:%M") %></h5>
             </h5>
         </div>
 <div class="d-flex">
@@ -27,14 +30,19 @@
     <h5><div class="event-icon"><i class="fas fa-map-marker-alt"></i></div>
      <h5 class="event-i"><%= @event.venue.address %></h5>
     </h5>
-      </div>
+   </div>
 </div>
-  <div class="event-about">
+  <div class="event-about" data-event-info-target="eventAbout">
      <div class="event-about-info">
         <h3><i class="fas fa-music"></i>Event About</h3>
           <h5 class="event-d-about"><%= @event.description %></h5>
         </div>
+       </div> 
+        </div>
     </div>
+</div>
+
+
 
 <script>
 function set2fig(num) {
@@ -101,8 +109,12 @@ function showCountdown() {
    else {
 
       msg = "Event started " + msg2 + " ago";
+
    }
-   document.getElementById("RealtimeCountdownArea").innerHTML = msg;
+
+  document.getElementById("RealtimeCountdownArea").innerHTML = msg;
+
+
 
    if( dnumTarget > dnumNow ) {
    document.getElementById("programme").style.display ="none";
@@ -111,6 +123,8 @@ function showCountdown() {
 
    document.getElementById("programme").style.display ="block";    
    }
+
+
 }
 
 setInterval('showCountdown()',1000);

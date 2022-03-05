@@ -5,6 +5,7 @@ class SongsController < ApplicationController
   def new
     @song = Song.new
     @event = Event.find(params[:event_id])
+    @performer = Performer.new
     @performer = Performer.all
     authorize @song
   end
@@ -13,7 +14,7 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
     @event = Event.find(params[:event_id])
-    @song_performer = SongPerformer.new
+    @performers = @song_performers
     authorize @song
   end
 
@@ -21,9 +22,12 @@ class SongsController < ApplicationController
   def create
     @song = Song.new(song_params)
     @event = Event.find(params[:event_id])
+    # @performer = Performer.new(performer_params)
+    # @performer.user = current_user
     authorize @song
     @song.event = @event
-    if @song.save && @event.save
+    # @song.performer = @performer
+    if @song.save && @event.save 
       redirect_to manage_event_path(@event)
     else 
       render "new"
@@ -47,9 +51,9 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Song.find(params[:id])
-    @song.destroy
-    redirect_to songs_path(@songs)
     authorize @song
+    # @song.destroy
+    # redirect_to songs_path(@songs)
   end
 
   private
@@ -60,5 +64,9 @@ class SongsController < ApplicationController
 
   def song_performer_params
     params.require(:song).require(:song_performer).permit(:song_id, :performer_id, :name, :description, :user_id)
+  end
+
+  def performer_params
+    params.require(:performer).permit(:name, :description, :user_id, images: [])
   end
 end

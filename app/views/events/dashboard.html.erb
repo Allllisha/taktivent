@@ -1,12 +1,11 @@
 <div class ="background-dashboard">
   <div class="event-dashbord">
-    <%# <%= cl_image_tag @event.images.first.key, :width => '100%', :height => '500px', class: "event-img-top"%>
     <div class="event-title-dashboard">
       <div class="date-show">
         <h5><%= @event.start_at.strftime("%b")%></h5>
         <h2><%= @event.start_at.strftime("%d")%></h2>
       </div>
-      <div class="v_line_fix"></div>
+    <div class="v_line_fix"></div>
       <h1 class="go-to-event"><%= link_to @event.name, event_path(@event) %></h1>
       <div class="edit-event-new">
         <%= link_to edit_event_path(@event) do %>
@@ -15,52 +14,122 @@
       </div>
     </div>
 
-    <div class="event-analytics-dashboard">
-      <h2><%= link_to('Analytics', analytics_event_path) %></h2>
-    </div>
-
     <div class="event-info-dashboard">
       <div class="event-info-descriptions">
         <% unless @event.images.empty? %>
           <%= cl_image_tag @event.images.first.key, :width => '300px', :height => '300px', class: "event-image-first"%>
         <% end %>
       </div>
-      <div class="event-info-description">
-        <h2><%= @event.name %></h2>
+    <div class="event-info-description">
+      <h2><%= @event.name %></h2>
         <h6><%= @event.description %></h6>
-        <div class="event-date-time">
+         <div class="event-date-time">
           <h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
         </div>
-        <h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
-        <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
+          <h6><i class="fas fa-building"></i><%= @event.venue.name %><h6>
+            <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>         
+         <div class="trigger-button">
+           <button id="openModal">
+             QR code 
+           </button>  
+          </div>
+
+  <div class="modal-background closed">
+    <div class="modal closed">
+      <div class="modal-content">
+        <h4 class="modal-content-header">
+          <div class ="qr-code">
+             <%= @qr.html_safe %>
+           </div>
+        </h4>        
+          <p class="modal-content-text"></p>
+         </div>
+      <div class="modal-buttons">
+        <button id="close">Back</button>    
       </div>
-      <div class ="qr-code">
-        <%= @qr.html_safe %>
-      </div>
+    </div>
+  </div>
+   </div>
     </div>
   </div>
 </div>
 
+
+
+<div class="analytics-container">
+  <div class="part-1 col-7" >
+  <h1><%= link_to('Analytics', analytics_event_path)%></h1>
+  <div class="analytics-overall-titles">
+  <div>
+  <h3 class="analytics-overall-title">Ratings</h3>
+  <%= pie_chart @event.event_reviews.group(:rating).count, colors: ["#222", "#666", "#934", "#825"] %>
+  </div>
+  <div>
+   <h3 class="analytics-overall-title">Comments</h3>
+   <%= pie_chart @event.event_reviews.group(:sentiment).count, colors: ["#666", "#222"] %>
+  </div>
+   </div>
+   </div>
+  <div class="part-2 col-5">
+  <div class="event-dashboard-chart">
+  <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#934","#825"] %>
+  </div>
+   </div>
+</div>
+
+
 <div class="event-song-dashboard">
-<h1>Programme</h1>
-<div class="d-flex my-box-light flex-wrap mb-2">
-<% @songs.each do |song| %>
-<div class ="box" >
-<div class="box-cards" style="width: 18rem;">
-<% unless song.images.empty? %>
- <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
- <% end %>
-  <div class="event-card-body mb-4"> 
-   <div class="event-card-info">
-    <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
-    <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
-    <p class="card-text">Composer:   <%= song.composer_name%></p>
-    <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
-    <p class="card-text">length: <%= song.length_in_minute%>min</p>
-    <p class="card-text">Performers: <%= song.performers.map { |performer| performer.name}.join(", ") %></p>
-    </div>
+  <h1>Programme</h1>
+    <div class="song-cards d-flex my-box-light flex-wrap mb-2">
+       <% @songs.each do |song| %>
+        <div class ="box">
+          <div class="box-cards" style="width: 18rem;">
+          <% unless song.images.empty? %>
+            <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
+          <% end %>
+          <div class="event-card-body mb-4">
+            <div class="event-card-info">
+              <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
+              <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
+              <%# <p><%= link_to "delete", event_song_path(@event, song), method: :delete %>
+              <p class="card-text">Composer:   <%= song.composer_name%></p>
+              <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
+              <p class="card-text">length: <%= song.length_in_minute%>min</p>
+              <p class="card-text">Performer: </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
   <%= link_to new_event_song_path(@event), class: "create-songs-new" do %>
     <button>Create New Song</button>
   <% end %>
 </div>
+
+
+
+
+
+<script>
+showModal();
+
+function showModal() {
+    var modalBackground = document.querySelector('.modal-background'),
+    modal = document.querySelector('.modal'),
+    close = document.querySelector('#close'),
+    open = document.querySelector('#openModal');
+    // open modal
+    open.addEventListener('click', function(){
+        modalBackground.classList.toggle('closed');
+        modal.classList.toggle('closed');
+    });
+    // cancel;
+    close.addEventListener('click', function(){
+        modalBackground.classList.toggle('closed');
+        modal.classList.toggle('closed');
+    });
+    
+}
+</script>
+

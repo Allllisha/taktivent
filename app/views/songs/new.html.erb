@@ -3,22 +3,25 @@
   <div class="form-container">
     <%= simple_form_for [@event, @song] do |f| %>
       <div class="form-inputs">
-        <%= f.input :name %>
+        <%= f.input :name, :label => "Title" %>
         <%= f.input :composer_name %>
         <div class="start_at_event">
-          <%= f.input :start_at %>
+          <%= f.input :start_at, html5: true %>
         </div>
-        <%= f.input :length_in_minute %>
+        <%= f.input :length_in_minute,  html5: true, :label => "Duration"%>
         <%= f.input :description, :label => "Song description" %>
 
+         <%= f.association :performers, collection: Performer.order(:name), prompt: "Choose a Performer" %>
+         <%= f.association :performers do |f| %>
+          <%= f.input :name, :label => "Performer Name" %>
+          <%= f.input :description, :label => "Profiles"%>
+         <% end %>
+
         <div class="song-img-container" id= "background">
-          <%= f.input :images, as: :file, input_html: { multiple: true, id: "eventImageInput" } %>
+          <%= f.input :images, as: :file, :label => "Song images", input_html: { multiple: true, id: "eventImageInput" } %>
           <div class="event-image" id="eventImageTarget">
           </div>
         </div>
-
-        
-        <%= f.association :performers, collection: Performer.order(:name), prompt: "Choose a Performer" %>
 
         <div class="form-actions">
           <%= f.button :submit, class: "btn-outline-secondary" %>
@@ -53,4 +56,3 @@ pictures.addEventListener('change', (event) => {
   console.log(files);
 });
 </script>
-
