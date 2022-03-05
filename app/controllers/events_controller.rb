@@ -18,6 +18,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    raise
     @event = Event.new(event_params)
     @venue = Venue.new(venue_params)
     @event.user = current_user
@@ -69,7 +70,6 @@ class EventsController < ApplicationController
       module_size: 6,
       standalone: true
     )
-
   end
 
   def analytics
