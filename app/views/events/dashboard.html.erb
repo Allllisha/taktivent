@@ -72,7 +72,7 @@
    </div>
   <div class="part-2 col-5">
   <div class="event-dashboard-chart">
-  <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#934","#666"] %>
+  <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#934","#825"] %>
   </div>
    </div>
 </div>
@@ -91,6 +91,7 @@
             <div class="event-card-info">
               <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
               <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
+              <%# <p><%= link_to "delete", event_song_path(@event, song), method: :delete %>
               <p class="card-text">Composer:   <%= song.composer_name%></p>
               <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
               <p class="card-text">length: <%= song.length_in_minute%>min</p>

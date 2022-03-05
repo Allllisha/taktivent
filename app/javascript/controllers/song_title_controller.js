@@ -4,7 +4,6 @@ export default class extends Controller {
   static targets = ["songTitle", "duration"];
 
   connect() {
-    console.log("Hello from song_image_controller.js");
     this.songInfoStart = new Date(this.element.dataset.start);
     const minute = this.durationTarget.dataset.time;
     const milliseconds = parseInt(minute * 60) * 1000;

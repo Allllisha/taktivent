@@ -4,8 +4,9 @@
     <div class="song-each-list">
       <% @songs.each do | song | %>
         <div class="song-li">
-        <h3><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h3>
-        <p><%= song.start_at.localtime.strftime("%H:%M")%>~  <%= song.length_in_minute %>min</p>
+        <h6><i class="fas fa-play-circle d-none" ></i></h6>
+        <h6><%= song.start_at.localtime.strftime("%H:%M")%>~ <%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h6>
+        <p><%= song.length_in_minute %>min</p>
         </div>
     <% end %>
    </div> 
