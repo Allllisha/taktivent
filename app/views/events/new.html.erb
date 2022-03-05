@@ -1,42 +1,39 @@
-<div class ="background-home">
-  <div class="center-container">
-    <div class ="form-container">
-      <%= simple_form_for(@event) do |f| %>
-        <%= f.error_notification %>
-        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<div class="background-home center-container form-container" data-controller="events-new">
+  <%= simple_form_for(@event) do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-        <div class="before-uproad" id="event-background">
-          <%= image_tag asset_url("image-upload.jpg")%>
-        </div>
-
-        <div class="event-image" id="eventImageTarget">
-        </div>
-
-        <%= f.file_field :images, id: "eventImageInput"%>
-        <div class="input-container">
-          <%= f.input :name, :label => "Event" %>
-          <%= f.input :description,  id: "des"  %>
-          <div class="start_at_event">
-            <%= f.input :start_at, html5: true %>
-          </div>
-          <div class="end_at_event">
-            <%= f.input :end_at, html5: true %>
-          </div>
-          <div class="venue-input">
-            <%= f.association :venue do |f| %>
-              <%= f.input :name, :label => "Venue" %>
-              <%= f.input :address %>
-            <% end %>
-          </div>
-        </div>
-        <div class="form-actions">
-          <%= f.button :submit, class: "btn btn-outline-dark" %>
-        </div>
-      <% end %>
+    <div class="before-uproad" data-events-new-target="eventBackground">
+      <%= image_tag asset_url("image-upload.jpg")%>
     </div>
-  </div>
+
+    <div class="event-image" data-events-new-target="eventImage">
+    </div>
+
+    <%= f.file_field :images, "data-events-new-target": "eventImageInput", "data-action": "change->events-new#displayUploadedImage" %>
+    <div class="input-container">
+      <%= f.input :name, :label => "Event" %>
+      <%= f.input :description,  id: "des"  %>
+      <div class="start_at_event">
+        <%= f.input :start_at, html5: true %>
+      </div>
+      <div class="end_at_event">
+        <%= f.input :end_at, html5: true %>
+      </div>
+      <div class="venue-input">
+        <%= f.association :venue do |f| %>
+          <%= f.input :name, :label => "Venue" %>
+          <%= f.input :address %>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn btn-outline-dark" %>
+    </div>
+  <% end %>
 </div>
 
+<%#
 <script>
   const pictures = document.querySelector('#eventImageInput');
   const eventImagesTarget = document.querySelector('#eventImageTarget');
@@ -59,3 +56,4 @@
     // console.log(files);
   });
 </script>
+ %>
