@@ -28,6 +28,10 @@
           <% end %>
         </div>
       </div>
+
+      <%# questions customization %>
+      <%= f.input :enable_textbox, input_html: {class: "checkbox-white-outline"} %>
+
       <div class="form-actions">
         <%= f.button :submit, class: "btn btn-outline-dark" %>
       </div>
