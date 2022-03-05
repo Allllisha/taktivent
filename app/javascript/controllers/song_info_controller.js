@@ -3,25 +3,16 @@ import { Controller } from '@hotwired/stimulus'
 export default class extends Controller {
   static targets =  ['songInfoStart', 'songInfoEnd', 'eventImg']
 
-  connect() {
-    console.log('Hello from song_info_controller.js')
-    this.songInfoStart = new Date(this.songInfoStartTarget.dataset.start);
-    this.songInfoEnd = new Date(this.songInfoEndTarget.dataset.end);
-    setInterval(this.songImgContainer.bind(this),1000);
-    setInterval(this.songImgEndContainer.bind(this),1000);
-  }
 
-
-
-  songImgContainer(){
-     if(new Date().valueOf() >=  this.songInfoStart.valueOf()){
+  songImgContainer(event){
+     if(event.key === 'i'){
       this.eventImgTarget.classList.add('d-none')
      }
    }
 
 
-  songImgEndContainer(){
-    if(new Date().valueOf() >=  this.songInfoEnd.valueOf()){
+  songImgEndContainer(event){
+    if(event.key === 'e'){
      this.eventImgTarget.classList.remove('d-none')
     }
   }

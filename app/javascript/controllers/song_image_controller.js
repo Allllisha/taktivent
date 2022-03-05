@@ -8,10 +8,17 @@ export default class extends Controller {
     this.songInfoStart = new Date(this.element.dataset.start);
     const minute = this.lengthTarget.dataset.time;
     const milliseconds = parseInt(minute * 60) * 1000;
-    this.endTime = new Date(this.songInfoStart.getTime() + milliseconds);
+    this.endTime = new Date(this.songInfoStart.getTime() + milliseconds / 60);
     // console.log(this.songInfoStart, this.endTime);
-    this.interval = setInterval(this.songImgContainer.bind(this), 1000);
+    // this.interval = setInterval(this.songImgContainer.bind(this), 1000);
     // this.changeImages();
+  }
+
+
+  showImageContainer(){
+    if(new Date().valueOf() >=  this.songStart.valueOf()){
+     this.songBoxTarget.classList.remove('d-none')
+    }
   }
 
   songImgContainer() {
@@ -24,4 +31,5 @@ export default class extends Controller {
       this.songImgTarget.classList.remove("d-none");
     }
   }
+
 }

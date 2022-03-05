@@ -1,11 +1,12 @@
+<div data-controller="time-faker">
 <div class ="background-home">
   <div data-controller="song-info">
-    <div class="event-info-end" data-song-info-target="songInfoEnd" data-end="<%= @event.end_at %>">
+    <div class="event-info-end" data-song-info-target="songInfoEnd" data-action="keydown@window->song-info#songImgEndContainer">
      <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
       <% @songs.each do | song | %>
-       <div data-song-info-target="songInfoStart" data-start="<%= song.start_at %>" data-song="<%= song.name %>">
+       <div data-song-info-target="songInfoStart" data-song="<%= song.name %>">
       <% end %>
-      <div class="event-start" data-song-info-target="eventImg" >
+      <div class="event-start" data-song-info-target="eventImg" data-time-faker-target="eventImg" data-action="keydown@window->song-info#songImgContainer" >
          <%= cl_image_tag @event.images.first.key, width:"100%", height:"350px" %>
       </div>   
     </div>
@@ -15,7 +16,7 @@
 <% @songs.each_with_index do | song, index | %>
   <div data-controller="song-image" data-start="<%= song.start_at %>">
     <div data-song-image-target="length" data-time="<%= song.length_in_minute%>">
-     <div class="song-image d-none" data-song-image-target="songImg" >
+     <div class="song-image d-none" data-song-image-target="songImg" data-time-faker-target="songImg">
     <%=  cl_image_tag song.images.first.key, class:"song-image-top" %>
      </div>
     </div>
@@ -25,10 +26,10 @@
 
 <div data-controller="title" >
  <% @songs.each do | song | %>
-  <div data-title-target="songTimeStart" data-song="<%= song.start_at %>">
+  <div data-title-target="songTimeStart"  data-song="<%= song.start_at %>">
    <% end %> 
-   <div class="event-info-end" data-title-target="songTimeEnd" data-end="<%= @event.end_at %>">
-    <div class="event-name" data-title-target="eventTitle">
+   <div class="event-info-end" data-title-target="songTimeEnd"  data-action="keydown@window->title#songTimeContainer" >
+    <div class="event-name" data-title-target="eventTitle" data-time-faker-target="eventTitle" >
       <h1><%= @event.name %><h1>
     </div>
     </div>  
@@ -39,7 +40,7 @@
   <div data-controller="song-title" data-start="<%= song.start_at %>">
   <div data-song-title-target="eventInfoStart" data-event="<%= @event.start_at %>">
     <div data-song-title-target="duration" data-time="<%= song.length_in_minute%>">
-     <div class="event-show-name d-none" data-song-title-target="songTitle" >
+     <div class="event-show-name d-none" data-song-title-target="songTitle" data-time-faker-target="songTitle" >
         <h1><%= song.name %><h1>
      </div>
     </div>
@@ -58,3 +59,6 @@
  <%= render 'song_review_form', event: @event %>
 <%# #event-review-form %>
 <%= render 'event_review_form', event: @event %>
+
+
+</div>

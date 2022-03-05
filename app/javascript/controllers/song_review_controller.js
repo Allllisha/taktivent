@@ -4,14 +4,13 @@ export default class extends Controller {
   static targets = [ 'song', 'review', 'songBox', 'SongReviewBox' ]
 
   connect() {
-    console.log('Hello from song_review_controller.js')
     // console.log(this.testTarget)
 
-    this.songStart = new Date(this.songTarget.dataset.start);
-    this.songEnd = new Date(this.songTarget.dataset.start).getTime() / 1000 + this.reviewTarget.dataset.start * 60;
+   //  this.songStart = new Date(this.songTarget.dataset.start);
+   //  this.songEnd = new Date(this.songTarget.dataset.start).getTime() / 1000 + this.reviewTarget.dataset.start * 60;
     
-    setInterval(this.showSongReviewContainer.bind(this),1000);
-    setInterval(this.showReview.bind(this),1000);
+   //  setInterval(this.showSongReviewContainer.bind(this),1000);
+   //  setInterval(this.showReview.bind(this),1000);
   }
 
 
