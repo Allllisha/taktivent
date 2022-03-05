@@ -59,11 +59,14 @@
       <div class="analytics-overall-flexbox">
     <div>
       <h3 class="analytics-overall-title">Overall Ratings</h3>
-      <%= pie_chart @event.event_reviews.group(:rating).count, colors: ["#3333cc","#cc3333","#339966","333"] %>
+       <%= bar_chart @event.event_reviews.group(:rating).count, colors: [ "#2cc" ], library: { scales: { x: { ticks: { stepSize: 1 } }}} %>
     </div>
     <div>
       <h3 class="analytics-overall-title">Overall Sentiments</h3>
-       <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966","333"], donut: true %>
+      <div class="box">
+      <p class="positioned"><%= @total_sentiments %></p>
+        <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966","333"], donut: true %>
+      </div>
     </div>
   </div>
     <%= link_to analytics_event_path(@event), class: "create-songs-new" do %>
