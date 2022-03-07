@@ -1,13 +1,20 @@
- <div class="event-song-list-container" id="programme">
-   <div class="event-song-list">
+<div data-controller="programme">
+<div data-programme-target="programmeStartAt" data-start="<%= @event.start_at %>">
+ <div class="event-song-list-container d-none" data-time-faker-target="programme" data-programme-target="programme" >
+   <div class="event-song-list" >
    <h3><i class="fas fa-music"></i>Programme</h3>
     <div class="song-each-list">
       <% @songs.each do | song | %>
-        <div class="song-li">
-        <h3><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h3>
-        <p><%= song.start_at.localtime.strftime("%H:%M")%>~  <%= song.length_in_minute %>min</p>
+        <div class="song-li" data-action="keydown@window->programme#programmeEndContainer">
+        <h6><%= song.start_at.localtime.strftime("%H:%M")%>~ <%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h6>
+          <div class="button button--gradient d-none" id="music" data-time-faker-target="playing"  data-programme-target="nowPlaying">
+           Now Playing...
+        </div>
+        <div class="button button--gradient"  data-time-faker-target="upNext">upNext</div>
         </div>
     <% end %>
    </div> 
   </div>
+</div>
+</div>
 </div>

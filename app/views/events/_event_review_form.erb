@@ -1,33 +1,32 @@
 <div data-controller="event-review">
-<div data-event-review-target="eventEndAt" data-action="keydown@window->event-review#eventReviewContainer">
-<div class="event-review-form-container d-none" data-event-review-target="eventReview">
-  <div class="event-review-form">
-   <div class="how-was-event">
-     <div><h3>How was the</h3></div>
-       <div class="blink" ><h3><%= @event.name %></h3></div><h3>?</h3>
-        </div>
+  <div data-event-review-target="eventEndAt" data-action="keyup@window->time-faker#eventReviewContainer">
+    <div class="event-review-form-container d-none" data-time-faker-target="eventReview">
+      <div class="event-review-form">
+        <div class="how-was-event">
+           <div><h3>How was the</h3></div>
+             <div class="blink" ><h3><%= @event.name %></h3></div><h3>?</h3>
+            </div>
           <div class="give-feedbacks">
              <p>Give us some feedbacks!</p>
          </div>
-
-  <%= simple_form_for [@event, @event_review] do |f| %>
-   <%= f.error_notification %>
-   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <div class="form-group row" id="star">
-      <div class="star-rating">
-      <% 5.times do |i| %>
+        <%= simple_form_for [@event, @event_review] do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <div class="form-group row" id="star">
+          <div class="star-rating">
+          <% 5.times do |i| %>
          <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
-      <% end %>
+         <% end %>
+         </div>
+       </div>
+       <div class="give-me-comment">
+       <%= f.input :comment, :label => "Comment"%>
       </div>
-    </div>
-    <div class="give-me-comment">
-   <%= f.input :comment, :label => "Comment"%>
-  </div>
-   <div class="comment-button">
+      <div class="comment-button">
       <%= f.button :submit, 'Submit', class: "btn btn-outline-dark", id:"event-rv-btn" %>
+      </div>
+      <% end %> 
+    </div>
    </div>
-  <% end %> 
- </div>
-</div>
-</div>
+  </div>
 </div>
