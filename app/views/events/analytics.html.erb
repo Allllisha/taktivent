@@ -4,7 +4,9 @@
   <div class="analytics-chart-flexbox">
     <div>
       <h3 class="analytics-chart-title">Ratings</h3>
-      <%= bar_chart @ratings, colors: [ "#2cc" ], library: { scales: { x: { ticks: { stepSize: 1 } }}} %>    
+      <div class="bar-chart">
+        <%= bar_chart @ratings, colors: [ "#2cc" ], library: { scales: { x: { ticks: { stepSize: 1 }, fontSize: 100}}} %>   
+      </div>
     </div>
   </div>
 
@@ -15,7 +17,7 @@
       </div>
       <div class="box">
       <p class="positioned"><%= @total_sentiments %></p>
-        <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966","333"], donut: true %>
+        <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966"], donut: true %>
       </div>
   </div>
 

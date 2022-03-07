@@ -82,7 +82,9 @@ class EventsController < ApplicationController
       else
         @ratings[number] = 0
       end
-    end 
+    end
+
+    
 
     sentiments = @event.event_reviews.group(:sentiment).count
     @total_sentiments = sentiments.values.sum
