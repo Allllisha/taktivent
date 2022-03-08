@@ -256,6 +256,7 @@
         margin-right: 10px;
         align-items: centers;
         color: white;
+        width: 100%;
         }
     }
 
@@ -331,16 +332,17 @@
   border-radius: 15px;
   margin-top: 30px;
   margin-bottom: 30px;
+  object-fit: cover;
 
   img{
     border-radius: 15px;
     margin-top: 20px;
     margin-bottom: 20px;
+    object-fit: cover;
   }
 
   h2{
     margin-bottom: 20px;
-    object-fit: cover;
   }
   @media screen and (max-width: 767px) {
   background-color: #1E1E1E;
@@ -361,6 +363,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    object-fit: cover;
   }
 
   h2{
