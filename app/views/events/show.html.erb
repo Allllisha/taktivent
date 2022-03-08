@@ -40,8 +40,10 @@
   <div data-title-target="songTimeStart"  data-song="<%= song.start_at %>">
    <% end %> 
    <div class="event-info-end" data-title-target="songTimeEnd"  data-action="keydown@window->title#songTimeEndContainer" >
+   <div class="title_line_left">
     <div class="event-name" data-title-target="eventTitle" data-time-faker-target="eventTitle" >
       <h1><%= @event.name %><h1>
+      </div>
     </div>
     </div>  
   </div>

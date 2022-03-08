@@ -1,117 +1,122 @@
-<input type="hidden"  id="userYear" value = "<%= @event.start_at.year %>"  > 
-  <input type="hidden" id="userMonth"value = "<%= @event.start_at.month %>" >
-    <input type="hidden" id="userDate" value = "<%= @event.start_at.day %>" >
-      <input type="hidden" id="userHour" value = "<%= @event.start_at.hour %>" >
-        <input type="hidden" id="userMin"  value = "<%= @event.start_at.min %>" >
-        <input type="hidden" id="userSec"  value = "<%= @event.start_at.sec %>" >
-
+<input type="hidden"  id="userYear" value = "<%= @event.start_at.year %>"  >
+<input type="hidden" id="userMonth"value = "<%= @event.start_at.month %>" >
+<input type="hidden" id="userDate" value = "<%= @event.start_at.day %>" >
+<input type="hidden" id="userHour" value = "<%= @event.start_at.hour %>" >
+<input type="hidden" id="userMin"  value = "<%= @event.start_at.min %>" >
+<input type="hidden" id="userSec"  value = "<%= @event.start_at.sec %>" >
 
 <div data-controller="event-info">
- <div class="events-info-all-container">
-  <div class="event-info-end" data-event-info-target="info" data-end="<%= @event.end_at %>">
-   <div class="events-infos-container"  data-event-info-target="event" data-start="<%= @event.start_at %>" data-action="keydown@window->event-info#eventInfoContainer">
-     <div class="events-info-description" data-event-info-target="eventBox" data-time-faker-target="eventBox">
-       <div class="d-flex">
-          <h5 ><div class="event-icon"><i class="fas fa-calendar-alt"></i></div>
-            <h5 class="event-i"><%= @event.start_at.strftime("%d %b %Y %H:%M") %>~<%= @event.end_at.strftime("%H:%M") %></h5>
+  <div class="events-info-all-container">
+    <div class="event-info-end" data-event-info-target="info" data-end="<%= @event.end_at %>">
+      <div class="events-infos-container"  data-event-info-target="event" data-start="<%= @event.start_at %>" data-action="keydown@window->event-info#eventInfoContainer">
+        <div class="events-info-description" data-event-info-target="eventBox" data-time-faker-target="eventBox">
+          <div class="d-flex">
+            <h5 >
+              <div class="event-icon"><i class="fas fa-calendar-alt"></i></div>
+              <h5 class="event-i"><%= @event.start_at.strftime("%d %b %Y %H:%M") %>~<%= @event.end_at.strftime("%H:%M") %></h5>
             </h5>
-        </div>
-<div class="d-flex">
-    <h5><div class="event-icon"><i class="fas fa-clock"></i></div>
-        <h5 class="event-i"><h5 id="RealtimeCountdownArea" ></h5><h5>
-        </h5 >
-       </div>
-<div class="d-flex">
-    <h5><div class="event-icon"><i class="fas fa-building"></i></div>
-        <h5 class="event-i"><%= @event.venue.name %><h5>
-        </h5 >
-       </div>       
-<div class="d-flex">
-    <h5><div class="event-icon"><i class="fas fa-map-marker-alt"></i></div>
-     <h5 class="event-i"><%= @event.venue.address %></h5>
-    </h5>
-   </div>
-</div>
-  <div class="event-about" data-action="keydown@window->event-info#eventAboutContainer" data-event-info-target="about" data-about="<%= @event.start_at %>">
-     <div class="event-about-info" data-time-faker-target="eventAbout"  data-event-info-target="eventAbout">
-        <h3><i class="fas fa-music"></i>Event About</h3>
-          <h5 class="event-d-about"><%= @event.description %></h5>
-        </div>
-       </div> 
-      </div>
-    </div>
-</div>
+          </div>
+          <div class="d-flex">
+            <h5>
+              <div class="event-icon"><i class="fas fa-clock"></i></div>
+              <h5 class="event-i">
+                <h5 id="RealtimeCountdownArea" ></h5>
+                <h5>
+                </h5 >
+              </div>
+              <div class="d-flex">
+                <h5>
+                  <div class="event-icon"><i class="fas fa-building"></i></div>
+                  <h5 class="event-i"><%= @event.venue.name %>
+                    <h5>
+                    </h5 >
+                  </div>
+                  <div class="d-flex">
+                    <h5>
+                      <div class="event-icon"><i class="fas fa-map-marker-alt"></i></div>
+                      <h5 class="event-i"><%= @event.venue.address %></h5>
+                    </h5>
+                  </div>
+                </div>
+                <div class="event-about" data-action="keydown@window->event-info#eventAboutContainer" data-event-info-target="about" data-about="<%= @event.start_at %>">
+                  <div class="event-about-info" data-time-faker-target="eventAbout"  data-event-info-target="eventAbout">
+                    <h3><i class="fas fa-music"></i>Event About</h3>
+                    <h5 class="event-d-about"><%= @event.description %></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <script>
+            function set2fig(num) {
+
+               var ret;
+               if( num < 10 ) { ret = "0" + num; }
+               else { ret = num; }
+               return ret;
+            }
+            function isNumOrZero(num) {
+
+               if( isNaN(num) ) { return 0; }
+               return num;
+            }
+            function showCountdown() {
+
+               var nowDate = new Date();
+               var dnumNow = nowDate.getTime();
+
+
+               var inputYear  = document.getElementById("userYear").value;
+               var inputMonth = document.getElementById("userMonth").value - 1;
+               var inputDate  = document.getElementById("userDate").value;
+               var inputHour  = document.getElementById("userHour").value;
+               var inputMin   = document.getElementById("userMin").value;
+               var inputSec   = document.getElementById("userSec").value;
+               var targetDate = new Date( isNumOrZero(inputYear), isNumOrZero(inputMonth), isNumOrZero(inputDate), isNumOrZero(inputHour), isNumOrZero(inputMin), isNumOrZero(inputSec) );
+               var dnumTarget = targetDate.getTime();
+
+
+               var dlYear  = targetDate.getFullYear();
+               var dlMonth = targetDate.getMonth() + 1;
+               var dlDate  = targetDate.getDate();
+               var dlHour  = targetDate.getHours();
+               var dlMin   = targetDate.getMinutes();
+               var dlSec   = targetDate.getSeconds();
 
 
 
-<script>
-function set2fig(num) {
+               var diff2Dates = dnumTarget - dnumNow;
+               if( dnumTarget < dnumNow ) {
 
-   var ret;
-   if( num < 10 ) { ret = "0" + num; }
-   else { ret = num; }
-   return ret;
-}
-function isNumOrZero(num) {
+                  diff2Dates *= -1;
+               }
 
-   if( isNaN(num) ) { return 0; }
-   return num;
-}
-function showCountdown() {
 
-   var nowDate = new Date();
-   var dnumNow = nowDate.getTime();
- 
-  
-   var inputYear  = document.getElementById("userYear").value;
-   var inputMonth = document.getElementById("userMonth").value - 1;
-   var inputDate  = document.getElementById("userDate").value;
-   var inputHour  = document.getElementById("userHour").value;
-   var inputMin   = document.getElementById("userMin").value;
-   var inputSec   = document.getElementById("userSec").value;
-   var targetDate = new Date( isNumOrZero(inputYear), isNumOrZero(inputMonth), isNumOrZero(inputDate), isNumOrZero(inputHour), isNumOrZero(inputMin), isNumOrZero(inputSec) );
-   var dnumTarget = targetDate.getTime();
- 
- 
-   var dlYear  = targetDate.getFullYear();
-   var dlMonth = targetDate.getMonth() + 1;
-   var dlDate  = targetDate.getDate();
-   var dlHour  = targetDate.getHours();
-   var dlMin   = targetDate.getMinutes();
-   var dlSec   = targetDate.getSeconds();
+               var dDays  = diff2Dates / ( 1000 * 60 * 60 * 24 );   // day
+               diff2Dates = diff2Dates % ( 1000 * 60 * 60 * 24 );
+               var dHour  = diff2Dates / ( 1000 * 60 * 60 );   // hour
+               diff2Dates = diff2Dates % ( 1000 * 60 * 60 );
+               var dMin   = diff2Dates / ( 1000 * 60 );   // min
+               diff2Dates = diff2Dates % ( 1000 * 60 );
+               var dSec   = diff2Dates / 1000;   // sec
+               var msg2 = Math.floor(dHour) + " hour "
+                        + Math.floor(dMin) + " min "
+                        + Math.floor(dSec) + " sec ";
 
- 
-  
-   var diff2Dates = dnumTarget - dnumNow;
-   if( dnumTarget < dnumNow ) {
 
-      diff2Dates *= -1;
-   }
- 
+               var msg;
+               if( dnumTarget > dnumNow ) {
+                 msg = "Event starts in " + msg2
+               }
+               else {
 
-   var dDays  = diff2Dates / ( 1000 * 60 * 60 * 24 );   // day
-   diff2Dates = diff2Dates % ( 1000 * 60 * 60 * 24 );
-   var dHour  = diff2Dates / ( 1000 * 60 * 60 );   // hour
-   diff2Dates = diff2Dates % ( 1000 * 60 * 60 );
-   var dMin   = diff2Dates / ( 1000 * 60 );   // min
-   diff2Dates = diff2Dates % ( 1000 * 60 );
-   var dSec   = diff2Dates / 1000;   // sec
-   var msg2 = Math.floor(dHour) + " hour "
-            + Math.floor(dMin) + " min "
-            + Math.floor(dSec) + " sec ";
- 
+                  msg = "Event started " + msg2 + " ago";
 
-   var msg;
-   if( dnumTarget > dnumNow ) {
-     msg = "Event starts in " + msg2 
-   }
-   else {
+               }
 
-      msg = "Event started " + msg2 + " ago";
-
-   }
-
-  document.getElementById("RealtimeCountdownArea").innerHTML = msg;
-}
-setInterval('showCountdown()',1000);
-</script>
+              document.getElementById("RealtimeCountdownArea").innerHTML = msg;
+            }
+            setInterval('showCountdown()',1000);
+          </script>

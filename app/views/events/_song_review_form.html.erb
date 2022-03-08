@@ -1,37 +1,30 @@
 <% @songs.each do | song, index | %>
-<div data-controller="song-review" data-action="keyup@window->song-review#songHideContainer">
-<div class="d-none" data-song-review-target="songContainer"  data-time-faker-target="songBox">
-
- <div class="song-review-form-container" data-song-review-target="song" data-start="<%= song.start_at %>">  
- <div class="song-review-form">                     
-    <h4><%= song.name %></h4>
-
-<div class="d-none" data-song-review-target="SongReviewBox" data-time-faker-target="SongReviewBox">
-<div data-song-review-target="review"  data-start="<%= song.length_in_minute %>">
- <%= simple_form_for [@event, song, @song_review] do |f| %>
-     <div class="form-group row" id="star">
-      <div class="star-song-rating">
-        <% 5.times do |i| %>
-          <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
-        <% end %>
+  <div data-controller="song-review" data-action="keyup@window->song-review#songHideContainer">
+    <div class="d-none" data-song-review-target="songContainer"  data-time-faker-target="songBox">
+      <div class="song-review-form-container" data-song-review-target="song" data-start="<%= song.start_at %>">
+        <div class="song-review-form">
+          <h4><%= song.name %></h4>
+          <div class="d-none" data-song-review-target="SongReviewBox" data-time-faker-target="SongReviewBox">
+            <div data-song-review-target="review"  data-start="<%= song.length_in_minute %>">
+              <%= simple_form_for [@event, song, @song_review] do |f| %>
+                <div class="form-group row" id="star">
+                  <div class="star-song-rating">
+                    <% 5.times do |i| %>
+                      <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="give-me-comment">
+                <%= f.input :comment, :label => "Comment"%>
+              </div>
+              <div class="comment-button">
+                <%= f.button :submit, 'Submit', class: "btn btn-outline-dark", id:"event-rv-btn", data: { controller: "song-review", action: "click->song-review#submit" }%>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-</div>
-    
-
-      <div class="give-me-comment">
-       <%= f.input :comment, :label => "Comment"%> 
-      </div> 
-      <div class="comment-button">
-       <%= f.button :submit, 'Submit', class: "btn btn-outline-dark", id:"event-rv-btn", data: { controller: "song-review", action: "click->song-review#submit" }%>
-      </div>
-  <% end %>  
- </div>
-
- </div>
- </div>
-</div>
-</div>
+  </div>
 <% end %>
-
-

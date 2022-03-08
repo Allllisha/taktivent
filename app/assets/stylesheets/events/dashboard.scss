@@ -23,10 +23,13 @@
     text-decoration: none;
     color:white;
     font-weight: bold;
+    font-family: "event-title";
     @media screen and (max-width: 767px) {
     font-size: 18px;
      a{
       padding-top: 10px;
+      font-family: "event-title";
+      font-size: 17px;
      }
     }
   }
@@ -115,9 +118,11 @@
   margin-left:20px;
   h2{
     margin-top: 0;
+    font-family: "event-title";
   }
   h5{
     margin-left: 5px;
+    font-family: "event-title";
   }
   @media screen and (max-width: 767px) {
     display: flex;
@@ -128,6 +133,7 @@
     h5{
       margin-top: 20px;
       font-size: 15px;
+      font-family: "event-title";
     }
   }
 }
@@ -158,6 +164,13 @@
   a {
     text-decoration: none;
     color: white;
+    font-family: "event-title";
+    font-size: 30px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 25px;
+  }
+    
   }
 
   h3{
@@ -166,10 +179,17 @@
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
+    font-family: "event-title";
+    font-size: 25px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 15px;
+    }
   }
 
   h1{
     margin-left: 20px;
+    font-family: "event-title";
   }
 
 
@@ -177,6 +197,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
   }
 
 
@@ -375,6 +396,8 @@
 
   h2{
     font-weight: bold;
+    font-family: "event-title";
+    font-size: 30px;
   }
 
 
@@ -393,7 +416,13 @@
     i{
       margin-right: 10px;
     }
+
+    h2{
+      font-family: "event-title";
+      font-size: 20px;
+    }
   }
+
 }
 
 
@@ -422,10 +451,15 @@
   h1{
    color: white;
    margin-left: 20px;
+   font-family: "event-title";
+   @media screen and (max-width: 767px) {
+    font-size: 25px;
+  }
   }
 
   h2{
     margin-bottom: 20px;
+    font-family: "event-title";
   }
   @media screen and (max-width: 767px) {
 
@@ -435,10 +469,13 @@
       justify-content: center;
       align-items: center;
       margin-left: 0px;
+      font-family: "event-title";
+      font-size: 25px;
      }
 
      h2{
        margin-bottom: 20px;
+       font-family: "event-title";
      }
 
      .d-flex{
@@ -469,6 +506,13 @@
   @media screen and (max-width: 767px) {
     margin-left: 20px;
     margin-right: 20px;
+  }
+
+  h1{
+    font-size: 30px;
+    @media screen and (max-width: 767px) {
+      font-size: 25px;
+    }
   }
 }
 
@@ -520,6 +564,12 @@
   a{
     color: black;
     font-weight: bold;
+    font-family: "event-title";
+    font-size: 15px;
+  }
+
+  p{
+    font-family: "song-title";
   }
 }
 

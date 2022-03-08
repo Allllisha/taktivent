@@ -40,13 +40,19 @@ body{
   border-radius: 0 20px 20px 0;
   padding: 10px; 
   color: white;
+  position: relative;
+
+  ////
+
   h1{
     margin-left: 10px;
+    font-family:"event-title";
   }
   @media screen and (max-width: 767px) {
     margin-bottom: 20px;
     h1{
-      font-size: 25px;
+      font-size: 22px;
+      font-family:"event-title";
     }
   }
 }
@@ -60,8 +66,10 @@ body{
   color: white;
   h1{
     margin-left: 10px;
+    font-family:"event-title";
     @media screen and (max-width: 767px) {
-      font-size: 22px;
+      font-size: 25px;
+      font-family:"event-title";
     }
   }
   
@@ -75,7 +83,7 @@ body{
 }
 
 .event-icon{
-  background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
+background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
 width: 50px;
 height: 50px;
 padding-left: 15px;
@@ -102,6 +110,7 @@ margin-right: 20px;
 .event-i{
  margin-top: 10px;
  color: white;
+ font-family:"song-title";
 }
 
 
@@ -110,6 +119,7 @@ margin-right: 20px;
   color: white;
   h5{
     color: white;
+    font-family:"song-title";
   }
 
   .event-d-about{
@@ -124,6 +134,10 @@ margin-right: 20px;
   margin-left: 30px;
   margin-right: 25px;
   margin-bottom: 25px;
+
+  h3{
+    font-family:"description";
+  }
 
   .fa-music{
     background: linear-gradient(225deg,#AF40FF, #5B42F3 50%,#00DDEB);
@@ -154,12 +168,14 @@ margin-right: 20px;
     margin-left: 30px;
     margin-right: 25px;
     margin-bottom: 25px;
-
+    
     h3{
       margin-bottom: 80px;
+      font-family:"description";
       @media screen and (max-width: 767px) {
         font-size: 22px;
         margin-bottom: 50px;
+        font-family:"description";
       }
     }
 
@@ -184,6 +200,7 @@ margin-right: 20px;
 
 .song-review-form-container{
   background-color: $black;
+  font-family:"song-title";
   .song-review-form{
     background-color: $gray;
     color: white;
@@ -193,6 +210,10 @@ margin-right: 20px;
     margin-right: 25px;
     margin-bottom: 25px;
   }
+  h4{
+    font-family:"description";
+  }
+
 }
 
 
@@ -201,12 +222,16 @@ margin-right: 20px;
   background-color: $black;
   .event-review-form{
     background-color: $gray;
-    color: white;
     padding: 30px;
     border-radius: 15px;
     margin-left: 30px;
     margin-right: 25px;
     margin-bottom: 25px;
+
+    p{
+      color: white;
+    }
+
 
     .star-rating {
       display: flex;
@@ -254,6 +279,7 @@ margin-right: 20px;
 .how-was-event{
  display: flex;
  justify-content: center;
+ color: white;
 
  @media screen and (max-width: 767px) {
   h3{
@@ -301,11 +327,14 @@ margin-right: 20px;
      h6{
        margin-left: 1px;
        margin-bottom: 0;
+       font-family:"song-title";
      }
      .edit-songs-new{
       margin-top: 10px;
+      font-family:"song-title";
       @media screen and (max-width: 767px) {
-       font-size: 14.5px;
+       font-size: 18px;
+       font-family:"song-title";
        }
 
     }
@@ -381,6 +410,7 @@ $border-width: 2px;
 #RealtimeCountdownArea{
   margin-top: 5px;
   color: white;
+  font-family:"song-title";
 }
 
 .star-song-rating {
@@ -462,7 +492,7 @@ $border-width: 2px;
   animation-duration: 1s;
   animation-iteration-count: infinite;
   @media screen and (max-width: 767px) {
-   width:2px;
+   width:3px;
   }
 }
 
@@ -575,3 +605,8 @@ div#slider figure {
   }
 }
 
+.title_line_left {
+  border-left: thick solid #AF40FF; 
+  background-size: 5% auto;
+  
+}
