@@ -74,7 +74,20 @@ class EventsController < ApplicationController
 
   def analytics
     @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
+    ratings = @event.event_reviews.group(:rating).count
+    @ratings = {}
+    6.times do |number|
+      if ratings[number]
+        @ratings[number] = ratings[number]
+      else
+        @ratings[number] = 0
+      end
+    end 
+
+    sentiments = @event.event_reviews.group(:sentiment).count
+    @total_sentiments = sentiments.values.sum
     authorize @event
+    @ratings
   end
 
   def destroy

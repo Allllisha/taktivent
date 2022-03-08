@@ -1,61 +1,60 @@
 <div class="background-pages-dashboard">
-  <br>
   <div class="container">
     <% if user_signed_in? %>
-      <h3> Hello <%= current_user.first_name %> 👋 </h3>
+      <br><h3> Hello <%= current_user.first_name %>! 👋 </h3>
     <% end %>
   </div>
 
   <div class="container">
-    <br>
-
-    <div class="card-category-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))">
-
-    </div>
-
-    <br>
-
-    <div class="cards">
-
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1488630228244-bcdf33562a43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)">
-        <%= pluralize @events.count, "upcoming event" %>
+    <div class="event-analytics-dashboard">
+      <div class="analytics-overall-flexbox">
+        <div>
+          <h3 class="analytics-overall-title">Overall Ratings</h3>
+          <%= pie_chart @analytics_rating, colors: ["#222", "#4BB5CC", "#D93869", "#4834B9"] %>
+        </div>
+      <div>
+        <h3 class="analytics-overall-title">Overall Sentiment</h3>
+        <%= pie_chart @analytics_sentiment, colors: ["#4834B9", "#222"] %>
       </div>
-
-      <div class="card-category-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))">
-
-      </div>
-
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1603741209938-50fc882da856?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
-        <% if @event_reviews.blank? %>
-          No review yet
-        <% else %>
-          <% @events_reviews.last(1).each do |review| %>
-          <p><%= review.content %></p>
-          <% end %>
-        <% end %>
-      </div>
-
     </div>
   </div>
 
-  <div class="container mt-5">
-    <h5>Manage my events</h5>
-      <div class="d-flex flex-column">
-          <% @events.each do |event| %>
-            <% if event.images.attached? %>
-              <div class="card-product-dashboard" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
-            <% end %>
-            <a href="<%= manage_event_path(event)%>"><%= event.name %></a>
-              <div class="container">
-                <% event.songs.first(3).each do |song| %>
-                  <div>
-                    <%= song.name %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
+  <div class="event-info-dashboard">
+      <div class="part-2 col-12">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(https://images.unsplash.com/photo-1488630228244-bcdf33562a43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80)">
+          🗓️ <%= pluralize @events.count, "upcoming event" %>
+        </div>
       </div>
+  </div>
+
+  <div class="event-info-dashboard">
+    <div class="container mt-2">
+      <h4> Manage my events </h4>
+        <div class="d-flex flex-column">
+            <% @events.each do |event| %>
+              <% if event.images.attached? %>
+                <div class="card-product-dashboard text-center" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(<%= cl_image_path(event.images.first.key) %>)">
+              <% end %>
+              <div class="col px-2 py-2">
+                <a href="<%= manage_event_path(event)%>" style="color: white"><%= event.name %></a>
+              </div>
+                <div class="col px-2 py-2 text-center">
+                  <%= event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %>
+                </div>
+                <div class="col px-2 py-2 text-center">
+                  <%= event.venue.name %>
+                </div>
+                <div class="col px-2 py-2">
+                  <% event.songs.first(3).each do |song| %>
+                    <div class="card-product-dashboard-info text-center" >
+                      <%= song.name %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+        </div>
+    </div>
   </div>
   <br>
 </div>
