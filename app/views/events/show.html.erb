@@ -1,83 +1,79 @@
 <div data-controller="time-faker">
-<div class ="background-home">
-  <div data-controller="song-info">
-    <div class="event-info-end" data-song-info-target="songInfoEnd" data-action="keydown@window->song-info#songImgEndContainer">
-     <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
-      <% @songs.each do | song | %>
-       <div data-song-info-target="songInfoStart" data-song="<%= song.start_at %>">
-       <% end %>
-      <div class="event-start" data-song-info-target="eventImg" data-time-faker-target="eventImg">
-         <%= cl_image_tag @event.images.first.key, width:"100%", height:"350px" %>    
-      </div>      
-   </div>
-  </div>
-</div>
-
-
-<% @songs.each_with_index do | song, index | %>
-  <div data-controller="song-image" data-start="<%= song.start_at %>">
-    <div data-action="keyup@window->song-image#songImgContainer">
-     <div class="song-image d-none" data-time-faker-target="songImg">
-       <div class="songs-image" data-song-image-target="songImage">
-        <div id="slider">
-          <figure>
-           <% song.images.each do | image | %>
-            <div class="song-image-top">
-             <%= image_tag(image)%>
-           </div>
-           <% end %>
-          </figure>
+  <div class ="background-home">
+    <div data-controller="song-info">
+      <div class="event-info-end" data-song-info-target="songInfoEnd" data-action="keydown@window->song-info#songImgEndContainer">
+        <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
+          <% @songs.each do | song | %>
+            <div data-song-info-target="songInfoStart" data-song="<%= song.start_at %>">
+            <% end %>
+            <div class="event-start" data-song-info-target="eventImg" data-time-faker-target="eventImg">
+              <%= cl_image_tag @event.images.first.key, width:"100%", height:"350px" %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-<% end %>
-
-
-<div data-controller="title" >
- <% @songs.each do | song | %>
-  <div data-title-target="songTimeStart"  data-song="<%= song.start_at %>">
-   <% end %> 
-   <div class="event-info-end" data-title-target="songTimeEnd"  data-action="keydown@window->title#songTimeEndContainer" >
-   <div class="title_line_left">
-    <div class="event-name" data-title-target="eventTitle" data-time-faker-target="eventTitle" >
-      <h1><%= @event.name %><h1>
-      </div>
-    </div>
-    </div>  
-  </div>
-</div>
-
-<% @songs.each_with_index do | song, index | %>
-  <div data-controller="song-title" data-start="<%= song.start_at %>">
-    <div data-song-title-target="eventInfoStart" data-event="<%= @event.start_at %>">
-      <div data-song-title-target="duration" data-time="<%= song.length_in_minute%>" data-action="keydown@window->song-title#songTimeContainer">
-         <div class="event-show-name d-none" data-song-title-target="songTitle" data-time-faker-target="songTitle" >
-            <div class="d-flex">
-               <div class="now playing" id="music">
-                <span class="bar n1">A</span>
-                <span class="bar n2">B</span>
-                <span class="bar n4">D</span>
-                <span class="bar n5">E</span>
-                <span class="bar n7">G</span>
-                <span class="bar n8">H</span>
+      <% @songs.each_with_index do | song, index | %>
+        <div data-controller="song-image" data-start="<%= song.start_at %>">
+          <div data-action="keyup@window->song-image#songImgContainer">
+            <div class="song-image d-none" data-time-faker-target="songImg">
+              <div class="songs-image" data-song-image-target="songImage">
+                <div id="slider">
+                  <figure>
+                    <% song.images.each do | image | %>
+                      <div class="song-image-top">
+                        <%= image_tag(image)%>
+                      </div>
+                    <% end %>
+                  </figure>
+                </div>
               </div>
-             <h1 class="linear-wipe"><%= song.name %><h1>
+            </div>
           </div>
         </div>
-       </div>
-     </div>
-   </div>
- <% end %>
-</div> 
-
-<%# event info %>
- <div><%= render 'event_info', event: @event %></div>
-<%# programme %>
- <%= render 'programme', event: @event %>
-<%# #song-review-form %>
- <%= render 'song_review_form', event: @event %>
-<%# #event-review-form %>
-<%= render 'event_review_form', event: @event %>
-</div>
+      <% end %>
+      <div data-controller="title" >
+        <% @songs.each do | song | %>
+          <div data-title-target="songTimeStart"  data-song="<%= song.start_at %>">
+          <% end %>
+          <div class="event-info-end" data-title-target="songTimeEnd"  data-action="keydown@window->title#songTimeEndContainer" >
+            <div class="title_line_left">
+              <div class="event-name" data-title-target="eventTitle" data-time-faker-target="eventTitle" >
+                <h1><%= @event.name %>
+                  <h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% @songs.each_with_index do | song, index | %>
+            <div data-controller="song-title" data-start="<%= song.start_at %>">
+              <div data-song-title-target="eventInfoStart" data-event="<%= @event.start_at %>">
+                <div data-song-title-target="duration" data-time="<%= song.length_in_minute%>" data-action="keydown@window->song-title#songTimeContainer">
+                  <div class="event-show-name d-none" data-song-title-target="songTitle" data-time-faker-target="songTitle" >
+                    <div class="d-flex">
+                      <div class="now playing" id="music">
+                        <span class="bar n1">A</span>
+                        <span class="bar n2">B</span>
+                        <span class="bar n4">D</span>
+                        <span class="bar n5">E</span>
+                        <span class="bar n7">G</span>
+                        <span class="bar n8">H</span>
+                      </div>
+                      <h1 class="linear-wipe"><%= song.name %>
+                        <h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <%# event info %>
+            <div><%= render 'event_info', event: @event %></div>
+            <%# programme %>
+            <%= render 'programme', event: @event %>
+            <%# #song-review-form %>
+            <%= render 'song_review_form', event: @event %>
+            <%# #event-review-form %>
+            <%= render 'event_review_form', event: @event %>
+          </div>

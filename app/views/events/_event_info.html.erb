@@ -4,7 +4,6 @@
 <input type="hidden" id="userHour" value = "<%= @event.start_at.hour %>" >
 <input type="hidden" id="userMin"  value = "<%= @event.start_at.min %>" >
 <input type="hidden" id="userSec"  value = "<%= @event.start_at.sec %>" >
-
 <div data-controller="event-info">
   <div class="events-info-all-container">
     <div class="event-info-end" data-event-info-target="info" data-end="<%= @event.end_at %>">
@@ -47,8 +46,6 @@
               </div>
             </div>
           </div>
-
-
           <script>
             function set2fig(num) {
 
