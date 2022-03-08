@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
+  include QuestionFormattable
+
   skip_after_action :verify_authorized, only: %i[show]
   skip_before_action :authenticate_user!, only: :show
 
   def show
-
     @event = Event.find(params[:id])
     @event_review = EventReview.new
     @song_review = SongReview.new
@@ -18,12 +19,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    raise
     @event = Event.new(event_params)
     @venue = Venue.new(venue_params)
     @event.user = current_user
     authorize @event
     authorize @venue
+    questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
+    raise
     @event.venue = @venue
     if @event.save && @venue.save
       redirect_to event_path(@event)
