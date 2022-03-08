@@ -85,7 +85,16 @@ class EventsController < ApplicationController
     end
     
     @total_ratings = ratings.values.sum
+    @possible_stars = ratings.size * 5
     @average_ratings = @total_ratings / ratings.size
+
+    if @average_ratings >= 4.5
+      @rating_text = "Excellent"
+    elsif @average_ratings < 4.5 && @average_ratings > 2.5
+      @rating_text = "Satisfactory"
+    else
+      @rating_text = "Unsatisfactory"
+    end
 
     
     sentiments = @event.event_reviews.group(:sentiment).count

@@ -6,14 +6,13 @@
       <h3 class="analytics-chart-title">Ratings</h3>
       <div class="bar-chart">
         <!-- first graph -->
-        <%= bar_chart @ratings, colors: [ "#2cc" ], xtitle: "Total Number of Stars", ytitle: "Ratings", library: { scales: { x: { ticks: { stepSize: 1 }, fontSize: "100px"}}} %>   
+        <%= bar_chart @ratings, colors: [ "#2cc" ], xtitle: "Total Number of Stars", ytitle: "Ratings", library: { scales: { x: { ticks: { stepSize: 1 }}}, options: { plugin: {legend: { labels: { fontSize: 50, color: "#fff"}} }}} %>   
       </div>
     </div>
-    <div id="wrapper-left" class="wrapper-left">
+    <div id="wrapper-left" class="center">
       <!-- human score -->
       <div class="tp-widget-humanscore">
-        <a id="rating-score" target="_blank"> Excellent </a>
-        <p class> <%=  %> </p>
+        <p class> <%= @rating_text %></p>
       </div>
       <!-- Stars score -->
       <div class="tp-widget-stars">
@@ -23,7 +22,11 @@
               <!-- the stars -->
               <div class="star-rating">
                 <% 5.times do |i| %>
-                <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+                  <% if @average_ratings > i %>
+                    <i class="fas fa-star"  style="color:yellow"></i>
+                  <% else %>
+                    <i class="fas fa-star"></i>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -33,7 +36,7 @@
       <!-- Analytics Info -->
       <div class="tp-widget-analyticsinfo">
         <a id="translation-basedon">
-          Based on <p class=""> <%= @total_ratings %> Reviews</p>
+           <p class=""> Based on <%= @total_ratings %> Reviews</p>
         </a>
       </div>
     </div>
@@ -46,6 +49,7 @@
       </div>
       <div class="box">
         <p class="positioned"><%= @total_sentiments %></p>
+        <p class="text"> Total reviews </p>
         <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966"], donut: true %>
       </div>
   </div>
