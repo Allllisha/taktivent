@@ -30,8 +30,18 @@
       </div>
 
       <%# questions customization %>
-      <div>
-        <%= render 'shared/question_customization_form' %>
+      <div data-controller="questions-customization-form">
+        <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
+          <option value="0" selected>0</option>
+          <% (1..10).each do |i| %>
+            <option value="<%= i %>"><%= i %></option>
+          <% end %>
+        </select>
+        <%# <div data-question-customization-form-target="questionForm"> %>
+        <%# </div> %>
+        <% (1..10).each do |i| %>
+          <%= render 'shared/question_customization_form', i: i %>
+        <% end %>
       </div>
 
       <%= f.input :enable_textbox, input_html: {class: "checkbox-white-outline"} %>
