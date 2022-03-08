@@ -83,11 +83,14 @@ class EventsController < ApplicationController
         @ratings[number] = 0
       end
     end
+    
+    @total_ratings = ratings.values.sum
+    @average_ratings = @total_ratings / ratings.size
 
     
-
     sentiments = @event.event_reviews.group(:sentiment).count
     @total_sentiments = sentiments.values.sum
+    @average_sentiments = @total_sentiments / sentiments.size
     authorize @event
     @ratings
   end
