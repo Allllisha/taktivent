@@ -177,7 +177,8 @@
     margin-top: 20px;
     font-family: "event-title";
     font-size: 25px;
-
+    margin-left: 5px;
+    margin-right: 5px;
     @media screen and (max-width: 767px) {
       font-size: 15px;
     }
@@ -193,7 +194,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
 
