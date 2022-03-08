@@ -40,9 +40,6 @@
   justify-content: flex-end;
   flex-direction: column;
   align-items: flex-end;
-  .fa-cog{
-    margin-right: 5px;
-  }
   button{
     color: rgba(253, 253, 253, 0.877);
     background-color: transparent;
@@ -59,9 +56,6 @@
     margin-left: 10px;
     margin-bottom: 10px;
 
-    .fa-cog{
-      margin-right: 2px;
-    }
     button{
       color: rgba(253, 253, 253, 0.877);
       background-color: transparent;
@@ -74,6 +68,8 @@
     }
   }
 }
+
+
 
 .v_line_fix {
   margin-left: 30px;
@@ -181,7 +177,8 @@
     margin-top: 20px;
     font-family: "event-title";
     font-size: 25px;
-
+    margin-left: 5px;
+    margin-right: 5px;
     @media screen and (max-width: 767px) {
       font-size: 15px;
     }
@@ -197,7 +194,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
 
@@ -376,7 +372,6 @@
 
 .event-info-descriptions{
   margin-left: 10px;
-
   @media screen and (max-width: 767px) {
     margin-left: 20px;
     margin-right: 20px;
@@ -400,7 +395,10 @@
   h2{
     font-weight: bold;
     font-family: "event-title";
-    font-size: 30px;
+    font-size: 25px;
+    .fa-cog{
+      color: white;
+    }
   }
 
 
