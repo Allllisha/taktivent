@@ -5,11 +5,11 @@
      <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
       <% @songs.each do | song | %>
        <div data-song-info-target="songInfoStart" data-song="<%= song.start_at %>">
-      <% end %>
+       <% end %>
       <div class="event-start" data-song-info-target="eventImg" data-time-faker-target="eventImg">
          <%= cl_image_tag @event.images.first.key, width:"100%", height:"350px" %>    
       </div>      
-  </div>
+   </div>
   </div>
 </div>
 
@@ -18,21 +18,21 @@
   <div data-controller="song-image" data-start="<%= song.start_at %>">
     <div data-action="keyup@window->song-image#songImgContainer">
      <div class="song-image d-none" data-time-faker-target="songImg">
-     <div class="songs-image" data-song-image-target="songImage">
-      <div id="slider">
-        <figure>
-         <% song.images.each do | image | %>
-         <div class="song-image-top">
-        <%= image_tag(image)%>
+       <div class="songs-image" data-song-image-target="songImage">
+        <div id="slider">
+          <figure>
+           <% song.images.each do | image | %>
+            <div class="song-image-top">
+             <%= image_tag(image)%>
+           </div>
+           <% end %>
+          </figure>
+          </div>
         </div>
-        <% end %>
-        </figure>
-        </div>
+      </div>
     </div>
-     </div>
-    </div>
-  </div>   
- <% end %>
+  </div>
+<% end %>
 
 
 <div data-controller="title" >
@@ -49,25 +49,25 @@
 
 <% @songs.each_with_index do | song, index | %>
   <div data-controller="song-title" data-start="<%= song.start_at %>">
-  <div data-song-title-target="eventInfoStart" data-event="<%= @event.start_at %>">
-    <div data-song-title-target="duration" data-time="<%= song.length_in_minute%>" data-action="keydown@window->song-title#songTimeContainer">
-     <div class="event-show-name d-none" data-song-title-target="songTitle" data-time-faker-target="songTitle" >
-         <div class="d-flex">
-         <div class="now playing" id="music">
-          <span class="bar n1">A</span>
-          <span class="bar n2">B</span>
-          <span class="bar n4">D</span>
-          <span class="bar n5">E</span>
-          <span class="bar n7">G</span>
-          <span class="bar n8">H</span>
+    <div data-song-title-target="eventInfoStart" data-event="<%= @event.start_at %>">
+      <div data-song-title-target="duration" data-time="<%= song.length_in_minute%>" data-action="keydown@window->song-title#songTimeContainer">
+         <div class="event-show-name d-none" data-song-title-target="songTitle" data-time-faker-target="songTitle" >
+            <div class="d-flex">
+               <div class="now playing" id="music">
+                <span class="bar n1">A</span>
+                <span class="bar n2">B</span>
+                <span class="bar n4">D</span>
+                <span class="bar n5">E</span>
+                <span class="bar n7">G</span>
+                <span class="bar n8">H</span>
+              </div>
+             <h1 class="linear-wipe"><%= song.name %><h1>
+          </div>
         </div>
-       <h1 class="linear-wipe"><%= song.name %><h1>
+       </div>
      </div>
-     </div>
-    </div>
-  </div>
-</div>
-<% end %>
+   </div>
+ <% end %>
 </div> 
 
 <%# event info %>
