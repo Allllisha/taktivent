@@ -82,39 +82,3 @@
       </div>
     </div>
   </div>
- </div>
-
-
-
-  <% @event.songs.each do |song| %>
-    <h3 class="analytics-review-header">Reviews of <%= song.name %></h3>
-    <div class="analytics-chart-flexbox">
-      <div>
-        <h3 class="analytics-chart-title">Ratings</h3>
-        <%= pie_chart song.song_reviews.group(:rating).count %>
-      </div>
-      <div>
-        <h3 class="analytics-chart-title">Comments</h3>
-        <%= pie_chart song.song_reviews.group(:sentiment).count %>
-      </div>
-    </div>
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          <th scope="col">rating</th>
-          <th scope="col">comment</th>
-          <th scope="col">sentiment</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% song.song_reviews.each do |song_review| %>
-          <tr>
-            <td><%= song_review.rating %></td>
-            <td><%= song_review.comment %></td>
-            <td><%= song_review.sentiment %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>
