@@ -8,9 +8,6 @@
       <div class="v_line_fix"></div>
       <h1 class="go-to-event"><%= link_to @event.name, event_path(@event) %></h1>
       <div class="edit-event-new">
-        <%= link_to edit_event_path(@event) do %>
-          <button><i class="fas fa-cog"></i>Edit Event</button>
-        <% end %>
       </div>
     </div>
     <div class="event-info-dashboard">
@@ -20,7 +17,10 @@
         <% end %>
       </div>
       <div class="event-info-description">
-        <h2><%= @event.name %></h2>
+        <h2><%= @event.name %>
+      <%= link_to edit_event_path(@event) do %>
+       <i class="fas fa-cog"></i>
+        <% end %></h2>
         <h6><%= @event.description %></h6>
         <div class="event-date-time">
           <h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
@@ -58,17 +58,17 @@
         <div class="analytics-overall-titles">
           <div>
             <h3 class="analytics-overall-title">Ratings</h3>
-            <%= pie_chart @event.event_reviews.group(:rating).count, colors: ["#222", "#666", "#934", "#825"] %>
+            <%= pie_chart @event.event_reviews.group(:rating).count, colors: ["#222", "#4BB5CC", "#D93869", "#4834B9"] %>
           </div>
           <div>
             <h3 class="analytics-overall-title">Comments</h3>
-            <%= pie_chart @event.event_reviews.group(:sentiment).count, colors: ["#666", "#222"] %>
+            <%= pie_chart @event.event_reviews.group(:sentiment).count, colors: ["#4834B9", "#222"] %>
           </div>
         </div>
       </div>
       <div class="part-2 col-5">
         <div class="event-dashboard-chart">
-          <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#934","#825"] %>
+          <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#D93869","#4834B9"] %>
         </div>
       </div>
     </div>
@@ -85,13 +85,17 @@
                 <div class="event-card-info">
                   <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
                   <p><%= link_to "edit", edit_event_song_path(@event, song)%></p>
-                  <%# <p><%= link_to "delete", event_song_path(@event, song), method: :delete %>
+                  <p><%= link_to "delete", event_song_path(@event, song), method: :delete %>
                   <p class="card-text">Composer:   <%= song.composer_name%></p>
                   <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
                   <p class="card-text">length: <%= song.length_in_minute%>min</p>
                   <p class="card-text">Performer: </p>
                 </div>
               </div>
+             </div> 
+            </div>   
+           <% end %> 
+          </div>
       <%= link_to new_event_song_path(@event), class: "create-songs-new" do %>
         <button>Create New Song</button>
       <% end %>
