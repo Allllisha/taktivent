@@ -17,6 +17,9 @@
         <%= simple_form_for [@event, @event_review] do |f| %>
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <div class="overall">
+            <h6 >Overall</h6>
+          </div>
           <div class="form-group row" id="star">
             <div class="star-rating">
               <% 5.times do |i| %>
@@ -26,6 +29,9 @@
           </div>
           <div class="give-me-comment">
             <%= f.input :comment, :label => "Comment"%>
+          </div>
+          <div class="question">
+            <h6 >Question</h6>
           </div>
           <%= render 'customizaed_review_form.html', review: @event %>
           <div class="comment-button">

@@ -200,7 +200,6 @@ margin-right: 20px;
 
 .song-review-form-container{
   background-color: $black;
-  font-family:"song-title";
   .song-review-form{
     background-color: $gray;
     color: white;
@@ -211,7 +210,8 @@ margin-right: 20px;
     margin-bottom: 25px;
   }
   h4{
-    font-family:"description";
+    font-family:"event-title";
+    margin-bottom: 50px;
   }
 
 }
@@ -417,6 +417,7 @@ $border-width: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   
   input {
     visibility: hidden;
@@ -609,4 +610,95 @@ div#slider figure {
   border-left: thick solid #AF40FF; 
   background-size: 5% auto;
   
+}
+
+.overall{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h6{
+    margin-top:40px;
+    margin-bottom: 40px;
+    font-family: "event-title";
+    color: white;
+  }
+}
+
+.question{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:20px;
+  
+  h6{
+    margin-top:40px;
+    margin-bottom: 40px;
+    font-family: "event-title";
+    color: white;
+  }
+}
+
+.custormized-question-show{
+  margin-top: 20px;
+  margin-bottom: 50px;
+  font-size:15px;
+}
+
+.customized-review-center{
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.star-song-rating-custormized{
+  margin-bottom: 20px;
+
+  
+  input {
+    visibility: hidden;
+    margin-right: 1em;
+    font-size: 20px;
+    text-shadow: 0.5px 0.5px 3px #E67E23;
+   
+  }
+
+  input:before {
+    cursor: pointer;
+    visibility: visible;
+    font-family: 'Font Awesome 5 Free';
+    content: '\f005';
+    font-weight: 900;
+    color: #FD4;
+    transition: color 0.35s;
+    
+  }
+
+  input:hover {
+    transform: scale(1.2) translate(-10%, -10%);
+  }
+
+  input:checked ~ input:before {
+    color: #fff;  
+  }
+  input:checked{
+    animation:0.1s linear alternate rotation1;
+    @keyframes rotation1{
+      0%{ transform:rotate(0);}
+      100%{ transform:rotate(360deg); }
+    }
+  }
+
+}
+
+.review_question_continaer{
+  margin-bottom: 50px;
+  label{
+    color: white;
+  }
+}
+.give-me-comment{
+ color:white;
 }
