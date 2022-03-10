@@ -1,37 +1,53 @@
 <div class ="background-home">
-<div class="center-container">
-  <div class="form-container">
-    <%= simple_form_for [@event, @song] do |f| %>
-      <div class="form-inputs">
-        <%= f.input :name, :label => "Title" %>
-        <%= f.input :composer_name %>
-        <div class="start_at_event">
-          <%= f.input :start_at, html5: true %>
-        </div>
-        <%= f.input :length_in_minute,  html5: true, :label => "Duration"%>
-        <%= f.input :description, :label => "Song description" %>
-
-         <%= f.association :performers, collection: Performer.order(:name), prompt: "Choose a Performer" %>
-         <%= f.association :performers do |f| %>
-          <%= f.input :name, :label => "Performer Name" %>
-          <%= f.input :description, :label => "Profiles"%>
-         <% end %>
-
-        <div class="song-img-container" id= "background">
-          <%= f.input :images, as: :file, :label => "Song images", input_html: { multiple: true, id: "eventImageInput" } %>
-          <div class="event-image" id="eventImageTarget">
+  <div class="center-container">
+    <div class="form-container">
+      <%= simple_form_for [@event, @song] do |f| %>
+        <div class="form-inputs">
+          <%= f.input :name, :label => "Title" %>
+          <%= f.input :composer_name %>
+          <div class="start_at_event">
+            <%= f.input :start_at, html5: true %>
           </div>
-        </div>
+          <%= f.input :length_in_minute,  html5: true, :label => "Duration"%>
+          <%= f.input :description, :label => "Song description" %>
 
-        <div class="form-actions">
-          <%= f.button :submit, class: "btn-outline-secondary" %>
-        </div>
+          <%= f.association :performers, collection: Performer.order(:name), prompt: "Choose a Performer" %>
+          <%= f.association :performers do |f| %>
+            <%= f.input :name, :label => "Performer Name" %>
+            <%= f.input :description, :label => "Profiles"%>
+          <% end %>
 
-      </div>
+          <div class="song-img-container" id= "background">
+            <%= f.input :images, as: :file, :label => "Song images", input_html: { multiple: true, id: "eventImageInput" } %>
+            <div class="event-image" id="eventImageTarget">
+            </div>
+          </div>
+
+
+          <%# questions customization %>
+          <div data-controller="questions-customization-form">
+            <label class="form-label">Number of review questions</label>
+            <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
+              <option value="0" selected>0</option>
+              <% (1..10).each do |i| %>
+                <option value="<%= i %>"><%= i %></option>
+              <% end %>
+            </select>
+            <% (1..10).each do |i| %>
+              <%= render 'shared/question_customization_form', i: i %>
+            <% end %>
+          </div>
+
+          <%= f.input :enable_textbox, label: 'Enable textbox for comment', input_html: {class: "checkbox-white-outline"} %>
+
+          <div class="form-actions">
+            <%= f.button :submit, class: "btn-outline-secondary" %>
+          </div>
+
+        </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
-</div>
 </div>
 
 <script>

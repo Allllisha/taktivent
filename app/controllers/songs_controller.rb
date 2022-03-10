@@ -1,7 +1,9 @@
 class SongsController < ApplicationController
+  include QuestionFormattable
+
   skip_after_action :verify_authorized, only: [:show]
   skip_before_action :authenticate_user!, only: [:show]
-  
+
   def new
     @song = Song.new
     @event = Event.find(params[:event_id])
@@ -26,10 +28,11 @@ class SongsController < ApplicationController
     # @performer.user = current_user
     authorize @song
     @song.event = @event
+    @song.questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
     # @song.performer = @performer
-    if @song.save && @event.save 
+    if @song.save && @event.save
       redirect_to manage_event_path(@event)
-    else 
+    else
       render "new"
     end
   end
@@ -59,7 +62,8 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:name, :composer_name, :start_at, :length_in_minute, :event_id, :description, performer_ids: [], images: [])
+    params.require(:song).permit(:name, :composer_name, :start_at, :length_in_minute,
+                                 :event_id, :description, :enable_textbox, performer_ids: [], images: [])
   end
 
   def song_performer_params
