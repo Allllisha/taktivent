@@ -11,7 +11,7 @@ require 'net/http'
 require 'openssl'
 require 'json'
 require 'rake'
-require 'pry-byebug'
+
 
 # call sentiment analysis api on comments in reviews
 def get_sentiment(comment)
