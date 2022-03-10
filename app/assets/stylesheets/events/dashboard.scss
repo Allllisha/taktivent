@@ -794,6 +794,17 @@ button {
     font-family: "description";
     outline: rgb(141, 141, 141) none 0px;
     padding-top: 10px;
+
+    h6{
+      font-family: "description";
+    }
+
+    @media screen and (max-width: 767px) {
+      h6{
+        font-family: "description";
+        font-size: 12px;
+      }
+     }
 }
 .reviewers-small{
     background-position: 50% 50%;
