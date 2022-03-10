@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   // display appropiate number of questions according to selection
-  displayQuestionForms() {
+  displayQuestionForms(event) {
     let i = 1;
     this.questionFormTargets.forEach((element) => {
       if ( event.target.value >= i) {
@@ -22,7 +22,7 @@ export default class extends Controller {
   }
 
   // display appropiate number of choice entry fields according to selection
-  displayChoiceFields() {
+  displayChoiceFields(event) {
     let i = 1;
     this.choiceFieldTargets.forEach((element) => {
       if (event.target.dataset.questionNumber === element.dataset.questionNumber) {
@@ -38,7 +38,7 @@ export default class extends Controller {
 
   // hide choice field if the question type is starts
   // (stars questions choices are always 1-5)
-  hideChoiceSectionForStarsQuestion() {
+  hideChoiceSectionForStarsQuestion(event) {
     this.choiceSectionTargets.forEach((element) => {
       if (event.target.dataset.questionNumber === element.dataset.questionNumber &&
           event.target.value === "stars") {
