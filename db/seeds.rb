@@ -101,7 +101,7 @@ User.all.each do |artist|
       description: Faker::Quote.matz,
       venue: Venue.all.sample,
       questions_and_choices: questions_and_choices.sample(4),
-      enable_textbox: [true, false].sample
+      enable_textbox: true
     )
     event.images.attach(io: File.open(Rails.root.join('app/assets/images/event-img.jpg')),
                         filename: "event-img.jpg")
@@ -125,7 +125,7 @@ Event.all.each do |event|
       length_in_minute: Faker::Number.within(range: 1..2),
       description: Faker::Quote.matz,
       questions_and_choices: questions_and_choices.sample(4),
-      enable_textbox: [true, false].sample,
+      enable_textbox: true,
       event: event
     )
     song.images.attach(io: File.open(Rails.root.join('app/assets/images/song-img.png')),
@@ -181,6 +181,7 @@ User.all.each do |artist|
       comment = comments.sample if event.enable_textbox
       event.event_reviews.create!(
         responses: responses,
+        rating: rand(1..5),
         comment: event.enable_textbox ? comment : nil,
         sentiment: event.enable_textbox ? get_sentiment(comment) : nil
       )
@@ -202,6 +203,7 @@ User.all.each do |artist|
         comment = comments.sample if song.enable_textbox
         song.song_reviews.create!(
           responses: responses,
+          rating: rand(1..5),
           comment: song.enable_textbox ? comment : nil,
           sentiment: song.enable_textbox ? get_sentiment(comment) : nil
         )

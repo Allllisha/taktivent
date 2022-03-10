@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_130437) do
+ActiveRecord::Schema.define(version: 2022_03_10_104847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_130437) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sentiment"
     t.jsonb "responses", default: "{}", null: false
+    t.integer "rating"
     t.index ["event_id"], name: "index_event_reviews_on_event_id"
   end
 
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_130437) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sentiment"
     t.jsonb "responses", default: "{}", null: false
+    t.integer "rating"
     t.index ["song_id"], name: "index_song_reviews_on_song_id"
   end
 
