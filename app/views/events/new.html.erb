@@ -1,59 +1,53 @@
-<div class ="background-home">
-  <div class="center-container">
-    <div class ="form-container">
-      <%= simple_form_for(@event) do |f| %>
-        <%= f.error_notification %>
-        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-        <div class="before-uproad" id="event-background">
-          <%= image_tag asset_url("image-upload.jpg")%>
+<div class="background-home center-container" data-controller="events-new">
+  <div class="form-container">
+    <%= simple_form_for(@event) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <div class="before-uproad event-background" data-events-new-target="eventBackground">
+        <%= image_tag asset_url("image-upload.jpg")%>
+      </div>
+
+      <div class="event-image" data-events-new-target="eventImage">
+      </div>
+
+      <%= f.file_field :images, "data-action": "change->events-new#displayUploadedImage" %>
+      <div class="input-container">
+        <%= f.input :name, :label => "Event" %>
+        <%= f.input :description,  id: "des"  %>
+        <div class="start_at_event">
+          <%= f.input :start_at, html5: true %>
         </div>
-        <div class="event-image" id="eventImageTarget">
+        <div class="end_at_event">
+          <%= f.input :end_at, html5: true %>
         </div>
-        <%= f.file_field :images, id: "eventImageInput"%>
-        <div class="input-container">
-          <%= f.input :name, :label => "Event" %>
-          <%= f.input :description,  id: "des"  %>
-          <div class="start_at_event">
-            <%= f.input :start_at, html5: true %>
-          </div>
-          <div class="end_at_event">
-            <%= f.input :end_at, html5: true %>
-          </div>
-          <div class="venue-input">
-            <%= f.association :venue do |f| %>
-              <%= f.input :name, :label => "Venue" %>
-              <%= f.input :address %>
-            </div>
+        <div class="venue-input">
+          <%= f.association :venue do |f| %>
+            <%= f.input :name, :label => "Venue" %>
+            <%= f.input :address %>
           <% end %>
         </div>
-        <div class="form-actions">
-          <%= f.button :submit, class: "btn btn-outline-dark" %>
-        </div>
+      </div>
+
+      <%# questions customization %>
+      <div data-controller="questions-customization-form">
+        <label class="form-label">Number of review questions</label>
+        <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
+          <option value="0" selected>0</option>
+          <% (1..10).each do |i| %>
+            <option value="<%= i %>"><%= i %></option>
+          <% end %>
+        </select>
+        <% (1..10).each do |i| %>
+          <%= render 'shared/question_customization_form', i: i %>
+        <% end %>
+      </div>
+
+      <%#= f.input :enable_textbox, label: 'Enable textbox for comment', input_html: {class: "checkbox-white-outline"} %>
+
+      <div class="form-actions">
+        <%= f.button :submit, class: "btn btn-outline-dark" %>
       </div>
     <% end %>
   </div>
 </div>
-</div>
-</div>
-<script>
-  const pictures = document.querySelector('#eventImageInput');
-  const eventImagesTarget = document.querySelector('#eventImageTarget');
-  const background = document.querySelector('#event-background')
-
-  pictures.addEventListener('change', (event) => {
-   background.style.display = "none";
-    const files = event.target.files;
-    const image = files[0]
-    // here's the file size
-    console.log(image.size);
-    const reader = new FileReader();
-    reader.onload = function(file) {
-      const img = new Image();
-      console.log(file);
-      img.src = file.target.result;
-      eventImagesTarget.appendChild(img);
-    }
-    reader.readAsDataURL(image);
-    console.log(files);
-  });
-</script>

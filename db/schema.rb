@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_26_022909) do
+ActiveRecord::Schema.define(version: 2022_03_10_111451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,12 +44,13 @@ ActiveRecord::Schema.define(version: 2022_02_26_022909) do
   end
 
   create_table "event_reviews", force: :cascade do |t|
-    t.integer "rating", null: false
     t.text "comment"
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sentiment", null: false
+    t.integer "sentiment"
+    t.jsonb "responses", default: "{}", null: false
+    t.integer "rating"
     t.index ["event_id"], name: "index_event_reviews_on_event_id"
   end
 
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(version: 2022_02_26_022909) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "venue_id"
     t.datetime "end_at", null: false
+    t.jsonb "questions_and_choices", default: "{}", null: false
+    t.boolean "enable_textbox", default: true
     t.index ["user_id"], name: "index_events_on_user_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
@@ -85,12 +88,13 @@ ActiveRecord::Schema.define(version: 2022_02_26_022909) do
   end
 
   create_table "song_reviews", force: :cascade do |t|
-    t.integer "rating", null: false
     t.text "comment"
     t.bigint "song_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sentiment", null: false
+    t.integer "sentiment"
+    t.jsonb "responses", default: "{}", null: false
+    t.integer "rating"
     t.index ["song_id"], name: "index_song_reviews_on_song_id"
   end
 
@@ -103,6 +107,8 @@ ActiveRecord::Schema.define(version: 2022_02_26_022909) do
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "questions_and_choices", default: "{}", null: false
+    t.boolean "enable_textbox", default: true
     t.index ["event_id"], name: "index_songs_on_event_id"
   end
 

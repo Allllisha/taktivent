@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
+  include QuestionFormattable
+
   skip_after_action :verify_authorized, only: %i[show]
   skip_before_action :authenticate_user!, only: :show
 
   def show
-
     @event = Event.find(params[:id])
     @event_review = EventReview.new
     @song_review = SongReview.new
@@ -23,6 +24,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     authorize @event
     authorize @venue
+    @event.questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
     @event.venue = @venue
     if @event.save && @venue.save
       redirect_to event_path(@event)
@@ -72,7 +74,6 @@ class EventsController < ApplicationController
       module_size: 6,
       standalone: true
     )
-
   end
 
   def analytics
@@ -116,7 +117,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user, :name, :description, :start_at, :end_at, :images, :venue_id, :venue)
+    params.require(:event).permit(:user, :name, :description, :start_at, :end_at, :images, :venue_id, :venue, :enable_textbox)
   end
 
   def venue_params
