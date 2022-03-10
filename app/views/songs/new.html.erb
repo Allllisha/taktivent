@@ -10,12 +10,33 @@
           </div>
           <%= f.input :length_in_minute,  html5: true, :label => "Duration"%>
           <%= f.input :description, :label => "Song description" %>
-
-          <%= f.association :performers, collection: Performer.order(:name), prompt: "Choose a Performer" %>
-          <%= f.association :performers do |f| %>
-            <%= f.input :name, :label => "Performer Name" %>
-            <%= f.input :description, :label => "Profiles"%>
-          <% end %>
+          <div data-controller="performer-new">
+            <p class="form-label text optional" >Performer</p>
+            <%#  prompt: "Choose a Performer",  %>
+            <div data-action="change->performer-new#changePerformerForm">
+              <div class="form-check">
+              <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="existingPerformerRadio" value="existing" checked>
+              <label class="form-check-label" for="existingPerformerRadio">
+                Choose an existing performer
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="newPerformerRadio" value="new">
+              <label class="form-check-label" for="newPerformerRadio">
+                Create a new performer
+              </label>
+            </div>
+            </div>
+            <div data-performer-new-target="existingPerformer">
+              <%= f.association :performers, collection: Performer.order(:name), label: false %>
+            </div>
+            <div data-performer-new-target="newPerformer" hidden disabled>
+              <%= f.association :performers do |f| %>
+                <%= f.input :name, :label => "Performer Name" %>
+                <%= f.input :description, :label => "Profiles"%>
+              <% end %>
+            </div>
+          </div>
 
           <div class="song-img-container" id= "background">
             <%= f.input :images, as: :file, :label => "Song images", input_html: { multiple: true, id: "eventImageInput" } %>
@@ -26,7 +47,7 @@
 
           <%# questions customization %>
           <div data-controller="questions-customization-form">
-            <label class="form-label">Number of review questions</label>
+            <label class="form-label">Number of customized review questions</label>
             <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
               <option value="0" selected>0</option>
               <% (1..10).each do |i| %>
