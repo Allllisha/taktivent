@@ -40,11 +40,12 @@ export default class extends Controller {
   // (stars questions choices are always 1-5)
   hideChoiceSectionForStarsQuestion(event) {
     this.choiceSectionTargets.forEach((element) => {
-      if (event.target.dataset.questionNumber === element.dataset.questionNumber &&
-          event.target.value === "stars") {
-        element.hidden = true;
-      } else {
-        element.hidden = false;
+      if (event.target.dataset.questionNumber === element.dataset.questionNumber) {
+        if (event.target.value === "stars") {
+          element.hidden = true;
+        } else {
+          element.hidden = false;
+        }
       }
     });
   }
