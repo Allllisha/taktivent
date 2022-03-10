@@ -16,7 +16,7 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
     @event = Event.find(params[:event_id])
-    @performers = @song_performers
+    @performers = @song.performers
     authorize @song
   end
 
@@ -54,9 +54,10 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Song.find(params[:id])
+    @event = @song.event
     authorize @song
-    # @song.destroy
-    # redirect_to songs_path(@songs)
+    @song.destroy
+    redirect_to manage_event_path(@event)
   end
 
   private

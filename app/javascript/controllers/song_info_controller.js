@@ -1,27 +1,40 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets =  ['songInfoStart', 'songInfoEnd', 'eventImg']
+  static targets =  ['songInfoStart', 'songInfoEnd', 'eventImg', 'eventInfoStart', ]
 
-  connect() {
-    console.log('Hello from song_info_controller.js')
-    this.songInfoStart = new Date(this.songInfoStartTarget.dataset.start);
-    this.songInfoEnd = new Date(this.songInfoEndTarget.dataset.end);
-    setInterval(this.songImgContainer.bind(this),1000);
-    setInterval(this.songImgEndContainer.bind(this),1000);
-  }
+  // connect() {
+  //   // this.welcomeStart = new Date(this.welcomeStartTarget.dataset.start);
+  //   // this.eventStart = new Date(this.eventInfoStartTarget.dataset.event);
+  //   // this.songStart = new Date(this.songInfoStartTarget.dataset.song);
+  //   // // setInterval(this.EventStartContainer.bind(this),1000);
+  //   // // setInterval(this.welcomeImgContainer.bind(this),1000);
+  //   // setInterval(this.welcomeEndContainer.bind(this),1000);
+  // }
+  
+  // // welcomeImgContainer(){
+  // //   if(new Date().valueOf() <= this.welcomeStart.valueOf()){
+  // //     this.welcomeImgTarget.classList.add('d-none')
+  // //    }
+  // // }
 
 
+  // // EventStartContainer(){
+  // //   if(new Date().valueOf() >=  this.eventStart.valueOf()){
+  // //     this.eventImgTarget.classList.add('d-none')
+  // //    }
+  // //  }
 
-  songImgContainer(){
-     if(new Date().valueOf() >=  this.songInfoStart.valueOf()){
-      this.eventImgTarget.classList.add('d-none')
-     }
-   }
+
+  //  welcomeEndContainer(){
+  //   if(new Date().valueOf() >= this.songStart.valueOf()){
+  //     this.welcomeImgTarget.classList.add('d-none')
+  //    }
+  //  }
 
 
-  songImgEndContainer(){
-    if(new Date().valueOf() >=  this.songInfoEnd.valueOf()){
+  songImgEndContainer(event){
+    if(event.key === 'e'){
      this.eventImgTarget.classList.remove('d-none')
     }
   }

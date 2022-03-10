@@ -75,13 +75,40 @@ class EventsController < ApplicationController
 
   def analytics
     @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
+    ratings = @event.event_reviews.group(:rating).count
+    @ratings = {}
+    6.times do |number|
+      if ratings[number]
+        @ratings[number] = ratings[number]
+      else
+        @ratings[number] = 0
+      end
+    end
+    
+    @total_ratings = ratings.values.sum
+    @possible_stars = ratings.size * 5
+    @average_ratings = @total_ratings / ratings.size
+
+    if @average_ratings >= 4.5
+      @rating_text = "Excellent"
+    elsif @average_ratings < 4.5 && @average_ratings > 2.5
+      @rating_text = "Satisfactory"
+    else
+      @rating_text = "Unsatisfactory"
+    end
+
+    
+    sentiments = @event.event_reviews.group(:sentiment).count
+    @total_sentiments = sentiments.values.sum
+    @average_sentiments = @total_sentiments / sentiments.size
     authorize @event
+    @ratings
   end
 
   def destroy
     @event = Event.find(params[:id])
     @event.destroy
-    redirect_to event_path(@events)
+    redirect_to dashboard_path
   end
 
   private

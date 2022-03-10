@@ -1,28 +1,40 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-  static targets = [ 'event', 'info', 'eventBox', 'eventAbout' ]
+  static targets = [ 'event', 'info', 'eventBox', 'eventAbout', 'about']
 
   connect() {
-    console.log('Hello from event_info_controller.js')
     // console.log(this.testTarget)
 
     this.eventStart = new Date(this.eventTarget.dataset.start);
-    this.eventEnd = new Date(this.infoTarget.dataset.end);
-   //  setInterval(this.showSongCountdown,1000);
-   console.log(this.eventEnd);
-    setInterval(this.eventInfoContainer.bind(this),1000);
-    setInterval(this.eventAboutContainer.bind(this),1000);
-    setInterval(this.eventEndContainer.bind(this),1000);
-    setInterval(this.eventAboutEndContainer.bind(this),1000);
+    this.about = new Date(this.aboutTarget.dataset.about);
+    console.log(this.about)
+  //   this.eventEnd = new Date(this.infoTarget.dataset.end);
+  //  //  setInterval(this.showSongCountdown,1000);
+   setInterval(this.EventAboutContainer.bind(this),1000);
+    setInterval(this.EventStartContainer.bind(this),1000);
   }
 
- eventInfoContainer(){
+
+ EventStartContainer(){
+    if(new Date().valueOf() >=  this.eventStart.valueOf()){
+     this.eventBoxTarget.classList.add('d-none')
+    }
+  }
+
+  EventAboutContainer(){
+    if(new Date().valueOf() >=  this.about.valueOf()){
+      this.eventAboutTarget.classList.add('d-none')
+     }
+  }
+
+
+ eventInfoContainer(event){
   //  console.log(this.eventStart.valueOf());
   //  console.log(new Date().valueOf());
   //  console.log(new Date().valueOf() >=  this.eventStart.valueOf());
-    if(new Date().valueOf() >=  this.eventStart.valueOf()){
-     this.eventBoxTarget.classList.add('d-none')
+    if(event.key === 'e'){
+     this.eventBoxTarget.classList.remove('d-none')
     }
  }
 
@@ -36,13 +48,11 @@ export default class extends Controller {
  }
 
 
- eventAboutContainer(){
+ eventAboutContainer(event){
   // console.log(this.eventStart.valueOf());
   // console.log(new Date().valueOf());
   // console.log(new Date().valueOf() >=  this.eventStart.valueOf());
-   if(new Date().valueOf() >=  this.eventStart.valueOf()){
-    this.eventAboutTarget.classList.add('d-none')
-   }else if(new Date().valueOf() >=  this.eventEnd.valueOf()){
+   if(event.key === 'e'){
     this.eventAboutTarget.classList.remove('d-none')
    }
 }
