@@ -14,7 +14,6 @@ class SongReviewsController < ApplicationController
       render plain: "error!", status: 404
     end
   end
-  
 
   private
 

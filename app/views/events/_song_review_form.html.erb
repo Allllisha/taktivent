@@ -10,7 +10,7 @@
                 <div class="form-group row" id="star">
                   <div class="star-song-rating">
                     <% 5.times do |i| %>
-                      <input type="radio" name="review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
+                      <input type="radio" name="song_review[rating]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
                     <% end %>
                   </div>
                 </div>
@@ -18,6 +18,7 @@
               <div class="give-me-comment">
                 <%= f.input :comment, :label => "Comment"%>
               </div>
+              <%= render 'customizaed_review_form.html', review: song %>
               <div class="comment-button">
                 <%= f.button :submit, 'Submit', class: "btn btn-outline-dark", id:"event-rv-btn", data: { controller: "song-review", action: "click->song-review#submit" }%>
               </div>
