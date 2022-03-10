@@ -102,6 +102,9 @@ class EventsController < ApplicationController
     @average_sentiments = @total_sentiments / sentiments.size
     authorize @event
     @ratings
+
+    @comments = @event.event_reviews.group(:comment)
+
   end
 
   def destroy

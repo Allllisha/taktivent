@@ -6,11 +6,12 @@
 }
 
 .analytics-chart-flexbox{
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-around;
   background-color: #1e1e1e;
   padding: 2rem;
-  border-radius: 2rem 2rem 0 0;
+  border-radius: 2rem;
 }
 
 .analytics-chart-title {
@@ -21,11 +22,11 @@
   margin-top: 2rem;
 }
 
-.box {
+.details-area {
   position: relative;
 }
 
-.positioned {
+.sentiment-count {
   position:absolute;
   top: 40%; 
   left: 45%;
@@ -34,7 +35,7 @@
   font-size: 50px;
 }
 
-.text {
+.total-reviews {
   position:absolute;
   top: 60%; 
   left: 40%;
