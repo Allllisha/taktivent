@@ -1,4 +1,6 @@
 <div data-questions-customization-form-target="questionForm" hidden>
+  <hr/>
+  <h4>Question <%= i %></h4>
   <%# question types %>
   <div class="mb-3 string optional review_question_type">
     <label class="form-label string optional" for="review_question_type_<%= i %>">Question type</label>
@@ -25,8 +27,8 @@
     <select class="form-select"
             data-action="change->questions-customization-form#displayChoiceFields"
             data-question-number="<%= i %>">
-      <option value="1" selected>1</option>
-      <% (2..10).each do |j| %>
+      <option value="2" selected>2</option>
+      <% (3..10).each do |j| %>
         <option value="<%= j %>"><%= j %></option>
       <% end %>
     </select>
@@ -39,11 +41,11 @@
             id="review_choices_<%= i %>"
             data-questions-customization-form-target="choiceField"
             data-question-number="<%= i %>">
-      <% (2..10).each do %>
+      <% (2..10).each do |j| %>
         <input class="form-control string optional"
               type="text"
               name="review[questions_and_choices][][choices][]"
-              hidden
+              <%= sanitize 'hidden' unless j == 2 %>
               data-questions-customization-form-target="choiceField"
               data-question-number="<%= i %>">
       <% end %>

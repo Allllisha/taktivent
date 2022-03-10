@@ -12,6 +12,8 @@ module QuestionFormattable
       question[:question].empty? || (question[:question_type] != 'stars' && question[:choices].nil?)
     end
 
+    questions_and_choices.map!(&:to_unsafe_h)
+
     return questions_and_choices
   end
 end

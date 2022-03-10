@@ -24,8 +24,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     authorize @event
     authorize @venue
-    questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
-    raise
+    @event.questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
     @event.venue = @venue
     if @event.save && @venue.save
       redirect_to event_path(@event)
@@ -88,7 +87,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user, :name, :description, :start_at, :end_at, :images, :venue_id, :venue)
+    params.require(:event).permit(:user, :name, :description, :start_at, :end_at, :images, :venue_id, :venue, :enable_textbox)
   end
 
   def venue_params

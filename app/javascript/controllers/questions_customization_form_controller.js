@@ -36,7 +36,7 @@ export default class extends Controller {
     });
   }
 
-  // hide choice field if the question type is starts
+  // hide choice field if the question type is stars
   // (stars questions choices are always 1-5)
   hideChoiceSectionForStarsQuestion(event) {
     this.choiceSectionTargets.forEach((element) => {
