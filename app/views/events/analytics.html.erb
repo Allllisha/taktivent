@@ -76,17 +76,17 @@
       </div>
     </div>
 
-    <div class="analytics-chart-flexbox">
-        <div class="col-lg-6">
-          <h3 class="analytics-chart-title">Sentiments</h3>
-          <%= area_chart @event.event_reviews.group(:sentiment).count, colors: [ "#2cc" ] %>
-        </div>
-        <div class="details-area">
-          <p class="sentiment-count"><%= @total_sentiments %></p>
-          <p class="total-reviews"> Total reviews </p>
-          <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc", "#339966", "#cc3333"], donut: true %>
-        </div>
-
+  <div class="analytics-chart-flexbox">
+      <div class="col-lg-6">
+        <h3 class="analytics-chart-title">Sentiments</h3>
+        <%= area_chart @event.event_reviews.group(:sentiment).count, colors: [ "#2cc" ] %>
+      </div>
+      <div class="analytics-box">
+        <p class="analytics-positioned"><%= @total_sentiments %></p>
+        <p class="analytics-text"> Total reviews </p>
+        <%= pie_chart @event.event_reviews.group(:sentiment).count,colors: ["#3333cc","#cc3333","#339966"], donut: true %>
+      </div>
+  </div>
 
 
     </div>
