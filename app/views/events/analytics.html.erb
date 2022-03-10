@@ -43,8 +43,8 @@
           </a>
         </div>
         <div class="class">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
+          <div class="accordion-item-review">
+            <h2 class="accordion-header-review" id="headingOne">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Review summary
               </button>
@@ -79,7 +79,7 @@
     <div class="analytics-chart-flexbox">
         <div class="col-lg-6">
           <h3 class="analytics-chart-title">Sentiments</h3>
-          <%= area_chart @event.event_reviews.group(:sentiment).count, colors: [ "#2cc" ] %>
+          <%= area_chart @event.event_reviews.group(:sentiment).count, colors: [ "#2cc" ], library: { scales: { x: { ticks: { color: "#FFFFFF" }, title: { color: "#FFFFFF" }}, y: { ticks: { color: "#FFFFFF" }, title: {color: "#FFFFFF"}}}} %>
         </div>
         <div class="analytics-box">
           <p class="analytics-positioned"><%= @total_sentiments %></p>
