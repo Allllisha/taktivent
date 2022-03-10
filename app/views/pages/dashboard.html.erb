@@ -36,7 +36,9 @@
                     <%= event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %>
                   </div>
                   <div class="col px-2 py-2 text-center">
+                   <% if event.venue.present? %>
                     <%= event.venue.name %>
+                    <% end %>
                   </div>
                   <div class="col px-2 py-2">
                     <% event.songs.first(3).each do |song| %>

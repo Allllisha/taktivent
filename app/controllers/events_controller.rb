@@ -57,9 +57,12 @@ class EventsController < ApplicationController
   end
 
   def dashboard
-    @event = Event.find(params[:id])
+    @event = Event.includes(:event_reviews, songs: :song_reviews).find(params[:id])
     @songs = @event.songs.order(start_at: :asc).limit(300)
-    @performers = @song_performers
+    ratings = @event.event_reviews.group(:rating).count
+    @total_ratings = ratings.values.sum
+    @possible_stars = ratings.size * 5
+ 
     authorize @event
 
     url = event_url(@event)
