@@ -34,8 +34,8 @@ export default class extends Controller {
 
 
   songImgEndContainer(event){
-    if(event.key === 'e'){
+    // if(event.key === 'e'){
      this.eventImgTarget.classList.remove('d-none')
-    }
+    // }
   }
 }
