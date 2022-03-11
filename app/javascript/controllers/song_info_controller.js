@@ -1,7 +1,7 @@
-import { Controller } from '@hotwired/stimulus'
+// import { Controller } from '@hotwired/stimulus'
 
-export default class extends Controller {
-  static targets =  ['songInfoStart', 'songInfoEnd', 'eventImg', 'eventInfoStart', ]
+// export default class extends Controller {
+//   static targets =  ['songInfoStart', 'songInfoEnd', 'eventImg', 'eventInfoStart', ]
 
   // connect() {
   //   // this.welcomeStart = new Date(this.welcomeStartTarget.dataset.start);
@@ -33,9 +33,9 @@ export default class extends Controller {
   //  }
 
 
-  songImgEndContainer(event){
-    // if(event.key === 'e'){
-     this.eventImgTarget.classList.remove('d-none')
-    // }
-  }
-}
+//   songImgEndContainer(event){
+//     // if(event.key === 'e'){
+//      this.eventImgTarget.classList.remove('d-none')
+//     // }
+//   }
+// }

@@ -1,5 +1,5 @@
 <% @songs.each do | song, index | %>
-  <div data-controller="song-review" data-action="touchmove@window->song-review#songHideContainer">
+  <div data-controller="song-review" >
     <div class="d-none" data-song-review-target="songContainer"  data-time-faker-target="songBox">
       <div class="song-review-form-container" data-song-review-target="song" data-start="<%= song.start_at %>">
         <div class="song-review-form">

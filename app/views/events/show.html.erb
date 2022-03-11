@@ -1,7 +1,7 @@
 <div data-controller="time-faker">
   <div class ="background-home">
     <div data-controller="song-info">
-      <div class="event-info-end" data-song-info-target="songInfoEnd" data-action="touchmove@window->song-info#songImgEndContainer">
+      <div class="event-info-end" data-song-info-target="songInfoEnd">
         <div data-song-info-target="eventInfoStart" data-event="<%= @event.start_at %>">
           <% @songs.each do | song | %>
             <div data-song-info-target="songInfoStart" data-song="<%= song.start_at %>">
