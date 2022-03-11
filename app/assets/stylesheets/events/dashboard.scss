@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Rubik:wght@300;400;500;600&display=swap');
+
 .background-dashboard{
   position: relative;
   // background-image: asset_url('210.jpg');
@@ -23,12 +25,12 @@
     text-decoration: none;
     color:white;
     font-weight: bold;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
     @media screen and (max-width: 767px) {
     font-size: 18px;
      a{
       padding-top: 10px;
-      font-family: "event-title";
+      font-family: 'Rubik', sans-serif;
       font-size: 17px;
      }
     }
@@ -114,11 +116,11 @@
   margin-left:20px;
   h2{
     margin-top: 0;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
   }
   h5{
     margin-left: 5px;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
   }
   @media screen and (max-width: 767px) {
     display: flex;
@@ -129,7 +131,7 @@
     h5{
       margin-top: 20px;
       font-size: 15px;
-      font-family: "event-title";
+      font-family: 'Rubik', sans-serif;
     }
   }
 }
@@ -161,7 +163,7 @@
   a {
     text-decoration: none;
     color: white;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
     font-size: 30px;
 
   @media screen and (max-width: 767px) {
@@ -176,7 +178,7 @@
     align-items: center;
     flex-direction: column;
     margin-top: 20px;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
     font-size: 25px;
     margin-left: 5px;
     margin-right: 5px;
@@ -187,7 +189,7 @@
 
   h1{
     margin-left: 20px;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
     margin-bottom: 60px;
   }
 
@@ -392,7 +394,7 @@
 
   h2{
     font-weight: bold;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
     font-size: 25px;
     .fa-cog{
       color: white;
@@ -417,7 +419,7 @@
     }
 
     h2{
-      font-family: "event-title";
+      font-family: 'Rubik', sans-serif;
       font-size: 20px;
     }
   }
@@ -450,7 +452,7 @@
   h1{
    color: white;
    margin-left: 20px;
-   font-family: "event-title";
+   font-family: 'Rubik', sans-serif;
    @media screen and (max-width: 767px) {
     font-size: 25px;
   }
@@ -458,7 +460,7 @@
 
   h2{
     margin-bottom: 20px;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
   }
   @media screen and (max-width: 767px) {
 
@@ -468,13 +470,13 @@
       justify-content: center;
       align-items: center;
       margin-left: 0px;
-      font-family: "event-title";
+      font-family: 'Rubik', sans-serif;
       font-size: 25px;
      }
 
      h2{
        margin-bottom: 20px;
-       font-family: "event-title";
+       font-family: 'Rubik', sans-serif;
      }
 
      .d-flex{
@@ -563,12 +565,12 @@
   a{
     color: black;
     font-weight: bold;
-    font-family: "event-title";
+    font-family: 'Rubik', sans-serif;
     font-size: 15px;
   }
 
   p{
-    font-family: "description";
+    font-family: 'Rubik', sans-serif;
     font-size: 13px;
   }
 }
@@ -791,18 +793,18 @@ button {
     white-space: nowrap;
     word-break: break-word;
     border: 0px none rgb(141, 141, 141);
-    font-family: "description";
+    font-family: 'Rubik', sans-serif;
     outline: rgb(141, 141, 141) none 0px;
     padding-top: 10px;
 
     h6{
-      font-family: "description";
+      font-family: 'Rubik', sans-serif;
       font-size: 12px;
     }
 
     @media screen and (max-width: 767px) {
       h6{
-        font-family: "description";
+        font-family: 'Rubik', sans-serif;
         font-size: 12px;
       }
      }
