@@ -108,7 +108,6 @@ User.all.each do |artist|
 
     performer = artist.performers.create!(
       name: Faker::Name.name_with_middle,
-      description: Faker::Quote.matz
     )
     performer.images.attach(io: File.open(Rails.root.join('app/assets/images/performer.png')),
                             filename: "performer.png")

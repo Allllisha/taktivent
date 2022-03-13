@@ -6,9 +6,9 @@ export default class extends Controller {
 
 
   songHideContainer(event) {
-   if (event.key === 'e') {
+  //  if (event.key === 'e') {
      this.songContainerTarget.classList.add("d-none");
-   }
+  //  }
  }
 
  submit(event){

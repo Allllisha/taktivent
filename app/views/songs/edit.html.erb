@@ -1,57 +1,93 @@
 <div class ="background-home">
-<div class="center-container">
-  <div class="form-container">
-    <%= simple_form_for [@event, @song] do |f| %>
-      <div class="form-inputs">
-      <% unless @song.images.empty? %>
-          <%= cl_image_tag @song.images.first.key, :width => "100%", :height => "350px"%>
-      <% end %>
-        <div class="song-name">
-        <%= f.input :name %>
-        <%= f.input :composer_name %>
-        </div>
-        <div class="start_at_event">
-          <%= f.input :start_at, html5: true %>
-        </div>
-        <%= f.input :length_in_minute %>
-        <%= f.input :description, :label => "Song description" %>
-
-        <div class="song-img-container" id= "background">
-          <%= f.input :images, as: :file, input_html: { multiple: true, id: "eventImageInput" } %>
-          <div class="event-image" id="eventImageTarget">
+  <div class="center-container">
+    <div class="form-container">
+      <%= simple_form_for [@event, @song] do |f| %>
+        <div class="form-inputs">
+          <% unless @song.images.empty? %>
+            <%= cl_image_tag @song.images.first.key, :width => "100%", :height => "350px"%>
+          <% end %>
+          <div class="song-name">
+            <%= f.input :name %>
+            <%= f.input :composer_name %>
+          </div>
+          <div class="start_at_event">
+            <%= f.input :start_at, html5: true %>
+          </div>
+          <%= f.input :length_in_minute %>
+          <%= f.input :description, :label => "Song description" %>
+          <div data-controller="performer-new">
+            <p class="form-label text optional" >Performer</p>
+            <%#  prompt: "Choose a Performer",  %>
+            <div data-action="change->performer-new#changePerformerForm">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="existingPerformerRadio" value="existing" checked>
+                <label class="form-check-label" for="existingPerformerRadio">
+                  Choose an existing performer
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="newPerformerRadio" value="new">
+                <label class="form-check-label" for="newPerformerRadio">
+                  Create a new performer
+                </label>
+              </div>
+            </div>
+            <div data-performer-new-target="existingPerformer">
+              <%= f.association :performers, collection: Performer.order(:name), label: false %>
+            </div>
+            <div data-performer-new-target="newPerformer" hidden disabled>
+              <%= f.association :performers do |f| %>
+                <%= f.input :name, :label => "Performer Name" %>
+                <%= f.input :description, :label => "Profiles"%>
+              <% end %>
+            </div>
+          </div>
+          <%# questions customization %>
+          <div data-controller="questions-customization-form">
+            <label class="form-label">Number of customized review questions</label>
+            <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
+              <option value="0" selected>0</option>
+              <% (1..10).each do |i| %>
+                <option value="<%= i %>"><%= i %></option>
+              <% end %>
+            </select>
+            <% (1..10).each do |i| %>
+              <%= render 'shared/question_customization_form', i: i %>
+            <% end %>
+          </div>
+          <div class="song-img-container" id= "background">
+            <%= f.input :images, as: :file, input_html: { multiple: true, id: "eventImageInput" } %>
+            <div class="event-image" id="eventImageTarget">
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, class: "btn-outline-secondary" %>
           </div>
         </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, class: "btn-outline-secondary" %>
-        </div>
-
       </div>
-    </div>
     <% end %>
   </div>
 </div>
 </div>
-
 <script>
-const pictures = document.querySelector('#eventImageInput');
-const eventImagesTarget = document.querySelector('#eventImageTarget');
-// const background = document.querySelector('#event-background')
+  const pictures = document.querySelector('#eventImageInput');
+  const eventImagesTarget = document.querySelector('#eventImageTarget');
+  // const background = document.querySelector('#event-background')
 
-pictures.addEventListener('change', (event) => {
-//  background.style.display = "none";
-  const files = event.target.files;
-  const image = files[0]
-  // here's the file size
-  console.log(image.size);
-  const reader = new FileReader();
-  reader.onload = function(file) {
-    const img = new Image();
-    console.log(file);
-    img.src = file.target.result;
-    eventImagesTarget.appendChild(img);
-  }
-  reader.readAsDataURL(image);
-  console.log(files);
-});
+  pictures.addEventListener('change', (event) => {
+  //  background.style.display = "none";
+    const files = event.target.files;
+    const image = files[0]
+    // here's the file size
+    console.log(image.size);
+    const reader = new FileReader();
+    reader.onload = function(file) {
+      const img = new Image();
+      console.log(file);
+      img.src = file.target.result;
+      eventImagesTarget.appendChild(img);
+    }
+    reader.readAsDataURL(image);
+    console.log(files);
+  });
 </script>

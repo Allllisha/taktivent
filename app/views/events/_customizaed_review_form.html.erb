@@ -1,6 +1,9 @@
+<div class="review_question_continaer">
 <% review.questions_and_choices.each_with_index do |question, i| %>
   <input type="hidden" name="review[responses][][question]" value="<%= question['question'] %>">
+  <div class="customized-review-center">
   <p><%= question['question'] %></p>
+   </div>
   <% case question['question_type'] %>
   <% when 'radio_buttons' %>
     <% question['choices'].each_with_index do |choice, j| %>
@@ -14,8 +17,8 @@
       <% end %>
     </select>
   <% when 'stars' %>
-    <div class="form-group row" id="star">
-      <div class="star-song-rating">
+    <div class="form-group row" id="stars">
+      <div class="star-song-rating-custormized">
         <% 5.times do |i| %>
           <input type="radio" name="review[responses][][response]" value="<%= i + 1 %>" <%= "checked" if i == 2 %> />
         <% end %>
@@ -23,3 +26,4 @@
     </div>
   <% end %>
 <% end %>
+</div>
