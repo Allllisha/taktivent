@@ -28,6 +28,7 @@ class SongsController < ApplicationController
     # @performer.user = current_user
     authorize @song
     @song.event = @event
+    # refer to app/controllers/concerns/question_formattable.rb
     @song.questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
     # @song.performer = @performer
     if @song.save && @event.save

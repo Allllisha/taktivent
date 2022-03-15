@@ -4,6 +4,7 @@
       <%= f.error_notification %>
       <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
+      <%# image section %>
       <div class="before-uproad event-background" data-events-new-target="eventBackground">
         <%= image_tag asset_url("image-upload.jpg")%>
       </div>
@@ -12,6 +13,8 @@
       </div>
 
       <%= f.file_field :images, "data-action": "change->events-new#displayUploadedImage" %>
+
+      <%# venue section %>
       <div class="input-container">
         <%= f.input :name, :label => "Event" %>
         <%= f.input :description,  id: "des"  %>
@@ -29,21 +32,21 @@
         </div>
       </div>
 
-      <%# questions customization %>
+      <%# questions customization section %>
       <div data-controller="questions-customization-form">
         <label class="form-label">Number of customized review questions</label>
+        <%# dropdown list for choosing the number of customized questions %>
         <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
           <option value="0" selected>0</option>
           <% (1..10).each do |i| %>
             <option value="<%= i %>"><%= i %></option>
           <% end %>
         </select>
+        <%# render all question custiomization forms, all hidden by default %>
         <% (1..10).each do |i| %>
           <%= render 'shared/question_customization_form', i: i %>
         <% end %>
       </div>
-
-      <%#= f.input :enable_textbox, label: 'Enable textbox for comment', input_html: {class: "checkbox-white-outline"} %>
 
       <div class="form-actions">
         <%= f.button :submit, class: "btn btn-outline-dark" %>

@@ -1,7 +1,11 @@
+<%# names of input fields are crafted in a way that %>
+<%# params[:review][:questions_and_choices] in controller follows the "schema" of the "questions_and_choices" jsonb column %>
+<%# which can be found in our Slack channel %>
+<%# classes are copied from simple_form-generated forms %>
 <div data-questions-customization-form-target="questionForm" hidden>
   <hr/>
   <h4>Question <%= i %></h4>
-  <%# question types %>
+  <%# dropdown list for question type %>
   <div class="mb-3 string optional review_question_type">
     <label class="form-label string optional" for="review_question_type_<%= i %>">Question type</label>
     <select class="form-select select optional"
@@ -14,7 +18,7 @@
       <option value="stars">Stars</option>
     </select>
   </div>
-  <%# question string %>
+  <%# input field for question string %>
   <div class="mb-3 string optional review_question">
     <label class="form-label string optional" for="review_question_<%= i %>">Question</label>
     <input class="form-control string optional" type="text" name="review[questions_and_choices][][question]" id="review_question_<%= i %>">
@@ -24,17 +28,20 @@
   <div data-question-number="<%= i %>"
        data-questions-customization-form-target="choiceSection">
     <label class="form-label string optional">Number of choices</label>
+    <%# dropdown list for choosing the number of choices for the question %>
     <select class="form-select"
             data-action="change->questions-customization-form#displayChoiceFields"
             data-question-number="<%= i %>">
+      <%# at least 2 choices %>
       <option value="2" selected>2</option>
       <% (3..10).each do |j| %>
         <option value="<%= j %>"><%= j %></option>
       <% end %>
     </select>
-    <%# choice entry fields %>
+    <%# choices input section %>
     <div class="mb-3 string optional review_choices">
       <label class="form-label string optional" for="review_choices_<%= i %>">Choices for quesiton <%= i %></label>
+      <%# display correct number of choice input fields, default is 2 %>
       <input class="form-control string optional"
             type="text"
             name="review[questions_and_choices][][choices][]"

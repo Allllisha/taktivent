@@ -24,6 +24,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     authorize @event
     authorize @venue
+    # refer to app/controllers/concerns/question_formattable.rb
     @event.questions_and_choices = format_questions_and_choices(params[:review][:questions_and_choices])
     @event.venue = @venue
     if @event.save && @venue.save
@@ -62,7 +63,7 @@ class EventsController < ApplicationController
     ratings = @event.event_reviews.group(:rating).count
     @total_ratings = ratings.values.sum
     @possible_stars = ratings.size * 5
- 
+
     authorize @event
 
     url = event_url(@event)
@@ -87,7 +88,7 @@ class EventsController < ApplicationController
         @ratings[number] = 0
       end
     end
-    
+
     @total_ratings = ratings.values.sum
     @possible_stars = ratings.size * 5
     @average_ratings = @total_ratings / ratings.size
@@ -100,7 +101,6 @@ class EventsController < ApplicationController
       @rating_text = "Unsatisfactory"
     end
 
-    
     sentiments = @event.event_reviews.group(:sentiment).count
     @total_sentiments = sentiments.values.sum
     @average_sentiments = @total_sentiments / sentiments.size
@@ -110,7 +110,6 @@ class EventsController < ApplicationController
     @ratings
 
     @comments = @event.event_reviews.group(:comment)
-
   end
 
   def destroy

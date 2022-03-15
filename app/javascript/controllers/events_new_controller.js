@@ -3,8 +3,8 @@ import { Controller } from 'stimulus'
 export default class extends Controller {
   static targets = [ 'eventImage', 'eventBackground' ]
 
-  connect() {
-  }
+  // connect() {
+  // }
 
   displayUploadedImage() {
     this.eventBackgroundTarget.style.display = "none";
