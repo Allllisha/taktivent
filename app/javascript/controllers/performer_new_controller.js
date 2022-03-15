@@ -9,6 +9,7 @@ export default class extends Controller {
   }
 
   changePerformerForm(event) {
+    // display "choose an exisiting performer" form or "create a new performer" form according to user's choice
     if (event.target.value === "existing") {
       this.existingPerformerTarget.hidden = false;
       this.existingPerformerTarget.disabled = false;
