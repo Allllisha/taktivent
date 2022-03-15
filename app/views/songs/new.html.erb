@@ -10,26 +10,30 @@
           </div>
           <%= f.input :length_in_minute,  html5: true, :label => "Duration"%>
           <%= f.input :description, :label => "Song description" %>
+
+          <%# performer section %>
           <div data-controller="performer-new">
             <p class="form-label text optional" >Performer</p>
-            <%#  prompt: "Choose a Performer",  %>
+            <%# radio buttons for choosing "choose an existing performer" or "create a new performer" %>
             <div data-action="change->performer-new#changePerformerForm">
               <div class="form-check">
-              <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="existingPerformerRadio" value="existing" checked>
-              <label class="form-check-label" for="existingPerformerRadio">
-                Choose an existing performer
-              </label>
+                <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="existingPerformerRadio" value="existing" checked>
+                <label class="form-check-label" for="existingPerformerRadio">
+                  Choose an existing performer
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="newPerformerRadio" value="new">
+                <label class="form-check-label" for="newPerformerRadio">
+                  Create a new performer
+                </label>
+              </div>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="chooseCreatePerformer" id="newPerformerRadio" value="new">
-              <label class="form-check-label" for="newPerformerRadio">
-                Create a new performer
-              </label>
-            </div>
-            </div>
+            <%# dropdown list for choosing existing performers %>
             <div data-performer-new-target="existingPerformer">
               <%= f.association :performers, collection: Performer.order(:name), label: false %>
             </div>
+            <%# input fields for creating new performer %>
             <div data-performer-new-target="newPerformer" hidden disabled>
               <%= f.association :performers do |f| %>
                 <%= f.input :name, :label => "Performer Name" %>
@@ -38,28 +42,29 @@
             </div>
           </div>
 
+          <%# image upload section %>
           <div class="song-img-container" id= "background">
             <%= f.input :images, as: :file, :label => "Song images", input_html: { multiple: true, id: "eventImageInput" } %>
+            <%# display the first of uploaded images %>
             <div class="event-image" id="eventImageTarget">
             </div>
           </div>
 
-
-          <%# questions customization %>
+          <%# questions customization section %>
           <div data-controller="questions-customization-form">
             <label class="form-label">Number of customized review questions</label>
+            <%# dropdown list for choosing the number of customized questions %>
             <select class="form-select" data-action="change->questions-customization-form#displayQuestionForms">
               <option value="0" selected>0</option>
               <% (1..10).each do |i| %>
                 <option value="<%= i %>"><%= i %></option>
               <% end %>
             </select>
+            <%# render all question custiomization forms, all hidden by default %>
             <% (1..10).each do |i| %>
               <%= render 'shared/question_customization_form', i: i %>
             <% end %>
           </div>
-
-          <%#= f.input :enable_textbox, label: 'Enable textbox for comment', input_html: {class: "checkbox-white-outline"} %>
 
           <div class="form-actions">
             <%= f.button :submit, class: "btn-outline-secondary" %>
@@ -71,6 +76,7 @@
   </div>
 </div>
 
+<%# TODO: moved the code below to a Stimulus JS controller %>
 <script>
 const pictures = document.querySelector('#eventImageInput');
 const eventImagesTarget = document.querySelector('#eventImageTarget');
