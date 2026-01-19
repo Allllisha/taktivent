@@ -1,0 +1,182 @@
+<div class ="background-dashboard">
+  <div class="event-dashbord">
+    <div class="event-title-dashboard">
+      <div class="date-show">
+        <h5><%= @event.start_at.strftime("%b")%></h5>
+        <h2><%= @event.start_at.strftime("%d")%></h2>
+      </div>
+      <div class="v_line_fix"></div>
+      <h1 class="go-to-event"><%= link_to @event.name, event_path(@event) %></h1>
+      <div class="edit-event-new">
+      </div>
+    </div>
+    <div class="event-info-dashboard">
+      <div class="event-info-descriptions">
+        <% unless @event.images.empty? %>
+          <%= cl_image_tag @event.images.first.key, :width => '300px', :height => '300px', class: "event-image-first"%>
+        <% end %>
+      </div>
+      <div class="event-info-description">
+        <h2><%= @event.name %>
+          <%= link_to edit_event_path(@event) do %>
+            <i class="fas fa-cog"></i>
+          <% end %></h2>
+        <h6><%= @event.description %></h6>
+        <div class="event-date-time">
+          <h6><i class="fas fa-music"></i><%= @event.start_at.strftime("%d#{"th"} %b %Y %H:%M") %> ~ <%= @event.end_at.strftime("%d#{"th"}  %b %Y %H:%M") %></h6>
+        </div>
+        <h6><i class="fas fa-building"></i><%= @event.venue.name %>
+          <h6>
+            <p><i class="fas fa-map-marker-alt"></i><%= @event.venue.address %></p>
+            <div class="trigger-button">
+              <button id="openModal">
+                QR code 
+              </button>
+            </div>
+            <div class="modal-background closed">
+              <div class="modal closed">
+                <div class="modal-content">
+                  <h4 class="modal-content-header">
+                    <div class ="qr-code">
+                      <%= @qr.html_safe %>
+                    </div>
+                  </h4>
+                  <p class="modal-content-text"></p>
+                </div>
+                <div class="modal-buttons">
+                  <button id="close">Back</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="analytics-container">
+      <div class="part-1 col-7" >
+        <h1><%= link_to('Analytics', analytics_event_path)%></h1>
+        <%=  bar_chart @event.event_reviews.group(:comment).count, colors: ["#D93869","#4834B9"] %>
+      </div>
+      <div class="part-2 col-5">
+        <div class="circle-bg-color-anim score-circular">
+          <div class="circle-bg-color-anim score-inner"></div>
+          <div class="score-number">
+          </div>
+          <div class="circle-text-color-anim score-text">
+            <div class="row-circle">
+              <div class="score col s12">
+                <%= @total_ratings %>
+              </div>
+              <div class="reviews-stats col s12">
+                <h6>All reviews</h6>
+              </div>
+            </div>
+          </div>
+          <div class="score-circle">
+            <div class="circle-bg-color-anim score-bar progress-right">
+              <div class="circle-bg-color-anim score-progress"></div>
+            </div>
+            <div class="circle-bg-color-anim score-bar progress-left">
+              <div class="score-progress"></div>
+            </div>
+          </div>
+        </div>
+        <div class="event-dashboard-chart">
+          <div class="circle-bg-color-anim score-circular">
+            <div class="circle-bg-color-anim score-inner"></div>
+            <div class="score-number">
+            </div>
+            <div class="circle-text-color-anim score-text">
+              <div class="row-circle">
+                <div class="score col s12">
+                  <%= @possible_stars %>
+                </div>
+                <div class="rating-stars col s12">
+                  <input type="radio" name="stars" id="star-null">
+                  <input type="radio" name="stars" id="star-1" saving="1" data-start="1" checked="">
+                  <input type="radio" name="stars" id="star-2" saving="2" data-start="2" checked="">
+                  <input type="radio" name="stars" id="star-3" saving="3" data-start="3" checked="">
+                  <input type="radio" name="stars" id="star-4" saving="4" data-start="4" checked="">
+                  <input type="radio" name="stars" id="star-5" saving="5" checked="">
+                  <div class="avarage-stars">
+                    <% 5.times do |i| %>
+                      <% if @possible_stars > i %>
+                        <i class="fas fa-star"  style="color:yellow"></i>
+                      <% else %>
+                        <i class="fas fa-star"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="reviews-stats col s12">
+                  <h6>All stars</h6>
+                </div>
+              </div>
+            </div>
+            <div class="score-circle">
+              <div class="circle-bg-color-anim score-bar progress-right">
+                <div class="circle-bg-color-anim score-progress"></div>
+              </div>
+              <div class="circle-bg-color-anim score-bar progress-left">
+                <div class="score-progress"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="event-song-dashboard">
+      <h1>Programme</h1>
+      <div class="song-cards d-flex my-box-light flex-wrap mb-2">
+        <% @songs.each do |song| %>
+          <div class ="box">
+            <div class="box-cards" style="width: 18rem;">
+              <% unless song.images.empty? %>
+                <%= cl_image_tag song.images.first.key, :width => '300px', :height => '150px', class: "card-img-top"%>
+              <% end %>
+              <div class="event-card-body mb-4">
+                <div class="event-card-info">
+                  <h5 class="card-title"><i class="fas fa-music"></i><%= link_to song.name, event_song_path(@event, song), class: "edit-songs-new"%></h5>
+                  <div class="song-delete-edit">
+                  <p class="mr-2"><%= link_to edit_event_song_path(@event, song) do %>
+                   <i class="fas fa-edit"></i>
+                  <% end %></p>
+                  <p><%= link_to event_song_path(@event, song), method: :delete do %>
+                   <i class="fas fa-backspace"></i>
+                  <% end %></p>
+                  </div>
+                    <p class="card-text">Composer:   <%= song.composer_name%></p>
+                    <p class="card-text">Start:   <%= song.start_at.strftime(" %d %b %Y %H:%M")%>~</p>
+                    <p class="card-text">length: <%= song.length_in_minute%>min</p>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <%= link_to new_event_song_path(@event), class: "create-songs-new" do %>
+          <button>Create New Song</button>
+        <% end %>
+      </div>
+      <script>
+        showModal();
+
+        function showModal() {
+            var modalBackground = document.querySelector('.modal-background'),
+            modal = document.querySelector('.modal'),
+            close = document.querySelector('#close'),
+            open = document.querySelector('#openModal');
+            // open modal
+            open.addEventListener('click', function(){
+                modalBackground.classList.toggle('closed');
+                modal.classList.toggle('closed');
+            });
+            // cancel;
+            close.addEventListener('click', function(){
+                modalBackground.classList.toggle('closed');
+                modal.classList.toggle('closed');
+            });
+
+        }
+      </script>

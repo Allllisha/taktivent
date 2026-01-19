@@ -1,0 +1,59 @@
+#background{
+  img{
+    width:  100%;
+    height: 350px;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    border-radius: 20px;
+  }
+}
+
+.song-img-container{
+  img{
+    width:  100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+
+.pictureTarget{
+  width: 100px;
+  height: 50px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+
+#display-image{
+  width: 300px;
+  height: 169px;
+  border: 1px solid black;
+  background-position: center;
+  background-size: cover;
+}
+
+.form-container{
+  color: white;
+  input{
+    color: white;
+    background-color: transparent;
+  }
+}
+
+.btn-outline-secondary{
+  color: rgba(255, 255, 255, 0.877);
+  background-image:  linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #fa9b48 100%);
+  border-radius: 20px;
+  border: solid 0.1px rgba(75, 72, 72, 0.774);
+  padding: 10px;
+}
+
+

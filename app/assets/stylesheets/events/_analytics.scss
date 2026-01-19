@@ -1,0 +1,49 @@
+.analytics {
+  color: white;
+  h2 {
+    margin-top: 2rem;
+  }
+}
+
+.analytics-chart-flexbox{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+.analytics-chart-title {
+  text-align: center;
+}
+
+.analytics-review-header {
+  margin-top: 2rem;
+}
+
+.analytics-box {
+  position: relative;
+}
+
+.analytics-positioned {
+  position:absolute;
+  top: 40%; 
+  left: 45%;
+  width: 100%;
+  text-align: top;
+  font-size: 50px;
+}
+
+.analytics-text {
+  position:absolute;
+  top: 60%; 
+  left: 40%;
+  width: 100%;
+  text-align: top;
+  font-size: 10px;
+}
+
+.accordion-item-review {
+  background-color: #1e1e1e;
+}

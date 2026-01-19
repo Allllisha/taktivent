@@ -1,0 +1,25 @@
+// Import Google fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+
+// Define fonts for body and headers
+$body-font: "Work Sans", "Helvetica", "sans-serif";
+$headers-font: "Nunito", "Helvetica", "sans-serif";
+
+@font-face {
+  font-family: "song-title";
+  font-weight: 500;
+  src: asset-url('Angelmoxi-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: "event-title";
+  font-weight: 500;
+  src: asset-url('PPGrafier-BoldDisplay.otf') format('opentype');
+}
+
+
+@font-face {
+  font-family: "description";
+  font-weight: 500;
+  src: asset-url('PPGrafier-RegularDisplay.otf') format('opentype');
+}

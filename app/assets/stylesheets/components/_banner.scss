@@ -1,0 +1,31 @@
+.home-banner {
+  background-image: url('https://images.unsplash.com/photo-1488630228244-bcdf33562a43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80');
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  height: 79vh;
+  color: #eee;
+  text-align: center;
+  h1{
+    margin: 0;
+    color: yellow;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 80px;
+    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+
+    @media screen and (max-width: 767px) {
+      font-size: 60px;
+     }
+  }
+  h2{
+    font-size: 35px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+
+    @media screen and (max-width: 767px) {
+      margin-top: 20px;
+      font-size: 20px;
+     }
+  }
+}

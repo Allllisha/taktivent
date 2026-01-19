@@ -1,0 +1,25 @@
+// Graphical variables
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// Your CSS partials
+@import "components/index";
+//pages
+@import "pages/new";
+@import "pages/index";
+@import "pages/dashboard";
+//events
+@import "events/index";
+@import "events/new";
+@import "events/show";
+@import "events/edit";
+@import "events/dashboard";
+//songs
+@import "songs/new";
+@import "songs/show";
