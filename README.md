@@ -2,45 +2,45 @@
 
 Taktivent is a real time feedback app for performers. This app will resolve all pains which performers have when they organize concerts or events. Performer can make an event page instead of making paper flyer and this flyer page will change to an events programme when event starts. Performer can set any questions they would like to ask to the audience in advance. This app will aggreagte ratings and data from the audience.
 
-## 技術スタック
+## Tech Stack
 
-| 項目 | 技術 |
-|------|------|
-| バックエンド | Rails 7 API + Ruby 3.1.2 |
-| フロントエンド | React 19 + TypeScript + Vite |
-| 状態管理 | TanStack Query + Zustand |
-| スタイリング | Tailwind CSS |
-| 認証 | Devise + JWT |
-| データベース | PostgreSQL |
+| Item | Technology |
+|------|------------|
+| Backend | Rails 7 API + Ruby 3.1.2 |
+| Frontend | React 19 + TypeScript + Vite |
+| State Management | TanStack Query + Zustand |
+| Styling | Tailwind CSS |
+| Authentication | Devise + JWT |
+| Database | PostgreSQL |
 
-## プロジェクト構造
+## Project Structure
 
 ```
 taktivent/
 ├── api/          # Rails 7 API
-└── frontend/     # React アプリ
+└── frontend/     # React App
 ```
 
-## 機能一覧
+## Features
 
-- ユーザー登録・ログイン (JWT 認証)
-- イベント CRUD
-- 曲 CRUD
-- カスタム質問作成
-- 匿名レビュー投稿
-- 分析ダッシュボード (評価分布、感情分析)
-- QR コード生成
-- カウントダウンタイマー
+- User registration & login (JWT authentication)
+- Event CRUD
+- Song CRUD
+- Custom question creation
+- Anonymous review submission
+- Analytics dashboard (rating distribution, sentiment analysis)
+- QR code generation
+- Countdown timer
 
-## セットアップ
+## Setup
 
-### 必要なもの
+### Requirements
 
 - Ruby 3.1.2+
 - Node.js 20+
 - PostgreSQL 14+
 
-### バックエンド
+### Backend
 
 ```bash
 cd api
@@ -49,7 +49,7 @@ rails db:create db:migrate
 rails s -p 3001
 ```
 
-### フロントエンド
+### Frontend
 
 ```bash
 cd frontend
@@ -57,7 +57,7 @@ npm install
 npm run dev
 ```
 
-## 環境変数
+## Environment Variables
 
 ### api/.env
 
@@ -74,12 +74,12 @@ FRONTEND_URL=http://localhost:5173
 VITE_API_URL=http://localhost:3001/api/v1
 ```
 
-## テスト
+## Testing
 
 ```bash
-# バックエンド
+# Backend
 cd api && bundle exec rspec
 
-# フロントエンド
+# Frontend
 cd frontend && npm test
 ```
