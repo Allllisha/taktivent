@@ -18,6 +18,8 @@ services:
         value: production
       - key: RACK_ENV
         value: production
+      - key: RUBY_VERSION
+        value: 3.1.2
       - key: RAILS_MASTER_KEY
         sync: false
       - key: DATABASE_URL
@@ -30,6 +32,12 @@ services:
         generateValue: true
       - key: CLOUDINARY_URL
         sync: false
+      - key: RAILS_LOG_TO_STDOUT
+        value: "true"
+      - key: RAILS_SERVE_STATIC_FILES
+        value: "true"
+      - key: SECRET_KEY_BASE
+        generateValue: true
 
   # Frontend - React (Static Site)
   - type: web
@@ -38,6 +46,10 @@ services:
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache
     routes:
       - type: rewrite
         source: /*
