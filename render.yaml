@@ -5,10 +5,12 @@ databases:
     plan: free
 
 services:
+  # Backend - Rails API
   - type: web
     name: taktivent-api
     runtime: ruby
     plan: free
+    rootDir: api
     buildCommand: bundle install && bundle exec rails db:migrate
     startCommand: bundle exec puma -C config/puma.rb
     envVars:
@@ -23,8 +25,24 @@ services:
           name: taktivent-db
           property: connectionString
       - key: FRONTEND_URL
-        sync: false
+        value: https://taktivent.onrender.com
       - key: DEVISE_JWT_SECRET_KEY
         generateValue: true
       - key: CLOUDINARY_URL
         sync: false
+
+  # Frontend - React
+  - type: web
+    name: taktivent
+    runtime: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://taktivent-api.onrender.com/api/v1
