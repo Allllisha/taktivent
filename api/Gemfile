@@ -1,0 +1,62 @@
+source "https://rubygems.org"
+
+ruby "3.1.2"
+
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem "rails", "~> 7.1.6"
+
+# Use postgresql as the database for Active Record
+gem "pg", "~> 1.1"
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem "puma", ">= 5.0"
+
+# Authentication
+gem "devise", "~> 4.9"
+gem "devise-jwt", "~> 0.11"
+
+# Authorization
+gem "pundit", "~> 2.3"
+
+# JSON serialization
+gem "blueprinter", "~> 0.30"
+gem "oj", "~> 3.16"
+
+# CORS
+gem "rack-cors", "~> 2.0"
+
+# Environment variables
+gem "dotenv-rails", "~> 3.0"
+
+# File uploads (Cloudinary)
+gem "cloudinary", "~> 1.28"
+gem "activestorage-cloudinary-service", "~> 0.2"
+
+# QR Code generation
+gem "rqrcode", "~> 2.2"
+
+# Redis for Action Cable
+gem "redis", "~> 5.0"
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", require: false
+
+group :development, :test do
+  gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem "rspec-rails", "~> 6.1"
+  gem "factory_bot_rails", "~> 6.4"
+  gem "faker", "~> 3.2"
+end
+
+group :development do
+  gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
+end
+
+group :test do
+  gem "shoulda-matchers", "~> 6.0"
+  gem "database_cleaner-active_record", "~> 2.1"
+end
+

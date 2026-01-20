@@ -1,54 +1,87 @@
 # Taktivent
 
-Login
+リアルタイムイベントフィードバックプラットフォーム
 
-<ul>
-<li>Email: ardolce23@gmail.com</li>
-<li>password: a23123</li>
-</ul>
+演奏者がコンサートやイベントを開催する際の課題を解決するアプリです。紙のフライヤーの代わりにイベントページを作成でき、イベント開始時にはプログラム表示に切り替わります。観客からの評価やデータを集計できます。
 
-Taktivent is a real time feedback app for performers. This app will resolve all pains which performers have when they organize concerts or events.
-Performer can make an event page instead of making paper flyer and this flyer page will change to an events programme when event starts. Performer can set any questions they would like to ask to the audience in advance. This app will aggreagte ratings and data from the audience.
+## 技術スタック
 
+| 項目 | 技術 |
+|------|------|
+| バックエンド | Rails 7 API + Ruby 3.1.2 |
+| フロントエンド | React 19 + TypeScript + Vite |
+| 状態管理 | TanStack Query + Zustand |
+| スタイリング | Tailwind CSS |
+| 認証 | Devise + JWT |
+| データベース | PostgreSQL |
 
-![image](https://user-images.githubusercontent.com/90506535/165228520-d12e1249-9366-4368-8711-3d8873f6e078.png)
+## プロジェクト構造
 
+```
+taktivent/
+├── api/          # Rails 7 API
+└── frontend/     # React アプリ
+```
 
-![image](https://user-images.githubusercontent.com/90506535/165235979-130e00fa-bfc4-442b-8124-76bdf241fab5.png)
+## 機能一覧
 
+- ユーザー登録・ログイン (JWT 認証)
+- イベント CRUD
+- 曲 CRUD
+- カスタム質問作成
+- 匿名レビュー投稿
+- 分析ダッシュボード (評価分布、感情分析)
+- QR コード生成
+- カウントダウンタイマー
 
-# 使用技術
+## セットアップ
 
-【Backend】
+### 必要なもの
 
-<ul>
-<li>Ruby 2.7.4</li>
-<li>Ruby on Rails 6.1.4</li>
-<li>PostgreSQL 1.1</li>
-<li>chartkick</li>
-<li>rqrcode</li>
-<li>sass-rails</li>
-<li>cloudinary</li>
-<li>devise</li>
-</ul>
+- Ruby 3.1.2+
+- Node.js 20+
+- PostgreSQL 14+
 
-【Frontend】
+### バックエンド
 
-<ul>
-<li>stimulus.js</li>
-<li>glide.js</li>
-<li>bootstrap</li>
-</ul>
+```bash
+cd api
+bundle install
+rails db:create db:migrate
+rails s -p 3001
+```
 
+### フロントエンド
 
-# 機能一覧
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-<ul>
-<li>Registration, Login(devise)</li>
-<li>CRUD for an Event, Songs</li>
-<li>Performer can make questions</li>
-<li>Performer can see aggreagted datas for each events</li>  
-<li>Audience can see the programmes, can answer questions</li>
-</ul>
+## 環境変数
 
+### api/.env
 
+```env
+DATABASE_URL=postgres://localhost/taktivent_dev
+CLOUDINARY_URL=cloudinary://...
+DEVISE_JWT_SECRET_KEY=your-secret-key
+FRONTEND_URL=http://localhost:5173
+```
+
+### frontend/.env
+
+```env
+VITE_API_URL=http://localhost:3001/api/v1
+```
+
+## テスト
+
+```bash
+# バックエンド
+cd api && bundle exec rspec
+
+# フロントエンド
+cd frontend && npm test
+```
