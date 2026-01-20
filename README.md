@@ -2,11 +2,16 @@
 
 Taktivent is a real time feedback app for performers. This app will resolve all pains which performers have when they organize concerts or events. Performer can make an event page instead of making paper flyer and this flyer page will change to an events programme when event starts. Performer can set any questions they would like to ask to the audience in advance. This app will aggreagte ratings and data from the audience.
 
+## Demo Login
+
+- **Email**: ardolce23@gmail.com
+- **Password**: a23123
+
 ## Tech Stack
 
 | Item | Technology |
 |------|------------|
-| Backend | Rails 7 API + Ruby 3.1.2 |
+| Backend | Rails 7 API + Ruby 3.4.4 |
 | Frontend | React 19 + TypeScript + Vite |
 | State Management | TanStack Query + Zustand |
 | Styling | Tailwind CSS |
@@ -36,7 +41,7 @@ taktivent/
 
 ### Requirements
 
-- Ruby 3.1.2+
+- Ruby 3.4.4+
 - Node.js 20+
 - PostgreSQL 14+
 
