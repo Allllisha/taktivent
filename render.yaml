@@ -31,11 +31,10 @@ services:
       - key: CLOUDINARY_URL
         sync: false
 
-  # Frontend - React
+  # Frontend - React (Static Site)
   - type: web
     name: taktivent
     runtime: static
-    plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
