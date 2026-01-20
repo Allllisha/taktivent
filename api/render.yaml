@@ -1,0 +1,30 @@
+databases:
+  - name: taktivent-db
+    databaseName: taktivent
+    user: taktivent
+    plan: free
+
+services:
+  - type: web
+    name: taktivent-api
+    runtime: ruby
+    plan: free
+    buildCommand: bundle install && bundle exec rails db:migrate
+    startCommand: bundle exec puma -C config/puma.rb
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RACK_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: taktivent-db
+          property: connectionString
+      - key: FRONTEND_URL
+        sync: false
+      - key: DEVISE_JWT_SECRET_KEY
+        generateValue: true
+      - key: CLOUDINARY_URL
+        sync: false
