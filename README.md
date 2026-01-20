@@ -1,8 +1,6 @@
 # Taktivent
 
-リアルタイムイベントフィードバックプラットフォーム
-
-演奏者がコンサートやイベントを開催する際の課題を解決するアプリです。紙のフライヤーの代わりにイベントページを作成でき、イベント開始時にはプログラム表示に切り替わります。観客からの評価やデータを集計できます。
+Taktivent is a real time feedback app for performers. This app will resolve all pains which performers have when they organize concerts or events. Performer can make an event page instead of making paper flyer and this flyer page will change to an events programme when event starts. Performer can set any questions they would like to ask to the audience in advance. This app will aggreagte ratings and data from the audience.
 
 ## 技術スタック
 
