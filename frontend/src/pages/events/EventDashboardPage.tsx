@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { eventsApi, songsApi, collaboratorsApi } from '@/api';
 import { format } from 'date-fns';
-import type { Collaborator } from '@/api/collaborators';
 
 export function EventDashboardPage() {
   const { id } = useParams<{ id: string }>();

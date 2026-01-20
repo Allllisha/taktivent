@@ -60,7 +60,7 @@ export function EventNewPage() {
     setFormData({
       ...formData,
       enable_textbox: template.template_data.enable_textbox ?? true,
-      questions_and_choices: template.template_data.questions_and_choices || [],
+      questions_and_choices: (template.template_data.questions_and_choices || []) as QuestionAndChoice[],
       venue_attributes: {
         name: template.template_data.venue_name || '',
         address: formData.venue_attributes.address,
