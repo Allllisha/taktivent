@@ -19,7 +19,7 @@ services:
       - key: RACK_ENV
         value: production
       - key: RUBY_VERSION
-        value: 3.1.2
+        value: 3.3.0
       - key: RAILS_MASTER_KEY
         sync: false
       - key: DATABASE_URL
